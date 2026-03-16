@@ -38,26 +38,20 @@ export default async function HomePage({
     <>
       {/* Hero */}
       <section className="relative h-screen w-full">
-        {featured[0] && (
-          <Image
-            src={featured[0].coverImage}
-            alt={featured[0].coverImageAlt[locale as Locale]}
-            fill
-            priority
-            className="object-cover"
-            placeholder="blur"
-            blurDataURL={featured[0].coverImageBlurDataURL}
-          />
-        )}
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-6">
-          <h1 className="font-display text-5xl md:text-7xl tracking-logo text-white">
-            Carol Orofino
-          </h1>
-          <p className="mt-4 font-body text-sm md:text-base uppercase tracking-widest text-white/80 max-w-xl">
-            {t('tagline')}
-          </p>
-        </div>
+        <Image
+          src="/hero-brand-mobile.jpg"
+          alt="Carol Orofino Interior Design"
+          fill
+          priority
+          className="object-cover md:hidden"
+        />
+        <Image
+          src="/hero-brand-desktop.png"
+          alt="Carol Orofino Interior Design"
+          fill
+          priority
+          className="object-cover hidden md:block"
+        />
       </section>
 
       {/* Featured Projects */}

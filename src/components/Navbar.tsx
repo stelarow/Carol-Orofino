@@ -35,6 +35,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
   const isTransparentMode = transparent && !scrolled
 
   const navLinks = [
+    { href: `/${locale}`, label: t('home') },
     { href: `/${locale}/projetos`, label: t('projects') },
     { href: `/${locale}/sobre`, label: t('about') },
     { href: `/${locale}/servicos`, label: t('services') },

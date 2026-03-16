@@ -35,7 +35,7 @@ export default async function ServicesPage({
               <h2 className="font-display text-2xl text-text-primary tracking-wide mb-4">
                 {translation.title}
               </h2>
-              <p className="font-body text-sm text-text-primary/70 leading-relaxed">
+              <p className="font-body text-base text-text-primary/80 leading-relaxed">
                 {translation.description}
               </p>
             </div>

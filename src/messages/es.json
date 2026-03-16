@@ -1,5 +1,6 @@
 {
   "nav": {
+    "home": "Home",
     "projects": "Proyectos",
     "about": "Sobre mí",
     "services": "Servicios",
@@ -32,7 +33,7 @@
   },
   "about": {
     "title": "Sobre Carol Orofino",
-    "bio": "Carol Orofino es diseñadora de interiores graduada por la Universidad Mackenzie, con especialización en Diseño Sostenible. A lo largo de más de 10 años de carrera, ha desarrollado proyectos residenciales y comerciales que traducen la personalidad de sus clientes en espacios únicos y funcionales.",
+    "bio": "Carol Orofino es diseñadora de interiores con especialización en Diseño Sostenible. A lo largo de más de 10 años de carrera, ha desarrollado proyectos residenciales y comerciales que traducen la personalidad de sus clientes en espacios únicos y funcionales.",
     "philosophy": "Filosofía de Diseño",
     "philosophyText": "Creo que el diseño de interiores va más allá de la estética. Se trata de crear espacios que transformen la experiencia de quienes los habitan — espacios que inspiran, acogen y perduran."
   },

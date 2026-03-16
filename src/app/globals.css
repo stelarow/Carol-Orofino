@@ -3,12 +3,12 @@
 
 @theme {
   /* Brand colors */
-  --color-background: #FAF9F7;
+  --color-background: #EDE8DF;
   --color-text-primary: #1A1A1A;
-  --color-primary: #8B7355;
-  --color-secondary: #B8C4BB;
-  --color-neutral: #D4CFC8;
-  --color-dark: #2C2C2C;
+  --color-primary: #8A6B4A;
+  --color-secondary: #B5CAD5;
+  --color-neutral: #C2BBB2;
+  --color-dark: #797572;
 
   /* Font families */
   --font-display: var(--font-cormorant), Georgia, serif;

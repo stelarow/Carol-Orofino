@@ -25,7 +25,8 @@ export default async function ContactPage({
   const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`
 
   return (
-    <div className="mx-auto max-w-2xl px-6 py-32 text-center">
+    <div className="flex min-h-[calc(100vh-80px)] items-center justify-center px-6">
+      <div className="w-full max-w-2xl text-center">
       <h1 className="font-display text-4xl md:text-5xl text-primary tracking-wide mb-16">
         {t('title')}
       </h1>
@@ -71,6 +72,7 @@ export default async function ContactPage({
             @carolorofino
           </Link>
         </p>
+      </div>
       </div>
     </div>
   )
