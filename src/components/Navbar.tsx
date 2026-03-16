@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { routing, type Locale } from '@/lib/i18n'
+import { type Locale } from '@/lib/i18n'
 
 const LOCALES: { code: Locale; label: string }[] = [
   { code: 'pt', label: 'PT' },
