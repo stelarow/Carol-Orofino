@@ -10,19 +10,38 @@ interface ProjectGalleryProps {
 export default function ProjectGallery({ images, locale }: ProjectGalleryProps) {
   if (images.length === 0) return null
 
+  const [first, ...rest] = images
+
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-      {images.map((image, index) => (
-        <div key={index} className="relative aspect-[4/3] overflow-hidden bg-neutral">
-          <Image
-            src={image.src}
-            alt={image.altText[locale]}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
-          />
+    <div className="flex flex-col gap-px">
+      {/* First image: full width, landscape */}
+      <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral">
+        <Image
+          src={first.src}
+          alt={first.altText[locale]}
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+      </div>
+
+      {/* Remaining images: 2-column portrait grid */}
+      {rest.length > 0 && (
+        <div className="grid grid-cols-2 gap-px">
+          {rest.map((image, index) => (
+            <div key={index} className="relative aspect-[3/4] overflow-hidden bg-neutral">
+              <Image
+                src={image.src}
+                alt={image.altText[locale]}
+                fill
+                sizes="(max-width: 768px) 50vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   )
 }

@@ -59,7 +59,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isTransparentMode
             ? 'bg-transparent'
-            : 'bg-background border-b border-neutral'
+            : 'bg-background border-b border-stone'
         }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center px-6 py-4">
@@ -104,7 +104,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                           : 'text-text-primary font-semibold'
                         : isTransparentMode
                         ? 'text-white/70'
-                        : 'text-text-primary/50'
+                        : 'text-dark'
                     }`}
                     aria-label={`Switch to ${loc.label}`}
                   >
@@ -113,7 +113,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                   {i < LOCALES.length - 1 && (
                     <span
                       className={`mx-1 text-xs ${
-                        isTransparentMode ? 'text-white/30' : 'text-neutral'
+                        isTransparentMode ? 'text-white/30' : 'text-dark'
                       }`}
                     >
                       /
@@ -231,13 +231,13 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                   className={`font-body text-xs uppercase tracking-widest ${
                     locale === loc.code
                       ? 'font-semibold text-text-primary'
-                      : 'text-text-primary/50'
+                      : 'text-dark'
                   }`}
                 >
                   {loc.label}
                 </button>
                 {i < LOCALES.length - 1 && (
-                  <span className="mx-1 text-xs text-neutral">/</span>
+                  <span className="mx-1 text-xs text-dark">/</span>
                 )}
               </span>
             ))}

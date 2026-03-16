@@ -65,7 +65,7 @@ export default async function ProjectDetailPage({
       </header>
 
       {/* Cover image */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-neutral mb-12">
+      <div className="relative aspect-[16/9] overflow-hidden bg-stone mb-12">
         <Image
           src={project.coverImage}
           alt={project.coverImageAlt[locale as Locale]}

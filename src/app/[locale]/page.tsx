@@ -55,8 +55,8 @@ export default async function HomePage({
       </section>
 
       {/* Featured Projects */}
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <section className="pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((project) => (
             <ProjectCard
               key={project.slug}
@@ -65,7 +65,7 @@ export default async function HomePage({
             />
           ))}
         </div>
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center px-6">
           <Link
             href={`/${locale}/projetos`}
             className="font-body text-xs uppercase tracking-widest border border-text-primary px-8 py-3 text-text-primary transition-colors hover:bg-text-primary hover:text-background"
@@ -76,12 +76,12 @@ export default async function HomePage({
       </section>
 
       {/* About Teaser */}
-      <section className="bg-neutral/20 py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="font-display text-3xl md:text-4xl text-primary tracking-wide">
             {t('aboutTitle')}
           </h2>
-          <p className="mt-6 font-body text-base text-text-primary/70 leading-relaxed max-w-2xl mx-auto">
+          <p className="mt-6 font-body text-base text-dark leading-relaxed max-w-2xl mx-auto">
             {t('aboutTeaser')}
           </p>
           <Link

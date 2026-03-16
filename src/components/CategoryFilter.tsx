@@ -23,8 +23,8 @@ export default function CategoryFilter({ active, onChange }: CategoryFilterProps
           onClick={() => onChange(cat)}
           className={`font-body text-xs uppercase tracking-widest px-4 py-2 border transition-colors ${
             active === cat
-              ? 'border-text-primary bg-text-primary text-background'
-              : 'border-neutral text-text-primary/60 hover:border-text-primary hover:text-text-primary'
+              ? 'border-primary bg-primary text-background'
+              : 'border-sage text-sage hover:border-primary hover:text-primary'
           }`}
           aria-pressed={active === cat}
         >

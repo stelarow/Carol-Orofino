@@ -27,7 +27,7 @@ export default async function ServicesPage({
       <h1 className="font-display text-4xl md:text-5xl text-primary tracking-wide mb-16">
         {t('title')}
       </h1>
-      <div className="grid grid-cols-1 gap-px bg-neutral md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-px bg-sage md:grid-cols-2">
         {services.map((service) => {
           const translation = service.translations[locale as Locale]
           return (
@@ -35,7 +35,7 @@ export default async function ServicesPage({
               <h2 className="font-display text-2xl text-text-primary tracking-wide mb-4">
                 {translation.title}
               </h2>
-              <p className="font-body text-base text-text-primary/80 leading-relaxed">
+              <p className="font-body text-base text-dark leading-relaxed">
                 {translation.description}
               </p>
             </div>

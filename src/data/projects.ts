@@ -83,20 +83,20 @@ export const projects: Project[] = [
     category: 'comercial',
     year: 2023,
     location: 'São Paulo, SP',
-    coverImage: '/images/projects/escritorio-itaim/cover.jpg',
+    coverImage: '/images/projects/escritorio-itaim/01.png',
     coverImageAlt: {
-      pt: 'Escritório moderno com iluminação natural e móveis minimalistas',
-      en: 'Modern office with natural lighting and minimalist furniture',
-      es: 'Oficina moderna con iluminación natural y muebles minimalistas',
+      pt: 'Área de trabalho aberta com jardim vertical, madeira nobre e vista para São Paulo',
+      en: 'Open workspace with vertical garden, noble wood and views of São Paulo',
+      es: 'Espacio de trabajo abierto con jardín vertical, madera noble y vistas de São Paulo',
     },
     coverImageBlurDataURL: BLUR_PLACEHOLDER,
     images: [
       {
-        src: '/images/projects/escritorio-itaim/01.jpg',
+        src: '/images/projects/escritorio-itaim/02.png',
         altText: {
-          pt: 'Área de reuniões com mesa de vidro',
-          en: 'Meeting area with glass table',
-          es: 'Área de reuniones con mesa de vidrio',
+          pt: 'Espaço de convivência do Escritório Itaim',
+          en: 'Common area of the Itaim Office',
+          es: 'Área de convivencia de la Oficina Itaim',
         },
       },
     ],
@@ -105,17 +105,17 @@ export const projects: Project[] = [
       pt: {
         title: 'Escritório Itaim',
         description:
-          'Projeto comercial focado em produtividade e bem-estar, com materiais nobres e paleta neutra.',
+          'Ambiente corporativo que equilibra performance e bem-estar: jardim vertical, travertino, madeiras aquecidas e luz natural abundante compõem espaços que inspiram — com a skyline de São Paulo como pano de fundo.',
       },
       en: {
         title: 'Itaim Office',
         description:
-          'Commercial project focused on productivity and well-being, with noble materials and a neutral palette.',
+          'A corporate environment that balances performance and well-being: vertical garden, travertine, warm wood, and abundant natural light compose spaces that inspire — with the São Paulo skyline as a backdrop.',
       },
       es: {
         title: 'Oficina Itaim',
         description:
-          'Proyecto comercial enfocado en productividad y bienestar, con materiales nobles y paleta neutra.',
+          'Ambiente corporativo que equilibra rendimiento y bienestar: jardín vertical, travertino, maderas cálidas y abundante luz natural componen espacios que inspiran — con el skyline de São Paulo como telón de fondo.',
       },
     },
   },
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     category: 'reforma',
     year: 2024,
     location: 'São Paulo, SP',
-    coverImage: '/images/projects/casa-higienopolis/cover.jpg',
+    coverImage: '/images/projects/casa-higienopolis/cover.png',
     coverImageAlt: {
       pt: 'Casa reformada com fachada renovada e jardim frontal',
       en: 'Renovated house with updated facade and front garden',

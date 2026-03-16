@@ -2,13 +2,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colors */
-  --color-background: #EDE8DF;
+  /* ── Palette aliases (60-30-10) ───────────────────────────────────────── */
+
+  /* 60% — Dominant: backgrounds & large surfaces */
+  --color-linen: #edeae1;   /* main page background */
+  --color-sand:  #e0cfb3;   /* warm section backgrounds */
+
+  /* 30% — Secondary: supporting surfaces, UI, text */
+  --color-stone: #d5d0cc;   /* card backgrounds, subtle surfaces */
+  --color-mist:  #dfe3e6;   /* borders, dividers */
+  --color-sky:   #ccdae3;   /* cool accent surfaces */
+  --color-latte: #c0af9b;   /* hover areas, warm secondary */
+  --color-sage:  #95978a;   /* secondary text, captions */
+  --color-slate: #7c777d;   /* footer, dark UI labels */
+
+  /* 10% — Accent: CTAs, headings, brand */
+  --color-walnut: #86725a;
+
+  /* ── Semantic tokens (mapped to palette) ─────────────────────────────── */
+  --color-background: #e0cfb3;   /* → sand */
   --color-text-primary: #1A1A1A;
-  --color-primary: #8A6B4A;
-  --color-secondary: #B5CAD5;
-  --color-neutral: #C2BBB2;
-  --color-dark: #797572;
+  --color-primary: #86725a;      /* → walnut */
+  --color-secondary: #c0af9b;    /* → latte */
+  --color-neutral: #d5d0cc;      /* → stone */
+  --color-dark: #7c777d;         /* → slate */
 
   /* Font families */
   --font-display: var(--font-cormorant), Georgia, serif;

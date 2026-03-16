@@ -15,26 +15,24 @@ export default function ProjectCard({ project, locale }: ProjectCardProps) {
 
   return (
     <Link href={href} className="group block">
-      <div className="relative aspect-square overflow-hidden bg-neutral">
+      <div className="relative aspect-[3/4] md:aspect-[16/9] overflow-hidden bg-stone">
         <Image
           src={project.coverImage}
           alt={altText}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          sizes="(max-width: 768px) 100vw, 100vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           placeholder="blur"
           blurDataURL={project.coverImageBlurDataURL}
         />
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/35 flex items-end p-4 opacity-0 group-hover:opacity-100">
-          <p className="font-display text-lg text-white">{title}</p>
+        {/* Permanent dark overlay */}
+        <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/55" />
+        {/* Centered label */}
+        <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
+          <p className="font-display text-2xl md:text-3xl text-white tracking-wide">
+            {title}
+          </p>
         </div>
-      </div>
-      <div className="mt-3">
-        <p className="font-body text-sm text-text-primary">{title}</p>
-        <p className="font-body text-xs uppercase tracking-widest text-text-primary/50 mt-1">
-          {project.category}
-        </p>
       </div>
     </Link>
   )

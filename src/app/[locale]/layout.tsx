@@ -35,9 +35,11 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <NavbarWrapper />
-      <main className="fade-in">{children}</main>
-      <Footer />
+      <div className="flex min-h-screen flex-col">
+        <NavbarWrapper />
+        <main className="fade-in flex-1">{children}</main>
+        <Footer />
+      </div>
       <WhatsAppButton message={t('whatsappMessage')} />
     </NextIntlClientProvider>
   )

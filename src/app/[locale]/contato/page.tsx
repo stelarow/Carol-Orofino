@@ -51,7 +51,7 @@ export default async function ContactPage({
           {t('whatsappLabel')}
         </Link>
 
-        <p className="font-body text-sm text-text-primary/50">
+        <p className="font-body text-sm text-dark">
           {t('emailLabel')}:{' '}
           <Link
             href="mailto:carol@carolorofino.com.br"
@@ -61,7 +61,7 @@ export default async function ContactPage({
           </Link>
         </p>
 
-        <p className="font-body text-sm text-text-primary/50">
+        <p className="font-body text-sm text-dark">
           {t('followOn')}:{' '}
           <Link
             href="https://instagram.com/carolorofino"
