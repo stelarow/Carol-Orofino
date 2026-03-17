@@ -61,28 +61,31 @@ export default async function ProjectOrCategoryPage({
 
     return (
       <div className="pb-16">
-        {/* Hero with floating card */}
-        <div className="relative h-[70vh] w-full overflow-hidden">
-          <Image
-            src={hero.src}
-            alt={hero.alt[locale as Locale]}
-            fill
-            priority
-            className="object-cover"
-          />
-          {/* Dark gradient at bottom */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        {/* Hero wrapper — card overflows below the image */}
+        <div className="relative">
+          {/* Image container — overflow-hidden only here so card isn't clipped */}
+          <div className="relative h-[75vh] w-full overflow-hidden">
+            <Image
+              src={hero.src}
+              alt={hero.alt[locale as Locale]}
+              fill
+              priority
+              className="object-cover"
+            />
+            {/* Gradient at bottom */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
-          {/* Back link top-left */}
-          <Link
-            href={`/${locale}`}
-            className="absolute top-6 left-6 font-body text-xs uppercase tracking-widest text-white/80 hover:text-white transition-colors"
-          >
-            ← {tNotFound('back')}
-          </Link>
+            {/* Back link — offset for fixed navbar height */}
+            <Link
+              href={`/${locale}`}
+              className="absolute top-20 left-6 font-body text-xs uppercase tracking-widest text-white/80 hover:text-white transition-colors"
+            >
+              ← {tNotFound('back')}
+            </Link>
+          </div>
 
-          {/* Floating card at bottom */}
-          <div className="absolute bottom-0 left-4 right-4 md:left-8 md:right-8 bg-background/90 backdrop-blur-sm rounded-t-2xl px-8 py-6 text-center">
+          {/* Floating card — overlaps below image */}
+          <div className="relative mx-4 md:mx-8 -mt-12 bg-background rounded-2xl px-8 py-7 text-center shadow-sm">
             <p className="font-body text-xs uppercase tracking-[0.2em] text-primary mb-2">
               Carol Orofino
             </p>
