@@ -9,7 +9,7 @@ describe('projects data', () => {
   it('each project should have required fields', () => {
     projects.forEach((p) => {
       expect(p.slug).toBeTruthy()
-      expect(p.category).toMatch(/^(residencial|comercial|reforma|consultoria)$/)
+      expect(p.category).toMatch(/^(residencial|comercial|reforma|design-de-interiores)$/)
       expect(typeof p.year).toBe('number')
       expect(p.coverImage).toBeTruthy()
       expect(p.translations.pt.title).toBeTruthy()

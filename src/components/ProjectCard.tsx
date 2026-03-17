@@ -15,7 +15,7 @@ export default function ProjectCard({ project, locale }: ProjectCardProps) {
 
   return (
     <Link href={href} className="group block">
-      <div className="relative aspect-[3/4] md:aspect-[16/9] overflow-hidden bg-stone">
+      <div className="relative aspect-[16/10] overflow-hidden bg-stone">
         <Image
           src={project.coverImage}
           alt={altText}
@@ -25,12 +25,15 @@ export default function ProjectCard({ project, locale }: ProjectCardProps) {
           placeholder="blur"
           blurDataURL={project.coverImageBlurDataURL}
         />
-        {/* Permanent dark overlay */}
-        <div className="absolute inset-0 bg-black/40 transition-colors duration-300 group-hover:bg-black/55" />
-        {/* Centered label */}
-        <div className="absolute inset-0 flex items-center justify-center px-4 text-center">
-          <p className="font-display text-2xl md:text-3xl text-white tracking-wide">
+        {/* Gradient overlay — stronger at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
+        {/* Bottom-left label */}
+        <div className="absolute bottom-0 left-0 right-0 px-5 py-4">
+          <p className="font-display text-2xl md:text-3xl text-white tracking-wide leading-tight">
             {title}
+          </p>
+          <p className="font-body text-[11px] text-white/60 uppercase tracking-widest mt-1">
+            {project.location} · {project.year}
           </p>
         </div>
       </div>

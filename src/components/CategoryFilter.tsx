@@ -10,7 +10,7 @@ interface CategoryFilterProps {
   onChange: (category: Category) => void
 }
 
-const CATEGORIES: Category[] = ['all', 'residencial', 'comercial', 'reforma', 'consultoria']
+const CATEGORIES: Category[] = ['all', 'residencial', 'comercial', 'reforma', 'design-de-interiores']
 
 export default function CategoryFilter({ active, onChange }: CategoryFilterProps) {
   const t = useTranslations('projects.filter')

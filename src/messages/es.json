@@ -8,7 +8,13 @@
   },
   "home": {
     "tagline": "Diseño de Interiores que transforma espacios en experiencias",
+    "collectionsTitle": "Nuestro Trabajo",
+    "residencial": "Residencial",
+    "comercial": "Comercial",
+    "reforma": "Reforma",
+    "design-de-interiores": "Diseño de Interiores",
     "viewAllProjects": "Ver todos los proyectos",
+    "featuredTitle": "Proyectos Destacados",
     "aboutTitle": "Carol Orofino",
     "aboutTeaser": "Creo que cada espacio cuenta una historia. Con más de 10 años de experiencia, creo ambientes que unen funcionalidad, belleza e identidad.",
     "aboutLink": "Conocer más"
@@ -21,7 +27,7 @@
       "residencial": "Residencial",
       "comercial": "Comercial",
       "reforma": "Reforma",
-      "consultoria": "Consultoría"
+      "design-de-interiores": "Diseño de Interiores"
     }
   },
   "project": {

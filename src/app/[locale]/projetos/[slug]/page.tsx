@@ -1,18 +1,22 @@
 // src/app/[locale]/projetos/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { getProjectBySlug, getAllSlugs } from '@/data/projects'
+import { categoryImages, KNOWN_SLUGS, type CategorySlug } from '@/data/categories'
 import { routing, type Locale } from '@/lib/i18n'
+import CategoryGallery from '@/components/CategoryGallery'
 import ProjectGallery from '@/components/ProjectGallery'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import type { Metadata } from 'next'
 
 export async function generateStaticParams() {
   const locales = routing.locales
-  const slugs = getAllSlugs()
+  const projectSlugs = getAllSlugs()
+  const allSlugs = [...KNOWN_SLUGS, ...projectSlugs]
   return locales.flatMap((locale) =>
-    slugs.map((slug) => ({ locale, slug }))
+    allSlugs.map((slug) => ({ locale, slug }))
   )
 }
 
@@ -24,6 +28,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string; slug: string }>
 }): Promise<Metadata> {
   const { locale, slug } = await params
+
+  if (KNOWN_SLUGS.includes(slug as CategorySlug)) {
+    const t = await getTranslations({ locale, namespace: 'home' })
+    return { title: `${t(slug)} — Carol Orofino` }
+  }
+
   const project = getProjectBySlug(slug)
   if (!project) return {}
   const title = project.translations[locale as Locale]?.title ?? slug
@@ -35,14 +45,40 @@ export async function generateMetadata({
   }
 }
 
-export default async function ProjectDetailPage({
+export default async function ProjectOrCategoryPage({
   params,
 }: {
   params: Promise<{ locale: string; slug: string }>
 }) {
   const { locale, slug } = await params
-  const project = getProjectBySlug(slug)
 
+  // Category page
+  if (KNOWN_SLUGS.includes(slug as CategorySlug)) {
+    const t = await getTranslations({ locale, namespace: 'home' })
+    const tNotFound = await getTranslations({ locale, namespace: 'notFound' })
+    const images = categoryImages[slug as CategorySlug]
+
+    return (
+      <div className="pt-24 pb-16">
+        <div className="text-center mb-10 px-6">
+          <Link
+            href={`/${locale}`}
+            className="font-body text-xs uppercase tracking-widest text-text-primary/50 hover:text-primary transition-colors"
+          >
+            ← {tNotFound('back')}
+          </Link>
+          <h1 className="font-display text-4xl md:text-5xl tracking-[0.15em] uppercase text-text-primary mt-4">
+            {t(slug)}
+          </h1>
+          <div className="mx-auto mt-3 h-px w-10 bg-primary" />
+        </div>
+        <CategoryGallery images={images} locale={locale as Locale} />
+      </div>
+    )
+  }
+
+  // Project detail page
+  const project = getProjectBySlug(slug)
   if (!project) notFound()
 
   const t = await getTranslations({ locale, namespace: 'project' })
@@ -51,7 +87,6 @@ export default async function ProjectDetailPage({
 
   return (
     <article className="mx-auto max-w-5xl px-6 py-32">
-      {/* Header */}
       <header className="mb-12">
         <p className="font-body text-xs uppercase tracking-widest text-primary mb-3">
           {project.category} · {project.year}
@@ -64,7 +99,6 @@ export default async function ProjectDetailPage({
         </p>
       </header>
 
-      {/* Cover image */}
       <div className="relative aspect-[16/9] overflow-hidden bg-stone mb-12">
         <Image
           src={project.coverImage}
@@ -77,17 +111,14 @@ export default async function ProjectDetailPage({
         />
       </div>
 
-      {/* Description */}
       <div className="max-w-2xl mb-16">
         <p className="font-body text-base text-text-primary/80 leading-relaxed">
           {translation.description}
         </p>
       </div>
 
-      {/* Gallery */}
       <ProjectGallery images={project.images} locale={locale as Locale} />
 
-      {/* WhatsApp CTA */}
       <div className="mt-20 flex justify-center">
         <WhatsAppButton
           message={whatsappMessage}

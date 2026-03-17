@@ -9,7 +9,7 @@ export interface ProjectImage {
 
 export interface Project {
   slug: string
-  category: 'residencial' | 'comercial' | 'reforma' | 'consultoria'
+  category: 'residencial' | 'comercial' | 'reforma' | 'design-de-interiores'
   year: number
   location: string
   coverImage: string
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     },
     coverImageBlurDataURL: BLUR_PLACEHOLDER,
     images: [],
-    featured: true,
+    featured: false,
     translations: {
       pt: {
         title: 'Casa Higienópolis',

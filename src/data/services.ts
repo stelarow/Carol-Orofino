@@ -72,20 +72,20 @@ export const services: Service[] = [
     },
   },
   {
-    id: 'consultoria',
+    id: 'design-de-interiores',
     translations: {
       pt: {
-        title: 'Consultoria de Design',
+        title: 'Design de Interiores',
         description:
           'Orientação especializada para escolha de materiais, móveis, cores e decoração.',
       },
       en: {
-        title: 'Design Consulting',
+        title: 'Interior Design',
         description:
           'Expert guidance for the selection of materials, furniture, colors, and decor.',
       },
       es: {
-        title: 'Consultoría de Diseño',
+        title: 'Diseño de Interiores',
         description:
           'Orientación especializada para la elección de materiales, muebles, colores y decoración.',
       },

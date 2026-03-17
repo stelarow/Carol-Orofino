@@ -26,10 +26,10 @@ export default function ProjectsList({ projects, locale }: ProjectsListProps) {
 
   return (
     <>
-      <div className="mb-10">
+      <div className="mx-auto max-w-7xl px-6 mb-6">
         <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
       </div>
-      <div className="grid grid-cols-1">
+      <div className="mx-auto max-w-7xl px-6 pb-16 grid grid-cols-1 md:grid-cols-2 gap-3">
         {filtered.map((project) => (
           <ProjectCard key={project.slug} project={project} locale={locale} />
         ))}
