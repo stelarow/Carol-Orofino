@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "projects": "Projetos",
+    "projects": "Projetos Entregues",
     "about": "Sobre",
     "services": "Serviços",
     "contact": "Contato"
@@ -11,7 +11,7 @@
     "collectionsTitle": "Nosso Trabalho",
     "residencial": "Residencial",
     "comercial": "Comercial",
-    "reforma": "Reforma",
+    "projetos": "Projetos",
     "design-de-interiores": "Design de Interiores",
     "viewAllProjects": "Ver todos os projetos",
     "featuredTitle": "Projetos em Destaque",
@@ -20,7 +20,7 @@
     "aboutLink": "Conheça mais"
   },
   "projects": {
-    "title": "Projetos",
+    "title": "Projetos Entregues",
     "noResults": "Nenhum projeto encontrado.",
     "filter": {
       "all": "Todos",

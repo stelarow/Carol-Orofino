@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "projects": "Projects",
+    "projects": "Delivered Projects",
     "about": "About",
     "services": "Services",
     "contact": "Contact"
@@ -11,7 +11,7 @@
     "collectionsTitle": "Our Work",
     "residencial": "Residential",
     "comercial": "Commercial",
-    "reforma": "Renovation",
+    "projetos": "Projects",
     "design-de-interiores": "Interior Design",
     "viewAllProjects": "View all projects",
     "featuredTitle": "Featured Projects",
@@ -20,7 +20,7 @@
     "aboutLink": "Learn more"
   },
   "projects": {
-    "title": "Projects",
+    "title": "Delivered Projects",
     "noResults": "No projects found.",
     "filter": {
       "all": "All",

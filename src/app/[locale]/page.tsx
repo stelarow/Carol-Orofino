@@ -67,7 +67,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
-              src="/images/projects/apartamento-jardins/cover.jpg"
+              src="/images/categories/residencial-hero.jpg"
               alt={t('residencial')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -86,7 +86,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
-              src="/images/projects/escritorio-itaim/01.png"
+              src="/images/categories/comercial-home.png"
               alt={t('comercial')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -99,14 +99,14 @@ export default async function HomePage({
               </span>
             </div>
           </Link>
-          {/* Reforma */}
+          {/* Projetos */}
           <Link
-            href={`/${locale}/projetos/reforma`}
-            className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
+            href={`/${locale}/projetos/projetos`}
+            className="group relative overflow-hidden min-h-[56vw] md:min-h-[28vw]"
           >
             <Image
-              src="/images/projects/casa-higienopolis/cover.png"
-              alt={t('reforma')}
+              src="/images/categories/projetos-hero.png"
+              alt={t('projetos')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -114,7 +114,7 @@ export default async function HomePage({
             <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/50" />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="font-display text-3xl md:text-4xl font-bold tracking-[0.2em] uppercase text-white">
-                {t('reforma')}
+                {t('projetos')}
               </span>
             </div>
           </Link>
@@ -124,7 +124,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
-              src="/images/projects/casa-higienopolis/cover.png"
+              src="/images/categories/design-interiores-card.jpg"
               alt={t('design-de-interiores')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

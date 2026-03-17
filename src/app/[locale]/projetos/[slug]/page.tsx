@@ -64,13 +64,24 @@ export default async function ProjectOrCategoryPage({
         {/* Hero wrapper — card overflows below the image */}
         <div className="relative">
           {/* Image container — overflow-hidden only here so card isn't clipped */}
-          <div className="relative h-[75vh] w-full overflow-hidden">
+          <div className="relative aspect-[9/16] md:h-auto md:aspect-[21/9] w-full overflow-hidden">
+            {/* Mobile image */}
+            {hero.mobileSrc && (
+              <Image
+                src={hero.mobileSrc}
+                alt={hero.alt[locale as Locale]}
+                fill
+                priority
+                className="object-cover md:hidden"
+              />
+            )}
+            {/* Desktop image */}
             <Image
               src={hero.src}
               alt={hero.alt[locale as Locale]}
               fill
               priority
-              className="object-cover"
+              className={`object-cover${hero.mobileSrc ? ' hidden md:block' : ''}`}
             />
             {/* Gradient at bottom */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
