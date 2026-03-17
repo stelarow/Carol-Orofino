@@ -140,7 +140,7 @@ export default async function HomePage({
         </div>
       </section>
 
-{/* About Teaser */}
+      {/* About Teaser */}
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="font-display text-3xl md:text-4xl text-primary tracking-wide">
