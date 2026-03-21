@@ -110,61 +110,69 @@ export default async function ProjectOrCategoryPage({
     if (ALTERNATING_SLUGS.includes(slug as CategorySlug)) {
       const categoryProjects = getProjectsByCategory(slug as CategorySlug)
 
+      // Chunk into pairs — data is guaranteed to always have an even number of projects
+      const pairs: Array<[typeof categoryProjects[0], typeof categoryProjects[0]]> = []
+      for (let i = 0; i < categoryProjects.length; i += 2) {
+        pairs.push([categoryProjects[i], categoryProjects[i + 1]])
+      }
+
       return (
         <div className="pb-16">
           {heroJSX}
-          <div className="mt-16">
-            {categoryProjects.map((project, index) => {
-              const translation = project.translations[locale as Locale]
-              const isImageLeft = index % 2 === 0
+          <div className="mt-16 px-4 md:px-6">
+            {pairs.map((pair) => (
+              <div key={pair[0].slug} className="flex flex-col md:flex-row gap-6 mb-12">
 
-              return (
-                <div
-                  key={project.slug}
-                  className={`flex flex-col md:flex-row items-stretch mb-16 md:mb-24${isImageLeft ? '' : ' md:flex-row-reverse'}`}
-                >
-                  {/* Image column — 55% desktop, full width mobile */}
-                  <div className="w-full md:w-[55%] flex-shrink-0 flex flex-col gap-2">
-                    {/* Cover image — always shown */}
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={project.coverImage}
-                        alt={project.coverImageAlt[locale as Locale]}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 55vw"
-                        className="object-cover"
-                      />
-                    </div>
-
-                    {/* Second image — only when available */}
-                    {project.images.length > 0 && (
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <Image
-                          src={project.images[0].src}
-                          alt={project.images[0].altText[locale as Locale]}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 55vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
+                {/* Left card — image left, text right */}
+                <div className="flex-1 flex flex-col md:flex-row">
+                  <div className="relative w-full md:w-[55%] aspect-[4/3] overflow-hidden flex-shrink-0">
+                    <Image
+                      src={pair[0].coverImage}
+                      alt={pair[0].coverImageAlt[locale as Locale]}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 27vw"
+                      className="object-cover"
+                    />
                   </div>
-
-                  {/* Text column — 45% desktop */}
-                  <div className="w-full md:w-[45%] flex flex-col justify-center px-6 md:px-12 py-8 md:py-0">
-                    <p className="font-body text-xs uppercase tracking-widest text-primary mb-3">
-                      {project.location} · {project.year}
+                  <div className="flex-1 flex flex-col justify-center px-4 md:px-6 py-6 md:py-0">
+                    <p className="font-body text-xs uppercase tracking-widest text-primary mb-2">
+                      {pair[0].location} · {pair[0].year}
                     </p>
-                    <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide mb-4">
-                      {translation.title}
+                    <h2 className="font-display text-2xl md:text-3xl text-text-primary tracking-wide mb-3">
+                      {pair[0].translations[locale as Locale].title}
                     </h2>
-                    <p className="font-body text-base text-text-primary/80 leading-relaxed">
-                      {translation.description}
+                    <p className="font-body text-sm text-text-primary/80 leading-relaxed">
+                      {pair[0].translations[locale as Locale].description}
                     </p>
                   </div>
                 </div>
-              )
-            })}
+
+                {/* Right card — text left, image right */}
+                <div className="flex-1 flex flex-col md:flex-row-reverse">
+                  <div className="relative w-full md:w-[55%] aspect-[4/3] overflow-hidden flex-shrink-0">
+                    <Image
+                      src={pair[1].coverImage}
+                      alt={pair[1].coverImageAlt[locale as Locale]}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 27vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 flex flex-col justify-center px-4 md:px-6 py-6 md:py-0">
+                    <p className="font-body text-xs uppercase tracking-widest text-primary mb-2">
+                      {pair[1].location} · {pair[1].year}
+                    </p>
+                    <h2 className="font-display text-2xl md:text-3xl text-text-primary tracking-wide mb-3">
+                      {pair[1].translations[locale as Locale].title}
+                    </h2>
+                    <p className="font-body text-sm text-text-primary/80 leading-relaxed">
+                      {pair[1].translations[locale as Locale].description}
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            ))}
           </div>
         </div>
       )
