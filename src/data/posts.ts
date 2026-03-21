@@ -7,6 +7,8 @@ export interface Post {
   slug: string
   date: string
   readTime: number
+  category: string
+  image?: string
   translations: {
     pt: {
       title: string
@@ -37,6 +39,7 @@ export const posts: Post[] = [
     slug: 'the-new-language-of-luxury',
     date: '2025-03-18',
     readTime: 5,
+    category: 'Luxo',
     translations: {
       en: {
         title: 'The New Language of Luxury',
@@ -119,6 +122,7 @@ export const posts: Post[] = [
     slug: 'the-discipline-of-subtraction',
     date: '2025-03-10',
     readTime: 5,
+    category: 'Minimalismo',
     translations: {
       en: {
         title: 'The Discipline of Subtraction',
@@ -201,6 +205,7 @@ export const posts: Post[] = [
     slug: 'where-silence-has-a-shape',
     date: '2025-03-20',
     readTime: 6,
+    category: 'Design Escandinavo',
     translations: {
       en: {
         title: 'Where Silence Has a Shape',
