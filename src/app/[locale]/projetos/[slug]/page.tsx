@@ -124,14 +124,30 @@ export default async function ProjectOrCategoryPage({
                   className={`flex flex-col md:flex-row items-stretch mb-16 md:mb-24${isImageLeft ? '' : ' md:flex-row-reverse'}`}
                 >
                   {/* Image column — 55% desktop, full width mobile */}
-                  <div className="relative w-full md:w-[55%] aspect-[4/3] overflow-hidden flex-shrink-0">
-                    <Image
-                      src={project.coverImage}
-                      alt={project.coverImageAlt[locale as Locale]}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 55vw"
-                      className="object-cover"
-                    />
+                  <div className="w-full md:w-[55%] flex-shrink-0 flex flex-col gap-2">
+                    {/* Cover image — always shown */}
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={project.coverImage}
+                        alt={project.coverImageAlt[locale as Locale]}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 55vw"
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Second image — only when available */}
+                    {project.images.length > 0 && (
+                      <div className="relative aspect-[4/3] overflow-hidden">
+                        <Image
+                          src={project.images[0].src}
+                          alt={project.images[0].altText[locale as Locale]}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 55vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* Text column — 45% desktop */}
@@ -139,7 +155,7 @@ export default async function ProjectOrCategoryPage({
                     <p className="font-body text-xs uppercase tracking-widest text-primary mb-3">
                       {project.location} · {project.year}
                     </p>
-                    <h2 className="font-display text-3xl md:text-4xl text-text-primary tracking-wide mb-4">
+                    <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide mb-4">
                       {translation.title}
                     </h2>
                     <p className="font-body text-base text-text-primary/80 leading-relaxed">
