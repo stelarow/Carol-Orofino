@@ -113,7 +113,9 @@ export default async function ProjectOrCategoryPage({
       // Chunk into pairs — data is guaranteed to always have an even number of projects
       const pairs: Array<[typeof categoryProjects[0], typeof categoryProjects[0]]> = []
       for (let i = 0; i < categoryProjects.length; i += 2) {
-        pairs.push([categoryProjects[i], categoryProjects[i + 1]])
+        if (categoryProjects[i + 1]) {
+          pairs.push([categoryProjects[i], categoryProjects[i + 1]])
+        }
       }
 
       return (
