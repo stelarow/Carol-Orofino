@@ -1,3 +1,5 @@
+import type { CategorySlug } from '@/data/categories'
+
 export interface ProjectImage {
   src: string
   altText: {
@@ -163,4 +165,11 @@ export function getProjectBySlug(slug: string): Project | null {
 
 export function getAllSlugs(): string[] {
   return projects.map((p) => p.slug)
+}
+
+export function getProjectsByCategory(slug: CategorySlug): Project[] {
+  // 'projetos' has no matching Project.category value — return all projects
+  if (slug === 'projetos') return projects
+  // For all other slugs, Project.category matches the slug directly
+  return projects.filter((p) => p.category === (slug as Project['category']))
 }

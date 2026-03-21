@@ -1,4 +1,4 @@
-import { projects, getFeaturedProjects, getProjectBySlug } from '../projects'
+import { projects, getFeaturedProjects, getProjectBySlug, getProjectsByCategory } from '../projects'
 
 describe('projects data', () => {
   it('should export an array of projects', () => {
@@ -27,5 +27,24 @@ describe('projects data', () => {
     const first = projects[0]
     expect(getProjectBySlug(first.slug)).toEqual(first)
     expect(getProjectBySlug('nonexistent-slug')).toBeNull()
+  })
+
+  it('getProjectsByCategory should return projects matching the given category', () => {
+    const residencial = getProjectsByCategory('residencial')
+    residencial.forEach((p) => expect(p.category).toBe('residencial'))
+  })
+
+  it('getProjectsByCategory with "projetos" should return all projects', () => {
+    // 'projetos' is a special slug — no Project has category:'projetos',
+    // so the function returns the full array as a special case
+    const all = getProjectsByCategory('projetos')
+    expect(all).toEqual(projects)
+  })
+
+  it('getProjectsByCategory should return empty array for a category with no projects', () => {
+    // 'design-de-interiores' may have zero projects — that is a valid empty result
+    const result = getProjectsByCategory('design-de-interiores')
+    expect(Array.isArray(result)).toBe(true)
+    result.forEach((p) => expect(p.category).toBe('design-de-interiores'))
   })
 })
