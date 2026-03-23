@@ -12,6 +12,7 @@
   --color-stone: #d5d0cc;   /* card backgrounds, subtle surfaces */
   --color-mist:  #dfe3e6;   /* borders, dividers */
   --color-sky:   #ccdae3;   /* cool accent surfaces */
+  --color-mauve: #7c777d;   /* hover state */
   --color-latte: #c0af9b;   /* hover areas, warm secondary */
   --color-sage:  #000000;   /* secondary text, captions */
   --color-slate: #95978a;   /* footer, dark UI labels */

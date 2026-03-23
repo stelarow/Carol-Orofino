@@ -177,7 +177,7 @@ export default async function HomePage({
             </div>
             <Link
               href={`/${locale}/blog/${posts[0].slug}`}
-              className="shrink-0 inline-block font-body text-xs uppercase tracking-widest text-primary border border-primary px-8 py-3 transition-colors hover:bg-primary hover:text-background"
+              className="shrink-0 inline-block font-body text-xs uppercase tracking-widest text-primary border border-primary px-8 py-3 transition-colors hover:bg-mauve hover:text-background"
             >
               {t('blogLink')}
             </Link>

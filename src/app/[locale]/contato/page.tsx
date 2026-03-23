@@ -37,7 +37,7 @@ export default async function ContactPage({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 border border-text-primary px-10 py-4 font-body text-sm uppercase tracking-widest text-text-primary transition-colors hover:bg-text-primary hover:text-background"
+            className="inline-flex items-center gap-3 border border-text-primary px-10 py-4 font-body text-sm uppercase tracking-widest text-text-primary transition-colors hover:bg-mauve hover:text-background"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

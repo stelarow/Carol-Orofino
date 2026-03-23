@@ -42,7 +42,7 @@ export default async function BlogPage({
       <h1 className="font-display text-4xl md:text-5xl text-primary tracking-wide mb-4">
         {t('title')}
       </h1>
-      <p className="font-body text-sm text-dark uppercase tracking-widest mb-12">
+      <p className="font-body text-sm text-mauve uppercase tracking-widest mb-12">
         {t('subtitle')}
       </p>
 
@@ -88,7 +88,7 @@ export default async function BlogPage({
                     key={post.slug}
                     className="border-t border-stone pt-10 pb-10"
                   >
-                    <p className="font-body text-xs text-sage uppercase tracking-widest mb-4">
+                    <p className="font-body text-xs text-mauve uppercase tracking-widest mb-4">
                       {post.category}
                       {' · '}
                       {new Date(post.date).toLocaleDateString(
@@ -106,7 +106,7 @@ export default async function BlogPage({
                     </p>
                     <Link
                       href={`/${locale}/blog/${post.slug}`}
-                      className="font-body text-xs uppercase tracking-widest text-primary border-b border-primary pb-0.5 transition-opacity hover:opacity-60"
+                      className="font-body text-xs uppercase tracking-widest text-primary border-b border-primary pb-0.5 transition-colors hover:text-mauve hover:border-mauve"
                     >
                       {t('readMore')} →
                     </Link>

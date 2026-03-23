@@ -107,7 +107,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                   className={`font-body text-xs uppercase tracking-widest px-4 py-2 border transition-colors ${
                     isTransparentMode
                       ? 'border-white text-white hover:bg-white hover:text-text-primary'
-                      : 'border-text-primary text-text-primary hover:bg-text-primary hover:text-background'
+                      : 'border-text-primary text-text-primary hover:bg-mauve hover:text-background'
                   }`}
                 >
                   {link.label}

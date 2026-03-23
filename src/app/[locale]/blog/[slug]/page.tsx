@@ -127,7 +127,7 @@ export default async function BlogPostPage({
           <div className="mt-12">
             <Link
               href={`/${locale}/contato`}
-              className="inline-block font-body text-xs uppercase tracking-widest border border-primary text-primary px-8 py-3 transition-colors hover:bg-primary hover:text-background"
+              className="inline-block font-body text-xs uppercase tracking-widest border border-primary text-primary px-8 py-3 transition-colors hover:bg-mauve hover:text-background"
             >
               {t('contactCta')}
             </Link>
