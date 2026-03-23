@@ -31,6 +31,7 @@ export default async function HomePage({
 }) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
+  const tBlog = await getTranslations({ locale, namespace: 'blog' })
 
   return (
     <>
@@ -173,9 +174,12 @@ export default async function HomePage({
                   <h2 className="font-display text-2xl md:text-3xl text-primary tracking-wide mb-2 group-hover:text-walnut transition-colors">
                     {post.translations[locale as Locale].title}
                   </h2>
-                  <p className="font-body text-sm text-dark italic leading-relaxed">
+                  <p className="font-body text-sm text-dark italic leading-relaxed mb-5">
                     {post.translations[locale as Locale].subtitle}
                   </p>
+                  <span className="font-body text-xs uppercase tracking-widest text-primary border-b border-primary pb-0.5 transition-colors group-hover:text-mauve group-hover:border-mauve">
+                    {tBlog('readMore')} →
+                  </span>
                 </Link>
               </div>
             ))}
