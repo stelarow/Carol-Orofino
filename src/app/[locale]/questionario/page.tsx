@@ -80,8 +80,6 @@ export default async function QuestionnairePage({
         classico: t('step3.styleOptions.classico'),
         moderno: t('step3.styleOptions.moderno'),
       },
-      pinterest: t('step3.pinterest'),
-      pinterestPlaceholder: t('step3.pinterestPlaceholder'),
       mustHave: t('step3.mustHave'),
       mustHavePlaceholder: t('step3.mustHavePlaceholder'),
       mustHaveHint: t('step3.mustHaveHint'),
@@ -117,7 +115,7 @@ export default async function QuestionnairePage({
   }
 
   return (
-    <div className="min-h-[calc(100vh-80px)] px-6 py-16">
+    <div className="min-h-[calc(100vh-80px)] px-6 pb-16 pt-28">
       <QuestionnaireWizard messages={messages} />
     </div>
   )

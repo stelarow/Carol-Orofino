@@ -8,7 +8,7 @@ const FLOOR_PLAN_MAX = 10 * 1024 * 1024
 const PHOTOS_MAX_TOTAL = 50 * 1024 * 1024
 
 type Step2Data = {
-  roomType: string
+  roomType: string[]
   area: number | null
   floorPlanFile: File | null
   photoFiles: File[]
@@ -33,9 +33,16 @@ type Props = {
 export default function Step2Environment({ data, onChange, onNext, onBack, messages, nextLabel, backLabel }: Props) {
   const [errors, setErrors] = useState<Record<string, string>>({})
 
+  function toggleRoom(key: string) {
+    const next = data.roomType.includes(key)
+      ? data.roomType.filter(r => r !== key)
+      : [...data.roomType, key]
+    onChange({ ...data, roomType: next })
+  }
+
   function validate(): boolean {
     const e: Record<string, string> = {}
-    if (!data.roomType) e.roomType = messages.roomTypeError
+    if (data.roomType.length === 0) e.roomType = messages.roomTypeError
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -77,17 +84,26 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.roomType} *</label>
-        <select
-          value={data.roomType}
-          onChange={e => onChange({ ...data, roomType: e.target.value })}
-          className={inputClass}
-        >
-          <option value="">{messages.roomTypePlaceholder}</option>
-          {Object.entries(messages.roomOptions).map(([k, v]) => (
-            <option key={k} value={k}>{v}</option>
-          ))}
-        </select>
+        <p className="mb-3 font-body text-sm uppercase tracking-widest">{messages.roomType} *</p>
+        <div className="flex flex-wrap gap-3">
+          {Object.entries(messages.roomOptions).map(([key, label]) => {
+            const selected = data.roomType.includes(key)
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => toggleRoom(key)}
+                className={`border px-6 py-3 font-body text-sm uppercase tracking-widest transition-colors ${
+                  selected
+                    ? 'border-text-primary bg-text-primary text-background'
+                    : 'border-gray-300 hover:border-text-primary'
+                }`}
+              >
+                {label}
+              </button>
+            )
+          })}
+        </div>
         {errors.roomType && <p className="mt-1 font-body text-xs text-red-600">{errors.roomType}</p>}
       </div>
 
@@ -106,15 +122,31 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
 
       <div>
         <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.floorPlan}</label>
-        <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFloorPlan} className="font-body text-sm" />
-        <p className="mt-1 font-body text-xs text-gray-400">{messages.floorPlanHint}</p>
+        <label className={`flex items-center gap-3 cursor-pointer border px-4 py-3 transition-colors ${data.floorPlanFile ? 'border-text-primary bg-text-primary/5' : 'border-gray-300 hover:border-text-primary'}`}>
+          <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={handleFloorPlan} className="sr-only" />
+          <span className="shrink-0 font-body text-xs uppercase tracking-widest border border-current px-3 py-1">
+            {data.floorPlanFile ? '✓ Trocar' : '↑ Escolher'}
+          </span>
+          <span className={`font-body text-sm truncate ${data.floorPlanFile ? 'text-text-primary' : 'text-gray-400'}`}>
+            {data.floorPlanFile ? data.floorPlanFile.name : messages.floorPlanHint}
+          </span>
+        </label>
         {errors.floorPlan && <p className="mt-1 font-body text-xs text-red-600">{errors.floorPlan}</p>}
       </div>
 
       <div>
         <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.photos}</label>
-        <input type="file" accept=".png,.jpg,.jpeg,.webp,.mp4,.mov" multiple onChange={handlePhotos} className="font-body text-sm" />
-        <p className="mt-1 font-body text-xs text-gray-400">{messages.photosHint}</p>
+        <label className={`flex items-center gap-3 cursor-pointer border px-4 py-3 transition-colors ${data.photoFiles.length > 0 ? 'border-text-primary bg-text-primary/5' : 'border-gray-300 hover:border-text-primary'}`}>
+          <input type="file" accept=".png,.jpg,.jpeg,.webp,.mp4,.mov" multiple onChange={handlePhotos} className="sr-only" />
+          <span className="shrink-0 font-body text-xs uppercase tracking-widest border border-current px-3 py-1">
+            {data.photoFiles.length > 0 ? '✓ Trocar' : '↑ Escolher'}
+          </span>
+          <span className={`font-body text-sm truncate ${data.photoFiles.length > 0 ? 'text-text-primary' : 'text-gray-400'}`}>
+            {data.photoFiles.length > 0
+              ? `${data.photoFiles.length} arquivo${data.photoFiles.length > 1 ? 's' : ''} selecionado${data.photoFiles.length > 1 ? 's' : ''}`
+              : messages.photosHint}
+          </span>
+        </label>
         {errors.photos && <p className="mt-1 font-body text-xs text-red-600">{errors.photos}</p>}
       </div>
 

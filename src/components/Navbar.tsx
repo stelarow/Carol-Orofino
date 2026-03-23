@@ -36,12 +36,11 @@ export default function Navbar({ transparent = false }: NavbarProps) {
 
   const navLinksLeft = [
     { href: `/${locale}`, label: t('home') },
-    { href: `/${locale}/projetos`, label: t('projectsShort') },
     { href: `/${locale}/sobre`, label: t('about') },
+    { href: `/${locale}/servicos`, label: t('services') },
   ]
 
   const navLinksRight = [
-    { href: `/${locale}/servicos`, label: t('services') },
     { href: `/${locale}/blog`, label: t('blog') },
     { href: `/${locale}/contato`, label: t('contact') },
     { href: `/${locale}/questionario`, label: t('questionnaire'), isButton: true },
@@ -85,8 +84,11 @@ export default function Navbar({ transparent = false }: NavbarProps) {
             ))}
           </div>
 
+          {/* Mobile: spacer to center brand */}
+          <div className="flex-1 md:hidden" />
+
           {/* Center: brand name */}
-          <div className="flex-1 text-center md:flex-none">
+          <div className="text-center md:flex-none">
             <Link
               href={`/${locale}`}
               className={`font-display text-xl tracking-logo transition-colors hover:text-primary ${

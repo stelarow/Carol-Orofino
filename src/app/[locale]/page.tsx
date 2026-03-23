@@ -65,7 +65,7 @@ export default async function HomePage({
         <div className="grid grid-cols-1 md:grid-cols-2 w-full">
           {/* Residencial */}
           <Link
-            href={`/${locale}/projetos/residencial`}
+            href={`/${locale}/residencial`}
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
@@ -84,7 +84,7 @@ export default async function HomePage({
           </Link>
           {/* Comercial */}
           <Link
-            href={`/${locale}/projetos/comercial`}
+            href={`/${locale}/comercial`}
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
@@ -103,7 +103,7 @@ export default async function HomePage({
           </Link>
           {/* Projetos */}
           <Link
-            href={`/${locale}/projetos/projetos`}
+            href={`/${locale}/projetos`}
             className="group relative overflow-hidden min-h-[56vw] md:min-h-[28vw]"
           >
             <Image
@@ -122,7 +122,7 @@ export default async function HomePage({
           </Link>
           {/* Design de Interiores */}
           <Link
-            href={`/${locale}/projetos/design-de-interiores`}
+            href={`/${locale}/design-de-interiores`}
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
@@ -163,24 +163,28 @@ export default async function HomePage({
       {/* Blog Teaser */}
       <section className="border-t border-stone py-20">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-            <div className="max-w-xl">
-              <p className="font-body text-xs uppercase tracking-widest text-dark mb-4">
-                {t('blogTitle')}
-              </p>
-              <h2 className="font-display text-3xl md:text-4xl text-primary tracking-wide mb-4">
-                {posts[0].translations[locale as Locale].title}
-              </h2>
-              <p className="font-body text-base text-dark italic leading-relaxed">
-                {posts[0].translations[locale as Locale].subtitle}
-              </p>
-            </div>
-            <Link
-              href={`/${locale}/blog/${posts[0].slug}`}
-              className="shrink-0 inline-block font-body text-xs uppercase tracking-widest text-primary border border-primary px-8 py-3 transition-colors hover:bg-mauve hover:text-background"
-            >
-              {t('blogLink')}
-            </Link>
+          <p className="font-body text-xs uppercase tracking-widest text-dark mb-10">
+            {t('blogTitle')}
+          </p>
+          <div className="flex flex-col divide-y divide-stone">
+            {posts.map((post) => (
+              <div key={post.slug} className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-8">
+                <Link href={`/${locale}/blog/${post.slug}`} className="max-w-xl group">
+                  <h2 className="font-display text-2xl md:text-3xl text-primary tracking-wide mb-2 group-hover:text-walnut transition-colors">
+                    {post.translations[locale as Locale].title}
+                  </h2>
+                  <p className="font-body text-sm text-dark italic leading-relaxed">
+                    {post.translations[locale as Locale].subtitle}
+                  </p>
+                </Link>
+                <Link
+                  href={`/${locale}/blog`}
+                  className="shrink-0 inline-block font-body text-xs uppercase tracking-widest text-primary border border-primary px-8 py-3 transition-colors hover:bg-mauve hover:text-background"
+                >
+                  Blog
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -10,12 +10,11 @@ export type QuestionnaireData = {
   name: string
   whatsapp: string
   email: string
-  roomType: string
+  roomType: string[]
   area: number | null
   floorPlanFile: File | null
   photoFiles: File[]
   styles: string[]
-  pinterest: string
   mustHave: string
   scopeType: string
   urgency: string
@@ -60,7 +59,6 @@ export async function submitQuestionnaire(data: QuestionnaireData): Promise<Acti
       floorPlanUrl,
       photoUrls,
       styles: data.styles,
-      pinterest: data.pinterest,
       mustHave: data.mustHave,
       scopeType: data.scopeType,
       urgency: data.urgency,

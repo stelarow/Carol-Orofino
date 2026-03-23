@@ -1,6 +1,6 @@
 'use client'
 
-type Step3Data = { styles: string[]; pinterest: string; mustHave: string }
+type Step3Data = { styles: string[]; mustHave: string }
 
 type Props = {
   data: Step3Data
@@ -10,7 +10,6 @@ type Props = {
   messages: {
     styles: string
     styleOptions: Record<string, string>
-    pinterest: string; pinterestPlaceholder: string
     mustHave: string; mustHavePlaceholder: string; mustHaveHint: string
   }
   nextLabel: string
@@ -48,17 +47,6 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
             )
           })}
         </div>
-      </div>
-
-      <div>
-        <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.pinterest}</label>
-        <input
-          type="url"
-          value={data.pinterest}
-          onChange={e => onChange({ ...data, pinterest: e.target.value })}
-          placeholder={messages.pinterestPlaceholder}
-          className="w-full border border-gray-300 px-4 py-3 font-body text-sm focus:outline-none focus:border-text-primary"
-        />
       </div>
 
       <div>

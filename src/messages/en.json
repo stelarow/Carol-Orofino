@@ -95,7 +95,7 @@
         "outro": "Other"
       },
       "roomTypeError": "Please select a room type",
-      "area": "Approximate area (m²)",
+      "area": "Approximate measurements",
       "floorPlan": "Floor plan or sketch (optional)",
       "floorPlanHint": "PDF, PNG or JPG — max 10MB",
       "photos": "Photos or videos of the space (optional)",
@@ -113,8 +113,6 @@
         "classico": "Classic",
         "moderno": "Modern"
       },
-      "pinterest": "Pinterest link (optional)",
-      "pinterestPlaceholder": "https://pinterest.com/...",
       "mustHave": "What must be included in your project?",
       "mustHavePlaceholder": "E.g.: large work desk, warm lighting...",
       "mustHaveHint": "Max 500 characters"
@@ -157,7 +155,8 @@
     "sidebarHighlights": "Highlights",
     "sidebarCategories": "Categories",
     "allCategories": "All",
-    "noPosts": "No articles in this category."
+    "noPosts": "No articles in this category.",
+    "expertTip": "Expert tip"
   },
   "footer": {
     "rights": "All rights reserved."

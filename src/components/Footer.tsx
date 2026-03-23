@@ -33,12 +33,6 @@ export default function Footer() {
           {/* Navigation */}
           <nav className="flex flex-col gap-3">
             <Link
-              href={`/${locale}/projetos`}
-              className="font-body text-xs uppercase tracking-widest text-white/70 transition-colors hover:text-white"
-            >
-              {t('nav.projects')}
-            </Link>
-            <Link
               href={`/${locale}/sobre`}
               className="font-body text-xs uppercase tracking-widest text-white/70 transition-colors hover:text-white"
             >

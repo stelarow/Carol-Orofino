@@ -7,12 +7,11 @@ export function buildEmailHtml(data: {
   name: string
   whatsapp: string
   email: string
-  roomType: string
+  roomType: string[]
   area: number | null
   floorPlanUrl: string | null
   photoUrls: string[]
   styles: string[]
-  pinterest: string
   mustHave: string
   scopeType: string
   urgency: string
@@ -37,13 +36,12 @@ export function buildEmailHtml(data: {
       <strong>E-mail:</strong> ${data.email}</p>
 
       <h3>🏠 Ambiente</h3>
-      <p><strong>Tipo:</strong> ${data.roomType}<br/>
+      <p><strong>Tipo:</strong> ${data.roomType.join(', ')}<br/>
       ${data.area ? `<strong>Metragem:</strong> ${data.area} m²<br/>` : ''}
       ${fileLinks ? `<strong>Arquivos:</strong> ${fileLinks}` : ''}</p>
 
       <h3>🎨 Estilo</h3>
       <p><strong>Estilos:</strong> ${data.styles.join(', ') || '—'}<br/>
-      ${data.pinterest ? `<strong>Pinterest:</strong> <a href="${data.pinterest}">${data.pinterest}</a><br/>` : ''}
       ${data.mustHave ? `<strong>Deve ter:</strong> ${data.mustHave}` : ''}</p>
 
       <h3>📋 Escopo</h3>

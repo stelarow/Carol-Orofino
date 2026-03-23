@@ -44,42 +44,40 @@ export default async function BlogPostPage({
 
   return (
     <>
-      {/* Hero — full viewport width, dark background */}
+      {/* Hero — full viewport width */}
       <div
-        className="w-full text-center py-20 px-6"
+        className="relative w-full text-center py-36 px-6 overflow-hidden"
         style={{ backgroundColor: '#2a2118' }}
       >
-        <p className="font-body text-xs text-latte uppercase tracking-widest mb-6">
-          {post.category}
-          {' · '}
-          {new Date(post.date).toLocaleDateString(localeCode, {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-          {' · '}
-          {post.readTime} {t('minRead')}
-        </p>
-        <h1 className="font-display text-4xl md:text-6xl text-linen tracking-wide leading-tight mb-6 max-w-4xl mx-auto">
-          {content.title}
-        </h1>
-        <p className="font-body text-lg text-latte italic max-w-2xl mx-auto">
-          {content.subtitle}
-        </p>
-      </div>
-
-      {/* Featured image — only if post.image is defined */}
-      {post.image && (
-        <div className="max-w-6xl mx-auto">
+        {post.image && (
           <Image
             src={post.image}
             alt={content.title}
-            width={1200}
-            height={600}
-            className="w-full object-cover"
+            fill
+            className="object-cover opacity-40"
+            priority
           />
+        )}
+        <div className="relative z-10">
+          <p className="font-body text-xs text-latte uppercase tracking-widest mb-6">
+            {post.category}
+            {' · '}
+            {new Date(post.date).toLocaleDateString(localeCode, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+            {' · '}
+            {post.readTime} {t('minRead')}
+          </p>
+          <h1 className="font-display text-4xl md:text-6xl text-linen tracking-wide leading-tight mb-6 max-w-4xl mx-auto">
+            {content.title}
+          </h1>
+          <p className="font-body text-lg text-latte italic max-w-2xl mx-auto">
+            {content.subtitle}
+          </p>
         </div>
-      )}
+      </div>
 
       {/* Two-column layout */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16 py-16 px-6 max-w-6xl mx-auto">
@@ -94,21 +92,99 @@ export default async function BlogPostPage({
 
           {/* Sections */}
           <div className="flex flex-col gap-12 mt-8">
-            {content.sections.map((section) => (
-              <section key={section.heading}>
-                <h2 className="font-display text-2xl text-primary tracking-wide mb-5">
-                  {section.heading}
-                </h2>
-                <div className="flex flex-col gap-4">
-                  {section.body.split('\n\n').map((paragraph, i) => (
-                    <p
-                      key={i}
-                      className="font-body text-base text-dark leading-relaxed"
-                    >
-                      {paragraph}
+            {content.sections.map((section, idx) => (
+              <section key={idx}>
+                {section.type === 'fabric' ? (
+                  <>
+                    <h2 className="font-display text-3xl text-primary tracking-wide mb-5">
+                      {section.heading}
+                    </h2>
+                    <p className="font-body text-base text-dark leading-relaxed mb-6">
+                      {section.intro}
                     </p>
-                  ))}
-                </div>
+                    <div className="border border-latte overflow-hidden">
+                      <table className="w-full">
+                        <tbody>
+                          {section.table.map((row, i) => (
+                            <tr key={i} className={i < section.table.length - 1 ? 'border-b border-latte' : ''}>
+                              <td className="font-body text-xs uppercase tracking-widest text-dark py-3 px-4 w-5/12 align-top bg-slate">
+                                {row.label}
+                              </td>
+                              <td className="font-body text-sm text-dark py-3 px-5 align-top bg-slate">
+                                {row.value}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="mt-6 bg-slate border-l-4 border-walnut px-6 py-5">
+                      <p className="font-body text-xs uppercase tracking-widest text-dark mb-3 flex items-center gap-2">
+                        <span>✦</span>
+                        <span>{t('expertTip')}</span>
+                      </p>
+                      <p className="font-body text-sm text-dark leading-relaxed">
+                        {section.tip}
+                      </p>
+                    </div>
+                    {section.image && (
+                      <div className="mt-8">
+                        <Image
+                          src={section.image}
+                          alt={section.heading}
+                          width={800}
+                          height={450}
+                          className="w-full object-cover"
+                        />
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <h2 className="font-display text-3xl text-primary tracking-wide mb-5">
+                      {section.heading}
+                    </h2>
+                    <div className="flex flex-col gap-4">
+                      {section.body.split('\n\n').map((paragraph, i) => (
+                        <p
+                          key={i}
+                          className="font-body text-base text-dark leading-relaxed"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                    {section.table && section.table.length > 0 && (
+                      <div className="mt-6 border border-latte overflow-hidden">
+                        <table className="w-full">
+                          <tbody>
+                            {section.table.map((row, i) => (
+                              <tr key={i} className={i < section.table.length - 1 ? 'border-b border-latte' : ''}>
+                                <td className="font-body text-xs uppercase tracking-widest text-dark py-3 px-4 w-5/12 align-top bg-slate">
+                                  {row.label}
+                                </td>
+                                <td className="font-body text-sm text-dark py-3 px-5 align-top bg-slate">
+                                  {row.value}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+                    {section.tip && (
+                      <div className="mt-6 bg-slate border-l-4 border-walnut px-6 py-5">
+                        <p className="font-body text-xs uppercase tracking-widest text-dark mb-3 flex items-center gap-2">
+                          <span>✦</span>
+                          <span>{t('expertTip')}</span>
+                        </p>
+                        <p className="font-body text-sm text-dark leading-relaxed">
+                          {section.tip}
+                        </p>
+                      </div>
+                    )}
+                  </>
+                )}
               </section>
             ))}
           </div>

@@ -95,7 +95,7 @@
         "outro": "Outro"
       },
       "roomTypeError": "Selecione o tipo de ambiente",
-      "area": "Metragem aproximada (m²)",
+      "area": "Medidas aproximadas",
       "floorPlan": "Planta baixa ou croqui (opcional)",
       "floorPlanHint": "PDF, PNG ou JPG — máx. 10MB",
       "photos": "Fotos ou vídeos do ambiente (opcional)",
@@ -113,8 +113,6 @@
         "classico": "Clássico",
         "moderno": "Moderno"
       },
-      "pinterest": "Link do Pinterest (opcional)",
-      "pinterestPlaceholder": "https://pinterest.com/...",
       "mustHave": "O que não pode faltar no seu projeto?",
       "mustHavePlaceholder": "Ex: mesa de trabalho grande, iluminação quente...",
       "mustHaveHint": "Máx. 500 caracteres"
@@ -157,7 +155,8 @@
     "sidebarHighlights": "Destaques",
     "sidebarCategories": "Categorias",
     "allCategories": "Todos",
-    "noPosts": "Nenhum artigo nesta categoria."
+    "noPosts": "Nenhum artigo nesta categoria.",
+    "expertTip": "Dica do especialista"
   },
   "footer": {
     "rights": "Todos os direitos reservados."

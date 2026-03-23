@@ -19,6 +19,14 @@ type Props = {
 export default function Step1Identity({ data, onChange, onNext, messages, nextLabel }: Props) {
   const [errors, setErrors] = useState<Partial<Record<keyof Step1Data, string>>>({})
 
+  function maskPhone(value: string): string {
+    const digits = value.replace(/\D/g, '').slice(0, 11)
+    if (digits.length <= 2) return digits.length ? `(${digits}` : ''
+    if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+    if (digits.length <= 11) return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+    return value
+  }
+
   function validate(): boolean {
     const e: typeof errors = {}
     if (data.name.trim().length < 2) e.name = messages.nameError
@@ -54,7 +62,7 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
         <input
           type="text"
           value={data.whatsapp}
-          onChange={e => onChange({ ...data, whatsapp: e.target.value })}
+          onChange={e => onChange({ ...data, whatsapp: maskPhone(e.target.value) })}
           placeholder={messages.whatsappPlaceholder}
           className={inputClass}
         />

@@ -87,20 +87,22 @@ export default async function BlogPage({
                 return (
                   <article key={post.slug}>
                     {/* Cover image — sizes accounts for 280px sidebar + 4rem gap */}
-                    {post.image ? (
-                      <div className="relative aspect-video overflow-hidden">
-                        <Image
-                          src={post.image}
-                          alt={content.title}
-                          fill
-                          priority={index === 0}
-                          className="object-cover"
-                          sizes="(min-width: 1024px) calc(100vw - 280px - 4rem), 100vw"
-                        />
-                      </div>
-                    ) : (
-                      <div className="aspect-video bg-sand" />
-                    )}
+                    <Link href={`/${locale}/blog/${post.slug}`}>
+                      {post.image ? (
+                        <div className="relative aspect-video overflow-hidden">
+                          <Image
+                            src={post.image}
+                            alt={content.title}
+                            fill
+                            priority={index === 0}
+                            className="object-cover transition-transform duration-500 hover:scale-105"
+                            sizes="(min-width: 1024px) calc(100vw - 280px - 4rem), 100vw"
+                          />
+                        </div>
+                      ) : (
+                        <div className="aspect-video bg-sand" />
+                      )}
+                    </Link>
                     {/* Text content */}
                     <div className="border-t border-stone pt-10 pb-10">
                       <p className="font-body text-xs text-mauve uppercase tracking-widest mb-4">

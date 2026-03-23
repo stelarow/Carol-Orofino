@@ -1,7 +1,21 @@
-export interface PostSection {
+export interface TextSection {
+  type?: 'text'
   heading: string
   body: string
+  table?: { label: string; value: string }[]
+  tip?: string
 }
+
+export interface FabricSection {
+  type: 'fabric'
+  heading: string
+  intro: string
+  table: { label: string; value: string }[]
+  tip: string
+  image?: string
+}
+
+export type PostSection = TextSection | FabricSection
 
 export interface Post {
   slug: string
@@ -40,6 +54,7 @@ export const posts: Post[] = [
     date: '2025-03-18',
     readTime: 5,
     category: 'Luxo',
+    image: '/images/blog/new-language-of-luxury-hero.png',
     translations: {
       en: {
         title: 'The New Language of Luxury',
@@ -52,6 +67,13 @@ export const posts: Post[] = [
           {
             heading: 'The Material Knows',
             body: 'Real luxury lives in the quality of materials — not their price tags, but their honesty. Stone that was quarried, not poured. Wood that was grown, not engineered. Leather that will soften over years, not crack.\n\nThese materials share a common quality: they improve with time. They carry the memory of use. In a world of disposable objects, a material that grows more beautiful as it ages is, in itself, an act of radicalism. That is luxury.',
+            table: [
+              { label: 'Stone', value: 'Quarried, not poured — each vein is unique and tells time' },
+              { label: 'Wood', value: 'Grown, not engineered — gains color and character over the years' },
+              { label: 'Natural leather', value: 'Softens and builds memory with use — improves over time' },
+              { label: 'Linen & wool', value: 'Fabrics that breathe — tactile honesty, beauty that needs no performance' },
+            ],
+            tip: 'A truly luxury material needs no treatment to look expensive — it already is. When evaluating a piece, run your hand across it: honest materials reveal themselves to the touch before any label does.',
           },
           {
             heading: 'Space as the Ultimate Privilege',
@@ -77,6 +99,13 @@ export const posts: Post[] = [
           {
             heading: 'O Material Sabe',
             body: 'O luxo real vive na qualidade dos materiais — não em suas etiquetas de preço, mas em sua honestidade. Pedra que foi extraída, não despejada. Madeira que foi cultivada, não engenheirada. Couro que vai amaciar com os anos, não rachar.\n\nEsses materiais compartilham uma qualidade comum: melhoram com o tempo. Carregam a memória do uso. Em um mundo de objetos descartáveis, um material que fica mais bonito conforme envelhece é, em si mesmo, um ato de radicalismo. Isso é luxo.',
+            table: [
+              { label: 'Pedra', value: 'Extraída, não despejada — cada veio é único e conta o tempo' },
+              { label: 'Madeira', value: 'Cultivada, não engenheirada — ganha cor e caráter com os anos' },
+              { label: 'Couro natural', value: 'Amolece e cria memória com o uso — melhora com o tempo' },
+              { label: 'Linho e lã', value: 'Tecidos que respiram — honestidade tátil, beleza que não precisa se anunciar' },
+            ],
+            tip: 'Um material de luxo real não precisa de tratamento para parecer caro — ele já é. Ao avaliar uma peça, passe a mão: materiais honestos se revelam no toque antes de qualquer rótulo.',
           },
           {
             heading: 'O Espaço como Privilégio Máximo',
@@ -102,6 +131,13 @@ export const posts: Post[] = [
           {
             heading: 'El Material Sabe',
             body: 'El lujo real vive en la calidad de los materiales — no en sus etiquetas de precio, sino en su honestidad. Piedra que fue extraída, no vertida. Madera que fue cultivada, no fabricada. Cuero que se suavizará con los años, no se agrietará.\n\nEstos materiales comparten una cualidad común: mejoran con el tiempo. Llevan la memoria del uso. En un mundo de objetos desechables, un material que se vuelve más hermoso al envejecer es, en sí mismo, un acto de radicalismo. Eso es lujo.',
+            table: [
+              { label: 'Piedra', value: 'Extraída, no vertida — cada veta es única y cuenta el tiempo' },
+              { label: 'Madera', value: 'Cultivada, no fabricada — gana color y carácter con los años' },
+              { label: 'Cuero natural', value: 'Se suaviza y crea memoria con el uso — mejora con el tiempo' },
+              { label: 'Lino y lana', value: 'Tejidos que respiran — honestidad táctil, belleza que no necesita anunciarse' },
+            ],
+            tip: 'Un material de lujo real no necesita tratamiento para parecer caro — ya lo es. Al evaluar una pieza, pase la mano: los materiales honestos se revelan al tacto antes que cualquier etiqueta.',
           },
           {
             heading: 'El Espacio como Privilegio Máximo',
@@ -123,6 +159,7 @@ export const posts: Post[] = [
     date: '2025-03-10',
     readTime: 5,
     category: 'Minimalismo',
+    image: '/images/blog/discipline-of-subtraction-hero.png',
     translations: {
       en: {
         title: 'The Discipline of Subtraction',
@@ -135,6 +172,13 @@ export const posts: Post[] = [
           {
             heading: 'The Edit Is the Design',
             body: 'The most important skill in minimalist design is not what you add. It is what you remove. Every object that leaves a room makes the remaining objects more powerful. The chair that stays becomes the chair — not one of several, but the one, chosen, positioned, seen.\n\nThis is why minimalism is harder to design than maximalism. Addition is easy. Subtraction requires conviction. You have to be certain enough in what remains to let everything else go.',
+            table: [
+              { label: 'Stays', value: 'Pieces with defined function, durable materials, right proportion' },
+              { label: 'Goes', value: 'Objects with no reason to be there, duplicates, filler decoration' },
+              { label: 'Criterion', value: 'Each object must earn its place — not merely occupy it' },
+              { label: 'Result', value: 'Each remaining piece becomes more powerful through the absence of the others' },
+            ],
+            tip: 'Before editing a space, remove everything. Reintroduce only what is missed. What was not sought after probably did not belong.',
           },
           {
             heading: 'The Emotional Weight of Objects',
@@ -160,6 +204,13 @@ export const posts: Post[] = [
           {
             heading: 'A Edição É o Design',
             body: 'A habilidade mais importante no design minimalista não é o que você adiciona. É o que você remove. Cada objeto que sai de um ambiente torna os objetos restantes mais poderosos. A cadeira que fica torna-se a cadeira — não uma de várias, mas aquela, escolhida, posicionada, vista.\n\nÉ por isso que o minimalismo é mais difícil de projetar do que o maximalismo. Adição é fácil. Subtração exige convicção. Você precisa ter certeza suficiente naquilo que resta para deixar todo o resto ir.',
+            table: [
+              { label: 'Permanece', value: 'Peças com função definida, materiais duráveis, proporção certa' },
+              { label: 'Sai', value: 'Objetos sem razão de estar, duplicatas, decoração que preenche vazio' },
+              { label: 'Critério', value: 'Cada objeto deve ganhar seu lugar — não apenas ocupá-lo' },
+              { label: 'Resultado', value: 'Cada peça que fica se torna mais poderosa pela ausência das outras' },
+            ],
+            tip: 'Antes de editar um ambiente, remova tudo. Reintroduza apenas o que faz falta. O que não foi buscado provavelmente não pertencia.',
           },
           {
             heading: 'O Peso Emocional dos Objetos',
@@ -185,6 +236,13 @@ export const posts: Post[] = [
           {
             heading: 'La Edición Es el Diseño',
             body: 'La habilidad más importante en el diseño minimalista no es lo que agregas. Es lo que eliminas. Cada objeto que sale de una habitación hace que los objetos restantes sean más poderosos. La silla que se queda se convierte en la silla — no una de varias, sino la elegida, posicionada, vista.\n\nPor eso el minimalismo es más difícil de diseñar que el maximalismo. La adición es fácil. La sustracción requiere convicción. Tienes que estar suficientemente seguro de lo que permanece para dejar ir todo lo demás.',
+            table: [
+              { label: 'Permanece', value: 'Piezas con función definida, materiales duraderos, proporción correcta' },
+              { label: 'Sale', value: 'Objetos sin razón de estar, duplicados, decoración que llena vacíos' },
+              { label: 'Criterio', value: 'Cada objeto debe ganar su lugar — no solo ocuparlo' },
+              { label: 'Resultado', value: 'Cada pieza que queda se vuelve más poderosa por la ausencia de las otras' },
+            ],
+            tip: 'Antes de editar un ambiente, retira todo. Reintroduce solo lo que hace falta. Lo que no fue buscado probablemente no pertenecía.',
           },
           {
             heading: 'El Peso Emocional de los Objetos',
@@ -206,6 +264,7 @@ export const posts: Post[] = [
     date: '2025-03-20',
     readTime: 6,
     category: 'Design Escandinavo',
+    image: '/images/blog/where-silence-has-a-shape-hero.png',
     translations: {
       en: {
         title: 'Where Silence Has a Shape',
@@ -218,6 +277,14 @@ export const posts: Post[] = [
           {
             heading: 'Texture as Biography',
             body: 'Run your hand across the surfaces of a well-designed Scandinavian interior and you will understand things that words cannot carry. The warmth of natural oak: wood that has grown slowly, that has taken on color and character through decades of Nordic light. The slight resistance of linen, woven with a looseness that breathes. The cool, absolute stillness of pale limestone underfoot.\n\nThese textures are not accents. They are the narrative. In a palette drawn from the earth itself — ivory, warm sand, the gray of still water, the brown of aged bark — each material becomes a word in a sentence that reads: this home was built with patience.',
+            table: [
+              { label: 'Light oak', value: 'Warm base — ages gracefully and deepens in tone with use' },
+              { label: 'Raw linen', value: 'Lightweight and breathable — ideal for curtains, upholstery, bedding' },
+              { label: 'Pale limestone', value: 'Coolness and solidity — the visual anchor of Scandinavian spaces' },
+              { label: 'Natural wool', value: 'Tactile warmth without visual weight — throws, cushions, rugs' },
+              { label: 'Handmade ceramic', value: 'Imperfection as quality — each piece is unique and irreplaceable' },
+            ],
+            tip: 'In Scandinavian design, textures do not decorate — they narrate. When combining materials, prioritize tactile contrast: smooth with rough, cool with warm, opaque with translucent.',
           },
           {
             heading: 'The Luxury of Less',
@@ -233,7 +300,7 @@ export const posts: Post[] = [
         cta: 'Carol Orofino Design translates this philosophy into spaces that live and breathe with you. For clients seeking interiors where calm is a deliberate luxury, we invite you to begin a conversation.',
       },
       pt: {
-        title: 'Onde o Silêncio Tem Forma',
+        title: 'Onde o Silêncio Tem Forma - Design Escandinavo',
         subtitle: 'Sobre o luxo de dizer menos — e significar tudo.',
         sections: [
           {
@@ -243,6 +310,14 @@ export const posts: Post[] = [
           {
             heading: 'Textura como Biografia',
             body: 'Passe a mão pelas superfícies de um interior escandinavo bem concebido e você entenderá coisas que as palavras não alcançam. O calor do carvalho natural: madeira que cresceu devagar, que ganhou cor e caráter através de décadas de luz nórdica. A leve resistência do linho, tecido com uma frouxidão que respira. A frescura absoluta e quieta do calcário claro sob os pés.\n\nEssas texturas não são acentos. São a narrativa. Em uma paleta extraída da própria terra — marfim, areia quente, o cinza das águas paradas, o marrom da casca envelhecida — cada material torna-se uma palavra em uma frase que diz: esta casa foi construída com paciência.',
+            table: [
+              { label: 'Carvalho claro', value: 'Base quente — envelhece com graça e aprofunda o tom com o uso' },
+              { label: 'Linho cru', value: 'Leve e respirável — ideal para cortinas, estofados, roupa de cama' },
+              { label: 'Calcário claro', value: 'Frescura e solidez — âncora visual dos espaços escandinavos' },
+              { label: 'Lã natural', value: 'Calor tátil sem peso visual — cobertores, almofadas, tapetes' },
+              { label: 'Cerâmica artesanal', value: 'Imperfeição como qualidade — cada peça é única e insubstituível' },
+            ],
+            tip: 'No design escandinavo, as texturas não decoram — narram. Ao combinar materiais, priorize o contraste tátil: liso com rugoso, frio com quente, opaco com translúcido.',
           },
           {
             heading: 'O Luxo do Menos',
@@ -268,6 +343,14 @@ export const posts: Post[] = [
           {
             heading: 'Textura como Biografía',
             body: 'Desliza la mano por las superficies de un interior escandinavo bien concebido y comprenderás cosas que las palabras no pueden transportar. El calor del roble natural: madera que ha crecido despacio, que ha tomado color y carácter a través de décadas de luz nórdica. La leve resistencia del lino, tejido con una holgura que respira. La frescura absoluta y quieta de la piedra caliza clara bajo los pies.\n\nEstas texturas no son acentos. Son la narrativa. En una paleta extraída de la propia tierra — marfil, arena cálida, el gris de las aguas quietas, el marrón de la corteza envejecida — cada material se convierte en una palabra en una frase que dice: esta casa fue construida con paciencia.',
+            table: [
+              { label: 'Roble claro', value: 'Base cálida — envejece con gracia y profundiza el tono con el uso' },
+              { label: 'Lino crudo', value: 'Ligero y transpirable — ideal para cortinas, tapizados, ropa de cama' },
+              { label: 'Piedra caliza clara', value: 'Frescura y solidez — ancla visual de los espacios escandinavos' },
+              { label: 'Lana natural', value: 'Calidez táctil sin peso visual — mantas, cojines, alfombras' },
+              { label: 'Cerámica artesanal', value: 'La imperfección como calidad — cada pieza es única e irremplazable' },
+            ],
+            tip: 'En el diseño escandinavo, las texturas no decoran — narran. Al combinar materiales, prioriza el contraste táctil: liso con rugoso, frío con cálido, opaco con translúcido.',
           },
           {
             heading: 'El Lujo de lo Menos',
