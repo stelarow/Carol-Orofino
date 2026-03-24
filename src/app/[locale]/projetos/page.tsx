@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { SectionDivider } from '@/components/SectionDivider'
 
 export const metadata: Metadata = {
   title: 'Projetos — Carol Orofino',
@@ -46,6 +47,8 @@ export default async function ProjetosPage({
           </h1>
         </div>
       </section>
+
+      <SectionDivider />
 
 {/* ── Seção 1: texto à esquerda, imagem à direita ──────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[540px]">
@@ -104,8 +107,10 @@ export default async function ProjetosPage({
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="flex flex-col items-center justify-center px-8 py-20 text-center border-t border-stone">
+      <section className="flex flex-col items-center justify-center px-8 py-20 text-center">
         <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide mb-6">
           Pronto para começar?
         </h2>
