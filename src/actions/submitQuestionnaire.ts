@@ -11,7 +11,7 @@ export type QuestionnaireData = {
   whatsapp: string
   email: string
   roomType: string[]
-  area: number | null
+  area: string
   floorPlanFile: File | null
   photoFiles: File[]
   styles: string[]
