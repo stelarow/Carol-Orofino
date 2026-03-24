@@ -14,7 +14,7 @@ export async function generateMetadata({
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'about' })
   return {
-    title: `Sobre — Carol Orofino`,
+    title: t('title'),
     description: t('bio'),
   }
 }
