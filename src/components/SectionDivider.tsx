@@ -9,6 +9,7 @@ interface SectionDividerProps {
 export function SectionDivider({ className }: SectionDividerProps) {
   return (
     <motion.div
+      aria-hidden="true"
       initial={{ opacity: 0, scaleX: 0.15 }}
       whileInView={{ opacity: 1, scaleX: 1 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
