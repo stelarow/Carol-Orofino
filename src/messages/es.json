@@ -108,7 +108,8 @@
         "outro": "Otro"
       },
       "roomTypeError": "Selecciona el tipo de ambiente",
-      "area": "Medidas aproximadas",
+      "area": "Medidas (si las tienes)",
+      "areaPlaceholder": "Ej: sala 4x5m, dormitorio 3x3m, o simplemente 'apartamento de 60m²'",
       "floorPlan": "Plano o croquis (opcional)",
       "floorPlanHint": "PDF, PNG o JPG — máx. 10MB",
       "photos": "Fotos o videos del ambiente (opcional)",
@@ -124,7 +125,12 @@
         "industrial": "Industrial",
         "escandinavo": "Escandinavo",
         "classico": "Clásico",
-        "moderno": "Moderno"
+        "moderno": "Moderno",
+        "boho": "Boho",
+        "japandi": "Japandi",
+        "rustico": "Rústico",
+        "contemporaneo": "Contemporáneo",
+        "provencal": "Provençal"
       },
       "mustHave": "¿Qué no puede faltar en tu proyecto?",
       "mustHavePlaceholder": "Ej: escritorio grande, iluminación cálida...",

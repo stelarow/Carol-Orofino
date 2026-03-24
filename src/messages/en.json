@@ -108,7 +108,8 @@
         "outro": "Other"
       },
       "roomTypeError": "Please select a room type",
-      "area": "Approximate measurements",
+      "area": "Measurements (if you know them)",
+      "areaPlaceholder": "E.g.: living room 4x5m, bedroom 3x3m, or just 'a 60m² apartment'",
       "floorPlan": "Floor plan or sketch (optional)",
       "floorPlanHint": "PDF, PNG or JPG — max 10MB",
       "photos": "Photos or videos of the space (optional)",
@@ -124,7 +125,12 @@
         "industrial": "Industrial",
         "escandinavo": "Scandinavian",
         "classico": "Classic",
-        "moderno": "Modern"
+        "moderno": "Modern",
+        "boho": "Boho",
+        "japandi": "Japandi",
+        "rustico": "Rustic",
+        "contemporaneo": "Contemporary",
+        "provencal": "Provençal"
       },
       "mustHave": "What must be included in your project?",
       "mustHavePlaceholder": "E.g.: large work desk, warm lighting...",
