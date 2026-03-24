@@ -84,7 +84,7 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
       <button
         type="button"
         onClick={handleNext}
-        className="mt-2 border border-text-primary px-10 py-4 font-body text-sm uppercase tracking-widest transition-colors hover:bg-text-primary hover:text-background"
+        className="mt-2 bg-slate border border-white/60 px-10 py-4 font-display font-light italic text-white transition-opacity hover:opacity-80"
       >
         {nextLabel}
       </button>

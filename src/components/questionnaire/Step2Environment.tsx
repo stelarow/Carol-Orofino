@@ -154,7 +154,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
         <button type="button" onClick={onBack} className="border border-gray-300 px-8 py-4 font-body text-sm uppercase tracking-widest transition-colors hover:bg-gray-100">
           {backLabel}
         </button>
-        <button type="button" onClick={() => { if (validate()) onNext() }} className="border border-text-primary px-10 py-4 font-body text-sm uppercase tracking-widest transition-colors hover:bg-text-primary hover:text-background">
+        <button type="button" onClick={() => { if (validate()) onNext() }} className="bg-slate border border-white/60 px-10 py-4 font-display font-light italic text-white transition-opacity hover:opacity-80">
           {nextLabel}
         </button>
       </div>

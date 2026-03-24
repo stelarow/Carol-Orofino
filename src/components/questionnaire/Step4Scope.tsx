@@ -83,7 +83,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
         <button type="button" onClick={onBack} disabled={isSubmitting} className="border border-gray-300 px-8 py-4 font-body text-sm uppercase tracking-widest transition-colors hover:bg-gray-100 disabled:opacity-50">
           {backLabel}
         </button>
-        <button type="button" onClick={handleSubmit} disabled={isSubmitting} className="border border-text-primary px-10 py-4 font-body text-sm uppercase tracking-widest transition-colors hover:bg-text-primary hover:text-background disabled:opacity-50">
+        <button type="button" onClick={handleSubmit} disabled={isSubmitting} className="bg-slate border border-white/60 px-10 py-4 font-display font-light italic text-white transition-opacity hover:opacity-80 disabled:opacity-50">
           {isSubmitting ? submittingLabel : submitLabel}
         </button>
       </div>
