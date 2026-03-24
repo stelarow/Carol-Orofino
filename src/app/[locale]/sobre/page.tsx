@@ -101,7 +101,7 @@ export default async function SobrePage({
             {services.map((service) => {
               const translation = service.translations[locale as Locale]
               return (
-                <div key={service.id} className="bg-background p-8">
+                <div key={service.id} className="bg-linen p-8">
                   <h3 className="font-display text-2xl text-text-primary tracking-wide mb-4">
                     {translation.title}
                   </h3>
