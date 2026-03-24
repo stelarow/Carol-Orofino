@@ -32,10 +32,11 @@ Receives all data as props from the server component and handles animation logic
 **Props:**
 ```ts
 import type { Post } from '@/data/posts'
+import type { Locale } from '@/lib/i18n'
 
 interface BlogTeaserProps {
   posts: Post[]
-  locale: string
+  locale: Locale        // resolved from params before passing as prop
   title: string         // t('blogTitle')
   readMore: string      // tBlog('readMore')
   blogLink: string      // t('blogLink')
