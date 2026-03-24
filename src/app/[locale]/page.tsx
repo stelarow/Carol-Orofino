@@ -8,13 +8,14 @@ import type { Locale } from '@/lib/i18n'
 import { SectionDivider } from '@/components/SectionDivider'
 import { QuestionnaireSection } from '@/components/QuestionnaireSection'
 import { AboutTeaser } from '@/components/AboutTeaser'
+import { BlogTeaser } from '@/components/BlogTeaser'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://carolorofino.com.br'
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: Locale }>
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
@@ -30,7 +31,7 @@ export async function generateMetadata({
 export default async function HomePage({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: Locale }>
 }) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
@@ -171,38 +172,14 @@ export default async function HomePage({
       <SectionDivider />
 
       {/* Blog Teaser */}
-      <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6">
-          <h2 className="font-display text-3xl md:text-4xl font-light italic text-primary leading-tight mb-10">
-            {t('blogTitle')}
-          </h2>
-          <div className="flex flex-col divide-y divide-stone">
-            {posts.map((post) => (
-              <div key={post.slug} className="py-8">
-                <Link href={`/${locale}/blog/${post.slug}`} className="group">
-                  <h2 className="font-display text-2xl md:text-3xl text-primary tracking-wide mb-2 group-hover:text-walnut transition-colors">
-                    {post.translations[locale as Locale].title}
-                  </h2>
-                  <p className="font-body text-sm text-dark italic leading-relaxed mb-5">
-                    {post.translations[locale as Locale].subtitle}
-                  </p>
-                  <span className="font-body text-xs uppercase tracking-widest text-primary border-b border-primary pb-0.5 transition-colors group-hover:text-mauve group-hover:border-mauve">
-                    {tBlog('readMore')} →
-                  </span>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10">
-            <Link
-              href={`/${locale}/blog`}
-              className="inline-block bg-slate border border-white/60 px-8 py-3 font-display font-light italic text-white transition-opacity hover:opacity-80"
-            >
-              {t('blogLink')}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <BlogTeaser
+        posts={posts}
+        locale={locale}
+        title={t('blogTitle')}
+        readMore={tBlog('readMore')}
+        blogLink={t('blogLink')}
+        blogLinkHref={`/${locale}/blog`}
+      />
     </>
   )
 }
