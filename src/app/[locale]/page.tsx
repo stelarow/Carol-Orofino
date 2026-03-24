@@ -106,14 +106,14 @@ export default async function HomePage({
               </span>
             </div>
           </Link>
-          {/* Projetos */}
+          {/* Fachadas */}
           <Link
-            href={`/${locale}/projetos`}
+            href={`/${locale}/fachadas`}
             className="group relative overflow-hidden min-h-[56vw] md:min-h-[28vw]"
           >
             <Image
               src="/images/categories/projetos-hero.png"
-              alt={t('projetos')}
+              alt={t('fachadas')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -121,7 +121,7 @@ export default async function HomePage({
             <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/50" />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="font-display text-3xl md:text-4xl font-bold tracking-[0.2em] uppercase text-white">
-                {t('projetos')}
+                {t('fachadas')}
               </span>
             </div>
           </Link>
