@@ -67,6 +67,38 @@ export default async function SobrePage({
 
       <SectionDivider />
 
+      {/* Section 1b — Projetos sob medida: text + photo (inverse layout) */}
+      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[560px] overflow-hidden">
+        {/* Left: Text */}
+        <div className="flex items-center justify-center bg-linen px-8 py-16 md:px-16">
+          <div className="max-w-md">
+            <p className="font-body text-xs uppercase tracking-[0.35em] text-dark mb-5">
+              {t('customEyebrow')}
+            </p>
+            <h2 className="font-display text-3xl md:text-4xl font-light italic text-primary leading-tight mb-5">
+              {t('customTitle')}
+            </h2>
+            <div className="w-10 h-px bg-stone my-5" />
+            <p className="font-body text-sm font-light text-dark leading-relaxed">
+              {t('customBody')}
+            </p>
+          </div>
+        </div>
+
+        {/* Right: Photo */}
+        <div className="relative min-h-[420px] md:min-h-0 overflow-hidden">
+          <Image
+            src="/images/carol-measuring.png"
+            alt="Carol Orofino medindo ambiente"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover object-center"
+          />
+        </div>
+      </section>
+
+      <SectionDivider />
+
       {/* Section 2 — Filosofia de Design */}
       <section className="bg-slate py-20 px-6 md:px-24">
         <div className="max-w-3xl mx-auto">
