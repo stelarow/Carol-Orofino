@@ -74,7 +74,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
-              src="/images/categories/residencial-hero.jpg"
+              src="/images/categories/residencial-hero.png"
               alt={t('residencial')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
