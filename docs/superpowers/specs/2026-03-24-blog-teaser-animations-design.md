@@ -31,6 +31,8 @@ Receives all data as props from the server component and handles animation logic
 
 **Props:**
 ```ts
+import type { Post } from '@/data/posts'
+
 interface BlogTeaserProps {
   posts: Post[]
   locale: string
@@ -63,17 +65,31 @@ const item = {
 }
 ```
 
-**Section title:**
-Animates with a standalone `motion.h2` — `opacity: 0 → 1`, `y: 10 → 0`, `duration: 0.6s`, triggered by `whileInView` with `viewport: { once: true }`. Not part of the stagger container.
+### DOM Structure
 
-**Post list container:**
-`motion.div` with container variants, `whileInView="visible"`, `initial="hidden"`, `viewport: { once: true, amount: 0.1 }`.
+The stagger container (`motion.div` with `container` variants) wraps **both** the post list and the CTA button together, so all elements participate in the same stagger sequence:
 
-**Each post:**
-Wrapped in `motion.div` with item variants. Inner `Link` and content remain unchanged.
+```
+<motion.h2>                     ← title, standalone animation (no stagger)
+<motion.div container>          ← stagger root: whileInView="visible" initial="hidden"
+  <motion.div item>post 1</motion.div>
+  <motion.div item>post 2</motion.div>
+  ...
+  <motion.div item>             ← CTA button, last in stagger
+    <Link>Ver todos os posts</Link>
+  </motion.div>
+</motion.div>
+```
 
-**CTA button:**
-Wrapped in `motion.div` with item variants — appears last in the stagger sequence.
+Child `motion.div` elements with `item` variants do **not** need their own `whileInView`. Framer Motion propagates the variant state from the parent container to all descendants automatically — the stagger is controlled entirely by the container's `staggerChildren` transition.
+
+### Viewport Configuration
+
+**Section title (`motion.h2`):** `viewport: { once: true }` — no `amount` threshold. The title animates as soon as any part of it enters the viewport.
+
+**Stagger container (`motion.div`):** `viewport: { once: true, amount: 0.1 }` — waits until 10% of the container is visible before triggering. This prevents the stagger from firing before the section is meaningfully on screen, which would make the animation invisible on fast scrolls.
+
+Neither element uses a `margin` offset (unlike `AboutTeaser` which uses `margin: '-80px'`). The `y: 20` offset is small enough that the animation completes well within the viewport without needing early triggering.
 
 ### Update to `page.tsx`
 
@@ -96,3 +112,4 @@ Replace the inline blog section (lines 173–205) with `<BlogTeaser ... />`, pas
 - Verify `once: true` prevents re-animation on scroll back
 - Verify no layout shift during animation (use `y` offset only, not height/width)
 - Verify all locale strings render correctly in pt, en, es
+- Verify the CTA button animates as the last item in the stagger sequence
