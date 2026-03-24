@@ -2,7 +2,8 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
-import { routing } from '@/lib/i18n'
+import { routing, type Locale } from '@/lib/i18n'
+import { services } from '@/data/services'
 import { SectionDivider } from '@/components/SectionDivider'
 import WhatsAppButton from '@/components/WhatsAppButton'
 
@@ -90,7 +91,33 @@ export default async function SobrePage({
 
       <SectionDivider />
 
-      {/* Section 3 — CTA */}
+      {/* Section 3 — Serviços */}
+      <section id="servicos" className="bg-linen py-20 px-6 md:px-24">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-display text-4xl md:text-5xl text-primary tracking-wide mb-16">
+            {t('servicesTitle')}
+          </h2>
+          <div className="grid grid-cols-1 gap-px bg-sage md:grid-cols-2">
+            {services.map((service) => {
+              const translation = service.translations[locale as Locale]
+              return (
+                <div key={service.id} className="bg-background p-8">
+                  <h3 className="font-display text-2xl text-text-primary tracking-wide mb-4">
+                    {translation.title}
+                  </h3>
+                  <p className="font-body text-base text-dark leading-relaxed">
+                    {translation.description}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* Section 4 — CTA */}
       <section className="bg-sand py-20 text-center px-6">
         <div className="max-w-md mx-auto">
           <h2 className="font-display text-3xl md:text-4xl font-light italic text-primary mb-4">
