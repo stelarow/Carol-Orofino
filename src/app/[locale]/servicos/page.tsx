@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import { services } from '@/data/services'
 import { type Locale } from '@/lib/i18n'
 import type { Metadata } from 'next'
+import { SectionDivider } from '@/components/SectionDivider'
 
 export async function generateMetadata({
   params,
@@ -27,6 +28,7 @@ export default async function ServicesPage({
       <h1 className="font-display text-4xl md:text-5xl text-primary tracking-wide mb-16">
         {t('title')}
       </h1>
+      <SectionDivider />
       <div className="grid grid-cols-1 gap-px bg-sage md:grid-cols-2">
         {services.map((service) => {
           const translation = service.translations[locale as Locale]
