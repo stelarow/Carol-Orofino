@@ -1,0 +1,185 @@
+<style>
+  :root {
+    --linen: #edeae1;
+    --sand: #e0cfb3;
+    --stone: #d5d0cc;
+    --walnut: #86725a;
+    --text-dark: #1A1A1A;
+    --text-muted: #95978a;
+  }
+
+  body { background: var(--linen); font-family: 'Georgia', serif; }
+  h2 { font-family: 'Georgia', serif; font-size: 1.4rem; font-weight: 400; letter-spacing: 0.05em; color: var(--text-dark); margin-bottom: 0.3rem; }
+  .subtitle { font-family: Arial, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
+
+  .options { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .option {
+    cursor: pointer;
+    border: 1.5px solid var(--stone);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    background: #f5f3ee;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+  }
+  .option:hover { border-color: var(--walnut); }
+  .option.selected { border-color: var(--walnut); box-shadow: 0 0 0 2px rgba(134,114,90,0.2); }
+
+  .letter {
+    background: var(--walnut);
+    color: #f5f3ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  .content { padding: 1.25rem 1.5rem; }
+  .content h3 { font-family: 'Georgia', serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.5rem; }
+  .content p { font-family: Arial, sans-serif; font-size: 0.76rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0; }
+
+  /* Preview inside each option */
+  .preview {
+    margin-top: 1rem;
+    background: var(--linen);
+    border: 1px solid var(--stone);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .demo-sec { padding: 0.9rem 1.5rem; }
+  .demo-label { font-family: Arial, sans-serif; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--walnut); display: block; margin-bottom: 0.2rem; }
+  .demo-title { font-family: 'Georgia', serif; font-size: 1rem; font-weight: 400; color: var(--text-dark); display: block; }
+
+  /* Sep A: uniform */
+  .sep-uniform {
+    display: flex; justify-content: center; padding: 2rem 0;
+  }
+  .sep-uniform span {
+    display: block; height: 1px; width: 180px;
+    background: linear-gradient(to right, transparent, var(--walnut) 20%, var(--walnut) 80%, transparent);
+  }
+
+  /* Sep B: two sizes */
+  .sep-major { display: flex; justify-content: center; padding: 2rem 0; }
+  .sep-major span { display: block; height: 1px; width: 240px;
+    background: linear-gradient(to right, transparent, var(--walnut) 15%, var(--walnut) 85%, transparent); }
+
+  .sep-minor { display: flex; justify-content: center; padding: 1rem 0; }
+  .sep-minor span { display: block; height: 1px; width: 100px;
+    background: linear-gradient(to right, transparent, var(--stone) 20%, var(--stone) 80%, transparent); }
+
+  /* Sep C: with center mark */
+  .sep-ornamental {
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 2rem 0;
+  }
+  .sep-ornamental .line {
+    display: block; height: 1px; width: 80px;
+    background: linear-gradient(to right, transparent, var(--walnut));
+  }
+  .sep-ornamental .line.right {
+    background: linear-gradient(to left, transparent, var(--walnut));
+  }
+  .sep-ornamental .dot {
+    display: block; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--walnut); opacity: 0.7;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--walnut);
+    border: 1px solid var(--walnut);
+    padding: 0.1rem 0.5rem;
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+  }
+  .pros { color: #5a7a5a; }
+  .cons { color: var(--text-muted); }
+  .pros strong, .cons strong { display: block; margin-bottom: 0.25rem; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+</style>
+
+<h2>Três abordagens de implementação</h2>
+<p class="subtitle">Mesma direção visual — diferem em flexibilidade e complexidade</p>
+
+<div class="options">
+
+  <!-- A -->
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <div class="tag">Recomendada</div>
+      <h3>Componente único — &lt;SectionDivider /&gt;</h3>
+      <p>Um componente React reutilizável com a linha fade + animação Framer Motion <code>whileInView</code>. Inserido manualmente entre as seções em cada página. Simples, consistente, sem surpresas.</p>
+      <div class="preview">
+        <div class="demo-sec"><span class="demo-label">Coleções</span><span class="demo-title">Residencial</span></div>
+        <div class="sep-uniform"><span></span></div>
+        <div class="demo-sec"><span class="demo-label">Blog</span><span class="demo-title">Tendências 2025</span></div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros"><strong>A favor</strong>Simples · fácil de manter · você controla onde aparece</div>
+        <div class="cons"><strong>Contra</strong>Precisa adicionar manualmente em cada página</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B -->
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Dois tamanhos — major e minor</h3>
+      <p>Mesmo componente, mas com uma prop <code>size</code>: o separador <em>major</em> (walnut, 240px) para transições entre grandes seções, e o <em>minor</em> (stone, 100px) para separar itens dentro de uma seção. Hierarquia visual mais rica.</p>
+      <div class="preview">
+        <div class="demo-sec"><span class="demo-label">Seção maior</span><span class="demo-title">Residencial</span></div>
+        <div class="sep-major"><span></span></div>
+        <div class="demo-sec"><span class="demo-label">Sub-item</span><span class="demo-title">Detalhe</span></div>
+        <div class="sep-minor"><span></span></div>
+        <div class="demo-sec"><span class="demo-label">Outro item</span><span class="demo-title">Mais detalhes</span></div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros"><strong>A favor</strong>Hierarquia · mais expressivo visualmente</div>
+        <div class="cons"><strong>Contra</strong>Precisa de critério para escolher qual usar onde</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C -->
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Linha com marcação central</h3>
+      <p>A linha fade nas duas pontas com um pequeno ponto ou losango no centro. Inspirado em bordados e papelaria de luxo — mais ornamental, mais personalidade. Pode ser o "assinatura" visual do site.</p>
+      <div class="preview">
+        <div class="demo-sec"><span class="demo-label">Coleções</span><span class="demo-title">Residencial</span></div>
+        <div class="sep-ornamental">
+          <span class="line"></span>
+          <span class="dot"></span>
+          <span class="line right"></span>
+        </div>
+        <div class="demo-sec"><span class="demo-label">Blog</span><span class="demo-title">Tendências 2025</span></div>
+      </div>
+      <div class="pros-cons">
+        <div class="pros"><strong>A favor</strong>Elegante · personalidade de marca · memorável</div>
+        <div class="cons"><strong>Contra</strong>Mais decorativo — pode não caber em todos os contextos</div>
+      </div>
+    </div>
+  </div>
+
+</div>

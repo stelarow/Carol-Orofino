@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Carol-Orofino -path */.superpowers -type d -o -path */docs/superpowers -type d)",
+      "Bash(grep -r \"py-\\\\|px-\\\\|gap-\\\\|border-\\\\|divide-\" /c/Carol-Orofino/src/app/[locale]/page.tsx)",
+      "Bash(bash \"/c/Users/Alessandro/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.5/skills/brainstorming/scripts/start-server.sh\" --project-dir \"/c/Carol-Orofino\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(''''framer-motion:'''', d[''''dependencies''''].get\\(''''framer-motion'''',''''not found''''\\)\\)\")",
+      "Bash(ls:*)",
+      "Bash(npx jest:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(npm run)",
+      "Bash(npm run:*)",
+      "Bash(grep:*)",
+      "Bash(C:/Users/Alessandro/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.5/scripts/start-server.sh --project-dir /c/Carol-Orofino)",
+      "Bash(cat /c/Carol-Orofino/.superpowers/brainstorm/*/\\\\.server-info)",
+      "Bash(bash \"/c/Users/Alessandro/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.5/skills/brainstorming/scripts/start-server.sh\" --project-dir /c/Carol-Orofino 2>&1)",
+      "Bash(cat /c/Carol-Orofino/.superpowers/brainstorm/*/.server-info)",
+      "Bash(curl -L \"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80\" -o /c/Carol-Orofino/public/images/questionnaire-section.jpg)",
+      "Bash(scripts/start-server.sh --project-dir /c/Carol-Orofino)",
+      "Bash(cat /c/Carol-Orofino/.superpowers/brainstorm/*/server-info)",
+      "Bash(\"/c/Carol-Orofino/.superpowers/brainstorm/497-1774319670/carol_b64.txt\"4)",
+      "Bash(node:*)",
+      "Bash(git stash:*)",
+      "Bash(git diff:*)",
+      "Bash(test -f src/app/[locale]/sobre/page.tsx)",
+      "Bash(git push:*)"
+    ]
+  }
+}
