@@ -6,7 +6,6 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/lib/i18n'
 import NavbarWrapper from '@/components/NavbarWrapper'
 import Footer from '@/components/Footer'
-import WhatsAppButton from '@/components/WhatsAppButton'
 
 export const metadata: Metadata = {
   title: 'Carol Orofino — Design de Interiores',
@@ -40,7 +39,7 @@ export default async function LocaleLayout({
         <main className="fade-in flex-1">{children}</main>
         <Footer />
       </div>
-      <WhatsAppButton message={t('whatsappMessage')} />
+
     </NextIntlClientProvider>
   )
 }

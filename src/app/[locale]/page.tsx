@@ -173,9 +173,9 @@ export default async function HomePage({
       {/* Blog Teaser */}
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="font-body text-xs uppercase tracking-widest text-dark mb-10">
+          <h2 className="font-display text-3xl md:text-4xl font-light italic text-primary leading-tight mb-10">
             {t('blogTitle')}
-          </p>
+          </h2>
           <div className="flex flex-col divide-y divide-stone">
             {posts.map((post) => (
               <div key={post.slug} className="py-8">
