@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { posts } from '@/data/posts'
 import type { Locale } from '@/lib/i18n'
+import { SectionDivider } from '@/components/SectionDivider'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://carolorofino.com.br'
 
@@ -143,6 +144,8 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* About Teaser */}
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
@@ -161,8 +164,10 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* Blog Teaser */}
-      <section className="border-t border-stone py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-4xl px-6">
           <p className="font-body text-xs uppercase tracking-widest text-dark mb-10">
             {t('blogTitle')}
