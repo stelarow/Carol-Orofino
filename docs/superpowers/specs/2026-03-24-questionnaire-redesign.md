@@ -43,6 +43,10 @@ Aplicar a regra 60-30-10 da paleta existente do projeto, eliminar todas as class
 
 ## Componentes
 
+### Título do Step (`QuestionnaireWizard`)
+
+O `h2` do step title usa atualmente a classe `font-heading` (token não definido no tema). Substituir por `font-display text-4xl font-light tracking-tight` — remover `font-heading` completamente.
+
 ### Barra de Progresso (`QuestionnaireWizard`)
 
 - 4 traços finos (`h-px`) em `bg-stone`
@@ -61,7 +65,7 @@ Aplicar a regra 60-30-10 da paleta existente do projeto, eliminar todas as class
 
 - Repouso: `border border-stone bg-transparent text-text-primary`
 - Hover: `border-latte`
-- Selecionado: `border-walnut bg-walnut/8 text-walnut`
+- Selecionado: `border-walnut bg-walnut/8 text-walnut` — nota: `/8` significa 8% de opacidade; Tailwind v4 suporta valores arbitrários de opacidade, não é typo de `/80`
 - Transição: `transition-colors duration-150`
 
 ### Radio Groups (Step 4 — escopo, urgência)
@@ -82,10 +86,19 @@ Aplicar a regra 60-30-10 da paleta existente do projeto, eliminar todas as class
 
 ### Botão Primário (Próximo / Enviar)
 
-- `bg-walnut text-linen px-10 py-4`
-- `font-display italic`
-- `whileHover={{ scale: 1.01 }}` + `transition={{ duration: 0.15 }}`
-- Hover de cor: `hover:bg-latte`
+Classes Tailwind completas (substituem integralmente as classes existentes, incluindo remoção de `transition-opacity` e `hover:opacity-80`):
+```
+bg-walnut text-linen px-10 py-4 font-display italic hover:bg-latte transition-colors duration-150
+```
+
+Props Framer Motion:
+```tsx
+<motion.button
+  whileHover={{ scale: 1.01 }}
+  transition={{ duration: 0.15 }}
+  ...
+>
+```
 
 ### Botão Voltar
 
@@ -95,7 +108,7 @@ Aplicar a regra 60-30-10 da paleta existente do projeto, eliminar todas as class
 ### SuccessScreen
 
 - Ícone ornamental `✦` (ou `✓`) em `text-walnut text-4xl`
-- Animado: `motion.div` com `initial={{ scale: 0.88, opacity: 0 }}` → `animate={{ scale: 1, opacity: 1 }}` com spring
+- Animado: `motion.div` com `initial={{ scale: 0.88, opacity: 0 }}` → `animate={{ scale: 1, opacity: 1 }}`, `transition={{ type: 'spring', stiffness: 100, damping: 18 }}`
 - Título: `font-display text-3xl font-light`
 - Mensagem: `font-body text-sm text-slate`
 
@@ -105,20 +118,43 @@ Aplicar a regra 60-30-10 da paleta existente do projeto, eliminar todas as class
 
 ### Transição entre Steps
 
-No `QuestionnaireWizard`, usar `AnimatePresence` com `mode="wait"` e um `key={step}` nos steps ativos.
+**Tracking de direção:** Adicionar estado `direction: 1 | -1` ao `QuestionnaireWizard`. Ao avançar (`setStep(n)` onde `n > step`), setar `direction = 1`; ao voltar, `direction = -1`. Passar `direction` como prop `custom` para `AnimatePresence` e `motion.div`.
 
-- **Avançando:** entra da direita (`x: 32 → 0`), sai para esquerda (`x: -32`)
-- **Voltando:** entra da esquerda (`x: -32 → 0`), sai para direita (`x: 32`)
-- Opacidade: `0 → 1` / `1 → 0`
-- Easing: `[0.25, 0, 0, 1]` (ease-out suave)
-- Duração: `0.30s` entrada, `0.20s` saída
+**Reestruturação obrigatória do render:** O render atual usa quatro condicionais paralelos (`{step === N && <StepN />}`). Para que `AnimatePresence mode="wait"` funcione corretamente com Framer Motion v11+, o step ativo deve ser envolvido em um único `<motion.div key={step} custom={direction}>`. Estrutura esperada:
+
+```tsx
+<AnimatePresence mode="wait" custom={direction}>
+  <motion.div
+    key={step}
+    custom={direction}
+    variants={stepVariants}
+    initial="enter"
+    animate="center"
+    exit="exit"
+  >
+    {step === 1 && <Step1Identity ... />}
+    {step === 2 && <Step2Environment ... />}
+    {step === 3 && <Step3Style ... />}
+    {step === 4 && <Step4Scope ... />}
+  </motion.div>
+</AnimatePresence>
+```
+
+**Variants:**
+```ts
+const stepVariants = {
+  enter: (dir: number) => ({ x: dir * 32, opacity: 0 }),
+  center: { x: 0, opacity: 1, transition: { duration: 0.30, ease: [0.25, 0, 0, 1] } },
+  exit: (dir: number) => ({ x: dir * -32, opacity: 0, transition: { duration: 0.20, ease: [0.25, 0, 0, 1] } }),
+}
+```
 
 ### Entrada de Campos (por Step)
 
 Cada `<div>` de campo dentro de cada step usa `motion.div`:
 - `initial={{ opacity: 0, y: 12 }}`
 - `animate={{ opacity: 1, y: 0 }}`
-- `transition={{ delay: i * 0.07, duration: 0.35, ease: [0.25, 0, 0, 1] }}`
+- `transition={{ delay: i * 0.07, duration: 0.35, ease: [0.25, 0, 0, 1] }}` — onde `i` é o índice zero-based do campo dentro do step (0 para o primeiro campo, 1 para o segundo, etc.)
 
 ### Barra de Progresso
 
