@@ -6,6 +6,8 @@ import type { Metadata } from 'next'
 import { posts } from '@/data/posts'
 import type { Locale } from '@/lib/i18n'
 import { SectionDivider } from '@/components/SectionDivider'
+import { QuestionnaireSection } from '@/components/QuestionnaireSection'
+import { AboutTeaser } from '@/components/AboutTeaser'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://carolorofino.com.br'
 
@@ -33,6 +35,7 @@ export default async function HomePage({
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
   const tBlog = await getTranslations({ locale, namespace: 'blog' })
+  const tAbout = await getTranslations({ locale, namespace: 'about' })
 
   return (
     <>
@@ -147,22 +150,23 @@ export default async function HomePage({
       <SectionDivider />
 
       {/* About Teaser */}
-      <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-primary tracking-wide">
-            {t('aboutTitle')}
-          </h2>
-          <p className="mt-6 font-body text-base text-dark leading-relaxed max-w-2xl mx-auto">
-            {t('aboutTeaser')}
-          </p>
-          <Link
-            href={`/${locale}/sobre`}
-            className="mt-8 inline-block font-body text-xs uppercase tracking-widest border-b border-text-primary pb-0.5 text-text-primary transition-colors hover:text-primary hover:border-primary"
-          >
-            {t('aboutLink')}
-          </Link>
-        </div>
-      </section>
+      <AboutTeaser
+        locale={locale}
+        eyebrow={tAbout('eyebrow')}
+        title={t('aboutTitle')}
+        teaser={t('aboutTeaser')}
+        ctaLabel={t('aboutLink')}
+      />
+
+      <SectionDivider />
+
+      <QuestionnaireSection
+        locale={locale}
+        eyebrow={t('questionnaireSectionEyebrow')}
+        title={t('questionnaireSectionTitle')}
+        body={t('questionnaireSectionBody')}
+        cta={t('questionnaireSectionCta')}
+      />
 
       <SectionDivider />
 
