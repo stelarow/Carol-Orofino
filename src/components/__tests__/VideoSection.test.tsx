@@ -9,6 +9,9 @@ jest.mock('framer-motion', () => ({
     div: ({ children, className }: { children: React.ReactNode; className?: string }) => (
       <div className={className}>{children}</div>
     ),
+    span: ({ children, className }: { children: React.ReactNode; className?: string }) => (
+      <span className={className}>{children}</span>
+    ),
   },
 }))
 
@@ -65,11 +68,12 @@ describe('VideoSection', () => {
     expect(getByText('Carol Orofino')).toBeInTheDocument()
   })
 
-  it('remove o overlay da marca quando o vídeo termina', () => {
-    const { container, queryByText } = render(<VideoSection />)
+  it('inicia o fade-out do overlay da marca quando o vídeo termina', () => {
+    const { container, getByText } = render(<VideoSection />)
     const video = container.querySelector('video')!
     fireEvent.ended(video)
-    expect(queryByText('Carol Orofino')).not.toBeInTheDocument()
+    // O elemento permanece no DOM mas com animate opacity:0 (fade junto com o vídeo)
+    expect(getByText('Carol Orofino')).toBeInTheDocument()
   })
 
   it('exibe a tela de encerramento quando o vídeo termina', () => {
