@@ -35,4 +35,10 @@ describe('buildClientEmailHtml', () => {
     const { html } = buildClientEmailHtml({ name: 'Ana', roomType: ['sala'], styles: [] }, 'pt')
     expect(html).toContain('—')
   })
+
+  it('escapes HTML in name', () => {
+    const { html } = buildClientEmailHtml({ name: '<script>alert(1)</script>', roomType: ['sala'], styles: [] }, 'pt')
+    expect(html).not.toContain('<script>')
+    expect(html).toContain('&lt;script&gt;')
+  })
 })

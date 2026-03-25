@@ -1,3 +1,11 @@
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
 export function normalizeWhatsApp(raw: string): string {
   const digits = raw.replace(/\D/g, '')
   return digits.startsWith('55') ? digits : `55${digits}`
@@ -27,27 +35,27 @@ export function buildEmailHtml(data: {
 
   return `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-      <h2 style="color:#333">Novo questionário — ${data.name}</h2>
+      <h2 style="color:#333">Novo questionário — ${escapeHtml(data.name)}</h2>
       <hr/>
 
       <h3>👤 Identificação</h3>
-      <p><strong>Nome:</strong> ${data.name}<br/>
+      <p><strong>Nome:</strong> ${escapeHtml(data.name)}<br/>
       <strong>WhatsApp:</strong> ${data.whatsapp}<br/>
-      <strong>E-mail:</strong> ${data.email}</p>
+      <strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
 
       <h3>🏠 Ambiente</h3>
-      <p><strong>Tipo:</strong> ${data.roomType.join(', ')}<br/>
-      ${data.area ? `<strong>Medidas:</strong> ${data.area}<br/>` : ''}
+      <p><strong>Tipo:</strong> ${data.roomType.map(escapeHtml).join(', ')}<br/>
+      ${data.area ? `<strong>Medidas:</strong> ${escapeHtml(data.area)}<br/>` : ''}
       ${fileLinks ? `<strong>Arquivos:</strong> ${fileLinks}` : ''}</p>
 
       <h3>🎨 Estilo</h3>
-      <p><strong>Estilos:</strong> ${data.styles.join(', ') || '—'}<br/>
-      ${data.mustHave ? `<strong>Deve ter:</strong> ${data.mustHave}` : ''}</p>
+      <p><strong>Estilos:</strong> ${data.styles.map(escapeHtml).join(', ') || '—'}<br/>
+      ${data.mustHave ? `<strong>Deve ter:</strong> ${escapeHtml(data.mustHave)}` : ''}</p>
 
       <h3>📋 Escopo</h3>
-      <p><strong>Tipo:</strong> ${data.scopeType}<br/>
-      ${data.urgency ? `<strong>Urgência:</strong> ${data.urgency}<br/>` : ''}
-      ${data.budget ? `<strong>Investimento:</strong> ${data.budget}` : ''}</p>
+      <p><strong>Tipo:</strong> ${escapeHtml(data.scopeType)}<br/>
+      ${data.urgency ? `<strong>Urgência:</strong> ${escapeHtml(data.urgency)}<br/>` : ''}
+      ${data.budget ? `<strong>Investimento:</strong> ${escapeHtml(data.budget)}` : ''}</p>
 
       <hr/>
       <a href="${waUrl}" style="display:inline-block;background:#25D366;color:white;padding:10px 20px;border-radius:4px;text-decoration:none;font-weight:bold">
@@ -106,16 +114,16 @@ export function buildClientEmailHtml(
   locale: string
 ): { subject: string; html: string } {
   const s = CLIENT_EMAIL_STRINGS[locale] ?? CLIENT_EMAIL_STRINGS['pt']
-  const stylesText = data.styles.length > 0 ? data.styles.join(', ') : '—'
+  const stylesText = data.styles.length > 0 ? data.styles.map(escapeHtml).join(', ') : '—'
 
   const html = `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
-      <h2 style="color:#333">${s.greeting(data.name)}</h2>
+      <h2 style="color:#333">${s.greeting(escapeHtml(data.name))}</h2>
       <p>${s.confirmation}</p>
       <hr/>
       <h3>${s.summaryTitle}</h3>
       <p>
-        <strong>${s.roomLabel}:</strong> ${data.roomType.join(', ')}<br/>
+        <strong>${s.roomLabel}:</strong> ${data.roomType.map(escapeHtml).join(', ')}<br/>
         <strong>${s.stylesLabel}:</strong> ${stylesText}
       </p>
       <hr/>
