@@ -35,16 +35,17 @@ export default async function SobrePage({
   return (
     <>
       {/* Section 1 — Hero split: photo + bio */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[560px] overflow-hidden mt-16">
+      <section className="grid grid-cols-1 md:grid-cols-2 mt-16">
         {/* Left: Photo */}
-        <div className="relative min-h-[420px] md:min-h-0 overflow-hidden">
+        <div>
           <Image
             src="/images/carol-portrait.png"
             alt="Carol Orofino"
-            fill
+            width={1344}
+            height={768}
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover object-top"
+            className="w-full h-auto block"
           />
         </div>
 
@@ -68,7 +69,7 @@ export default async function SobrePage({
       <SectionDivider />
 
       {/* Section 1b — Projetos sob medida: text + photo (inverse layout) */}
-      <section className="grid grid-cols-1 md:grid-cols-2 min-h-[560px] overflow-hidden">
+      <section className="grid grid-cols-1 md:grid-cols-2">
         {/* Left: Text */}
         <div className="flex items-center justify-center bg-linen px-8 py-16 md:px-16">
           <div className="max-w-md">
@@ -86,13 +87,14 @@ export default async function SobrePage({
         </div>
 
         {/* Right: Photo */}
-        <div className="relative min-h-[420px] md:min-h-0 overflow-hidden">
+        <div>
           <Image
             src="/images/carol-measuring.png"
             alt="Carol Orofino medindo ambiente"
-            fill
+            width={2048}
+            height={2048}
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover object-center"
+            className="w-full h-auto block"
           />
         </div>
       </section>
