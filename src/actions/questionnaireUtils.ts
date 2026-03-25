@@ -56,3 +56,73 @@ export function buildEmailHtml(data: {
     </div>
   `
 }
+
+const CLIENT_EMAIL_STRINGS: Record<string, {
+  subject: string
+  greeting: (name: string) => string
+  confirmation: string
+  summaryTitle: string
+  roomLabel: string
+  stylesLabel: string
+  nextSteps: string
+}> = {
+  pt: {
+    subject: 'Recebemos seu questionário — Carol Orofino',
+    greeting: (name) => `Olá, ${name}!`,
+    confirmation: 'Recebemos seu questionário e entraremos em contato em breve.',
+    summaryTitle: 'Resumo do seu envio',
+    roomLabel: 'Ambiente(s)',
+    stylesLabel: 'Estilo(s)',
+    nextSteps: 'Carol Orofino analisará suas respostas e entrará em contato pelo WhatsApp ou e-mail.',
+  },
+  en: {
+    subject: 'We received your questionnaire — Carol Orofino',
+    greeting: (name) => `Hello, ${name}!`,
+    confirmation: 'We received your questionnaire and will be in touch shortly.',
+    summaryTitle: 'Your submission summary',
+    roomLabel: 'Room(s)',
+    stylesLabel: 'Style(s)',
+    nextSteps: 'Carol Orofino will review your answers and reach out via WhatsApp or email.',
+  },
+  es: {
+    subject: 'Recibimos tu cuestionario — Carol Orofino',
+    greeting: (name) => `¡Hola, ${name}!`,
+    confirmation: 'Recibimos tu cuestionario y nos pondremos en contacto contigo pronto.',
+    summaryTitle: 'Resumen de tu envío',
+    roomLabel: 'Ambiente(s)',
+    stylesLabel: 'Estilo(s)',
+    nextSteps: 'Carol Orofino revisará tus respuestas y se pondrá en contacto por WhatsApp o correo electrónico.',
+  },
+}
+
+type ClientEmailInput = {
+  name: string
+  roomType: string[]
+  styles: string[]
+}
+
+export function buildClientEmailHtml(
+  data: ClientEmailInput,
+  locale: string
+): { subject: string; html: string } {
+  const s = CLIENT_EMAIL_STRINGS[locale] ?? CLIENT_EMAIL_STRINGS['pt']
+  const stylesText = data.styles.length > 0 ? data.styles.join(', ') : '—'
+
+  const html = `
+    <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
+      <h2 style="color:#333">${s.greeting(data.name)}</h2>
+      <p>${s.confirmation}</p>
+      <hr/>
+      <h3>${s.summaryTitle}</h3>
+      <p>
+        <strong>${s.roomLabel}:</strong> ${data.roomType.join(', ')}<br/>
+        <strong>${s.stylesLabel}:</strong> ${stylesText}
+      </p>
+      <hr/>
+      <p style="color:#555">${s.nextSteps}</p>
+      <p style="margin-top:24px;color:#888;font-size:12px">Carol Orofino — carolorofino.com.br</p>
+    </div>
+  `
+
+  return { subject: s.subject, html }
+}
