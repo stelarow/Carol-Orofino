@@ -60,6 +60,18 @@ describe('VideoSection', () => {
     expect(queryByText('Ambientes que revelam quem você é.')).not.toBeInTheDocument()
   })
 
+  it('exibe o overlay com o nome da marca enquanto o vídeo está rodando', () => {
+    const { getByText } = render(<VideoSection />)
+    expect(getByText('Carol Orofino')).toBeInTheDocument()
+  })
+
+  it('remove o overlay da marca quando o vídeo termina', () => {
+    const { container, queryByText } = render(<VideoSection />)
+    const video = container.querySelector('video')!
+    fireEvent.ended(video)
+    expect(queryByText('Carol Orofino')).not.toBeInTheDocument()
+  })
+
   it('exibe a tela de encerramento quando o vídeo termina', () => {
     const { container, getByText } = render(<VideoSection />)
     const video = container.querySelector('video')!

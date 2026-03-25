@@ -3,6 +3,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { ShaderAnimation } from '@/components/ui/shader-lines'
 
 export default function VideoSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -38,17 +39,23 @@ export default function VideoSection() {
           muted
           playsInline
           preload="none"
-          className="w-full h-full object-cover scale-105"
+          className="w-full h-full object-cover"
           onEnded={() => setEnded(true)}
         />
+        {!ended && (
+          <span className="absolute bottom-4 right-4 bg-slate px-3 py-1 rounded-sm font-display italic text-white text-sm md:text-base pointer-events-none select-none">
+            Carol Orofino
+          </span>
+        )}
         {ended && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="absolute inset-0 bg-linen flex items-center justify-center px-8"
+            className="absolute inset-0 flex items-center justify-center px-8"
           >
-            <p className="font-display text-5xl md:text-7xl font-light italic text-primary text-center">
+            <ShaderAnimation />
+            <p className="relative z-10 font-display text-5xl md:text-7xl font-light italic text-white text-center drop-shadow-lg">
               Ambientes que revelam quem você é.
             </p>
           </motion.div>
