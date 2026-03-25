@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 
 const fieldVariants = {
@@ -8,24 +9,6 @@ const fieldVariants = {
     opacity: 1, y: 0,
     transition: { delay: i * 0.07, duration: 0.35, ease: [0.25, 0, 0, 1] as const },
   }),
-}
-
-const STYLE_PHOTOS: Record<string, string> = {
-  minimalista:   'photo-1741394546743-2d64519ba0d3',
-  industrial:    'photo-1759264244827-1dde5bee00a5',
-  escandinavo:   'photo-1631679706909-1844bbd07221',
-  classico:      'photo-1638284457192-27d3d0ec51aa',
-  moderno:       'photo-1704040686428-7534b262d0d8',
-  boho:          'photo-1633505899118-4ca6bd143043',
-  japandi:       'photo-1604578762246-41134e37f9cc',
-  rustico:       'photo-1726090401458-7abb00f7450c',
-  contemporaneo: 'photo-1594873604892-b599f847e859',
-  provencal:     'photo-1756358789192-c55b1ca45bb9',
-}
-
-function stylePhotoUrl(key: string): string | undefined {
-  const id = STYLE_PHOTOS[key]
-  return id ? `https://images.unsplash.com/${id}?w=400&h=400&fit=contain&q=80` : undefined
 }
 
 type Step3Data = { styles: string[]; mustHave: string }
@@ -54,42 +37,44 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Style image cards */}
+      {/* Style image gallery */}
       <motion.div custom={0} variants={fieldVariants} initial="hidden" animate="visible">
         <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.styles}</p>
-        <div className="grid grid-cols-3 gap-3">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2"
+          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
+        >
           {Object.entries(messages.styleOptions).map(([key, label]) => {
             const selected = data.styles.includes(key)
-            const photoUrl = stylePhotoUrl(key)
             return (
               <button
                 key={key}
                 type="button"
                 onClick={() => toggleStyle(key)}
-                className={`relative aspect-square overflow-hidden border-2 transition-all duration-150 ${
-                  selected ? 'border-walnut' : 'border-transparent hover:border-latte'
-                }`}
-                style={{
-                  background: '#e8e0d6',
-                  boxShadow: selected ? '0 0 0 1px var(--color-walnut)' : undefined,
-                }}
+                className="group relative overflow-hidden min-h-[50vw] md:min-h-[30vw]"
               >
-                {photoUrl && (
-                  <img
-                    src={photoUrl}
-                    alt={label}
-                    className="w-full h-full object-contain"
-                    loading="lazy"
+                <Image
+                  src={`/images/styles/${key}.jpg`}
+                  alt={label}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                {selected ? (
+                  <div
+                    className="absolute inset-0 transition-colors duration-300"
+                    style={{ background: 'rgba(139,111,94,0.50)' }}
                   />
+                ) : (
+                  <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/50" />
                 )}
-                <span
-                  className="absolute bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-1 font-body text-[0.6rem] uppercase tracking-[0.12em] font-bold text-white"
-                  style={{ background: selected ? 'rgba(139,111,94,0.85)' : 'rgba(0,0,0,0.50)' }}
-                >
-                  {label}
-                </span>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="font-display text-3xl md:text-4xl font-bold tracking-[0.2em] uppercase text-white">
+                    {label}
+                  </span>
+                </div>
                 {selected && (
-                  <span className="absolute top-1.5 right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-walnut text-linen text-[0.6rem] font-bold">
+                  <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-walnut text-linen text-sm font-bold">
                     ✓
                   </span>
                 )}
