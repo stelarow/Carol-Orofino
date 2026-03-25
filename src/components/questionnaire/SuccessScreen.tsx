@@ -16,7 +16,7 @@ export default function SuccessScreen({ title, message }: Props) {
         initial={{ scale: 0.88, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 100, damping: 18 }}
-        className="text-4xl text-walnut"
+        className="text-4xl text-black"
       >
         ✦
       </motion.div>
@@ -32,7 +32,7 @@ export default function SuccessScreen({ title, message }: Props) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={messageTransition}
-        className="font-body text-sm text-slate"
+        className="font-body text-sm text-black/70"
       >
         {message}
       </motion.p>
