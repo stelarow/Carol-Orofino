@@ -98,4 +98,65 @@ describe('Step2Environment', () => {
       expect(zone).toHaveAttribute('data-dragging', 'true')
     })
   })
+
+  describe('Zone 2: Photos/videos drop zone', () => {
+    it('zone 2: shows hint text when no files are selected', () => {
+      renderStep()
+      expect(screen.getByText('Múltiplos arquivos — máx. 50MB no total')).toBeInTheDocument()
+    })
+
+    it('zone 2: shows error for invalid file type', () => {
+      const { onChange } = renderStep()
+      const input = document.querySelector('input[data-testid="photos-input"]') as HTMLInputElement
+      const file = new File(['x'], 'audio.mp3', { type: 'audio/mp3' })
+      fireEvent.change(input, { target: { files: [file] } })
+      expect(screen.getByText('Tipo inválido')).toBeInTheDocument()
+      expect(onChange).not.toHaveBeenCalled()
+    })
+
+    it('zone 2: shows error when total size exceeds 50 MB', () => {
+      const { onChange } = renderStep()
+      const input = document.querySelector('input[data-testid="photos-input"]') as HTMLInputElement
+      const bigFile = new File(['x'], 'big.jpg', { type: 'image/jpeg' })
+      // jsdom ignores content size — override the property
+      Object.defineProperty(bigFile, 'size', { value: 51 * 1024 * 1024 })
+      fireEvent.change(input, { target: { files: [bigFile] } })
+      expect(screen.getByText('Arquivo muito grande')).toBeInTheDocument()
+      expect(onChange).not.toHaveBeenCalled()
+    })
+
+    it('zone 2: valid files call onChange and create blob URLs for images', () => {
+      const { onChange } = renderStep()
+      const input = document.querySelector('input[data-testid="photos-input"]') as HTMLInputElement
+      const file1 = new File(['x'], 'a.jpg', { type: 'image/jpeg' })
+      const file2 = new File(['x'], 'b.png', { type: 'image/png' })
+      fireEvent.change(input, { target: { files: [file1, file2] } })
+      expect(URL.createObjectURL).toHaveBeenCalledTimes(2)
+      expect(onChange).toHaveBeenCalledWith(expect.objectContaining({ photoFiles: [file1, file2] }))
+    })
+
+    it('zone 2: add-more input appends new files to existing selection', () => {
+      const existingFile = new File(['x'], 'existing.jpg', { type: 'image/jpeg' })
+      const { onChange } = renderStep({ photoFiles: [existingFile] })
+      const addMoreInput = document.querySelector('input[data-testid="add-more-input"]') as HTMLInputElement
+      const newFile = new File(['x'], 'new.png', { type: 'image/png' })
+      fireEvent.change(addMoreInput, { target: { files: [newFile] } })
+      expect(onChange).toHaveBeenCalledWith(
+        expect.objectContaining({ photoFiles: [existingFile, newFile] })
+      )
+    })
+
+    it('zone 2: cumulative size check blocks append exceeding 50 MB', () => {
+      const existingFile = new File(['x'], 'existing.jpg', { type: 'image/jpeg' })
+      // jsdom ignores content size — override the property
+      Object.defineProperty(existingFile, 'size', { value: 40 * 1024 * 1024 })
+      const { onChange } = renderStep({ photoFiles: [existingFile] })
+      const addMoreInput = document.querySelector('input[data-testid="add-more-input"]') as HTMLInputElement
+      const newFile = new File(['x'], 'new.jpg', { type: 'image/jpeg' })
+      Object.defineProperty(newFile, 'size', { value: 15 * 1024 * 1024 })
+      fireEvent.change(addMoreInput, { target: { files: [newFile] } })
+      expect(screen.getByText('Arquivo muito grande')).toBeInTheDocument()
+      expect(onChange).not.toHaveBeenCalled()
+    })
+  })
 })
