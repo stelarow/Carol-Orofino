@@ -43,35 +43,35 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
   const radioClass = (selected: boolean) =>
     `flex cursor-pointer items-center gap-3 border px-4 py-3 font-body text-sm transition-colors duration-150 ${
       selected
-        ? 'border-walnut bg-walnut/8 text-walnut'
-        : 'border-stone bg-transparent text-text-primary hover:border-latte'
+        ? 'border-black bg-black/8 text-black'
+        : 'border-black/30 bg-transparent text-text-primary hover:border-latte'
     }`
 
   return (
     <div className="flex flex-col gap-6">
       {/* Scope type */}
       <motion.div custom={0} variants={fieldVariants} initial="hidden" animate="visible">
-        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.scopeType} *</p>
+        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-black">{messages.scopeType} *</p>
         <div className="flex flex-col gap-2">
           {Object.entries(messages.scopeOptions).map(([key, label]) => (
             <label key={key} className={radioClass(data.scopeType === key)}>
               <input type="radio" name="scopeType" value={key} checked={data.scopeType === key} onChange={() => onChange({ ...data, scopeType: key })} className="sr-only" />
-              <span className={`text-xs ${data.scopeType === key ? 'text-walnut' : 'text-transparent'}`}>●</span>
+              <span className={`text-xs ${data.scopeType === key ? 'text-black' : 'text-transparent'}`}>●</span>
               {label}
             </label>
           ))}
         </div>
-        {scopeError && <p className="mt-1 font-body text-xs text-walnut/80">{scopeError}</p>}
+        {scopeError && <p className="mt-1 font-body text-xs text-black/70">{scopeError}</p>}
       </motion.div>
 
       {/* Urgency */}
       <motion.div custom={1} variants={fieldVariants} initial="hidden" animate="visible">
-        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.urgency}</p>
+        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-black">{messages.urgency}</p>
         <div className="flex flex-col gap-2">
           {Object.entries(messages.urgencyOptions).map(([key, label]) => (
             <label key={key} className={radioClass(data.urgency === key)}>
               <input type="radio" name="urgency" value={key} checked={data.urgency === key} onChange={() => onChange({ ...data, urgency: key })} className="sr-only" />
-              <span className={`text-xs ${data.urgency === key ? 'text-walnut' : 'text-transparent'}`}>●</span>
+              <span className={`text-xs ${data.urgency === key ? 'text-black' : 'text-transparent'}`}>●</span>
               {label}
             </label>
           ))}
@@ -80,11 +80,11 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
 
       {/* Budget select */}
       <motion.div custom={2} variants={fieldVariants} initial="hidden" animate="visible">
-        <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.budget}</label>
+        <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-black">{messages.budget}</label>
         <select
           value={data.budget}
           onChange={e => onChange({ ...data, budget: e.target.value })}
-          className="w-full border border-stone bg-linen/60 px-4 py-3 font-body text-sm focus:outline-none focus:border-walnut transition-colors duration-200"
+          className="w-full border border-black/30 bg-linen/60 px-4 py-3 font-body text-sm focus:outline-none focus:border-black transition-colors duration-200"
         >
           <option value="">—</option>
           {Object.entries(messages.budgetOptions).map(([k, v]) => (
@@ -94,7 +94,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
       </motion.div>
 
       {error && (
-        <p className="font-body text-sm text-walnut/80">{messages.errorGeneric}</p>
+        <p className="font-body text-sm text-black/70">{messages.errorGeneric}</p>
       )}
 
       {/* Navigation */}
@@ -103,7 +103,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
           type="button"
           onClick={onBack}
           disabled={isSubmitting}
-          className="font-body text-sm text-slate hover:text-walnut transition-colors disabled:opacity-50"
+          className="font-body text-sm text-black hover:text-black/60 transition-colors disabled:opacity-50"
         >
           ← {backLabel}
         </button>
@@ -111,7 +111,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="bg-walnut text-linen px-10 py-4 font-display italic hover:bg-latte transition-colors duration-150 disabled:opacity-50"
+          className="bg-slate text-linen px-10 py-4 font-display italic hover:bg-slate/80 transition-colors duration-150 disabled:opacity-50"
           whileHover={isSubmitting ? {} : { scale: 1.01 }}
           transition={{ duration: 0.15 }}
         >
