@@ -57,9 +57,24 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
   // deferred scheduling for ContinuousEventPriority events like dragenter in React 19).
   const floorPlanZoneRef = useRef<HTMLDivElement | null>(null)
 
+  const [photoPreviewUrls, setPhotoPreviewUrls] = useState<string[]>([])
+  // Ref kept in sync with photoPreviewUrls so the unmount cleanup reads fresh values
+  const photoPreviewUrlsRef = useRef<string[]>([])
+  const [isPhotosDragging, setIsPhotosDragging] = useState(false)
+  const photosInputRef = useRef<HTMLInputElement>(null)
+  const addMoreRef = useRef<HTMLInputElement>(null)
+
   function setFloorPlanUrl(url: string | null) {
     setFloorPlanPreviewUrl(url)
     floorPlanPreviewUrlRef.current = url
+  }
+
+  function setPhotoUrls(updater: (prev: string[]) => string[]) {
+    setPhotoPreviewUrls(prev => {
+      const next = updater(prev)
+      photoPreviewUrlsRef.current = next
+      return next
+    })
   }
 
   // Sets dragging state both in React (for className re-render) and directly on the DOM node
@@ -76,6 +91,12 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
       if (floorPlanPreviewUrlRef.current) URL.revokeObjectURL(floorPlanPreviewUrlRef.current)
     }
   }, []) // empty deps: runs only on unmount; reads from ref (always fresh)
+
+  useEffect(() => {
+    return () => {
+      photoPreviewUrlsRef.current.forEach(url => { if (url) URL.revokeObjectURL(url) })
+    }
+  }, []) // empty deps: runs cleanup only on unmount; reads from ref (always fresh)
 
   function toggleRoom(key: string) {
     const next = data.roomType.includes(key)
@@ -133,20 +154,49 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
     processFloorPlanFile(file)
   }
 
-  function handlePhotos(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = Array.from(e.target.files ?? [])
-    const invalidType = files.find(f => !PHOTO_TYPES.includes(f.type))
+  function handlePhotos(e: React.ChangeEvent<HTMLInputElement>, append = false) {
+    const newFiles = Array.from(e.target.files ?? [])
+    if (newFiles.length === 0) return
+    const invalidType = newFiles.find(f => !PHOTO_TYPES.includes(f.type))
     if (invalidType) {
       setErrors(prev => ({ ...prev, photos: messages.fileInvalidType }))
       return
     }
-    const totalSize = files.reduce((sum, f) => sum + f.size, 0)
+    const existing = append ? data.photoFiles : []
+    const merged = [...existing, ...newFiles]
+    const totalSize = merged.reduce((sum, f) => sum + f.size, 0)
     if (totalSize > PHOTOS_MAX_TOTAL) {
       setErrors(prev => ({ ...prev, photos: messages.fileTooLarge }))
       return
     }
     setErrors(prev => { const n = { ...prev }; delete n.photos; return n })
-    onChange({ ...data, photoFiles: files })
+
+    const newUrls = newFiles.map(f => f.type.startsWith('image/') ? URL.createObjectURL(f) : '')
+    if (append) {
+      setPhotoUrls(prev => [...prev, ...newUrls])
+    } else {
+      // Revoke old URLs before replacing
+      photoPreviewUrls.forEach(url => { if (url) URL.revokeObjectURL(url) })
+      setPhotoUrls(() => newUrls)
+    }
+    onChange({ ...data, photoFiles: merged })
+  }
+
+  function removePhoto(index: number) {
+    const url = photoPreviewUrls[index]
+    if (url) URL.revokeObjectURL(url)
+    setPhotoUrls(prev => prev.filter((_, i) => i !== index))
+    onChange({ ...data, photoFiles: data.photoFiles.filter((_, i) => i !== index) })
+  }
+
+  function handlePhotosDrop(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsPhotosDragging(false)
+    const files = Array.from(e.dataTransfer.files ?? [])
+    if (files.length === 0) return
+    const fakeEvent = { target: { files } } as unknown as React.ChangeEvent<HTMLInputElement>
+    handlePhotos(fakeEvent, false)
   }
 
   const inputClass = 'w-full border border-stone bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-walnut transition-colors duration-200'
@@ -272,21 +322,89 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
       {/* Photos upload */}
       <motion.div custom={3} variants={fieldVariants} initial="hidden" animate="visible">
         <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.photos}</p>
-        <label className={`flex items-center gap-4 cursor-pointer border px-4 py-3 transition-colors duration-150 ${
-          data.photoFiles.length > 0 ? 'border-walnut bg-walnut/5' : 'border-stone hover:border-latte group'
-        }`}>
-          <input type="file" accept=".png,.jpg,.jpeg,.webp,.mp4,.mov" multiple onChange={handlePhotos} className="sr-only" />
-          <span className={`shrink-0 flex items-center justify-center w-9 h-9 border transition-colors duration-150 ${
-            data.photoFiles.length > 0 ? 'border-walnut' : 'border-stone group-hover:border-latte'
-          }`}>
-            <ArrowUp className={`w-4 h-4 ${data.photoFiles.length > 0 ? 'text-walnut' : 'text-slate'}`} strokeWidth={1.5} />
-          </span>
-          <span className={`font-body text-sm truncate ${data.photoFiles.length > 0 ? 'text-walnut' : 'text-slate/60'}`}>
-            {data.photoFiles.length > 0
-              ? `${data.photoFiles.length} arquivo${data.photoFiles.length > 1 ? 's' : ''} selecionado${data.photoFiles.length > 1 ? 's' : ''}`
-              : messages.photosHint}
-          </span>
-        </label>
+
+        {/* Primary hidden input */}
+        <input
+          ref={photosInputRef}
+          data-testid="photos-input"
+          type="file"
+          accept=".png,.jpg,.jpeg,.webp,.mp4,.mov"
+          multiple
+          className="sr-only"
+          onChange={(e) => handlePhotos(e, false)}
+        />
+
+        {/* Hidden "add more" input */}
+        <input
+          ref={addMoreRef}
+          data-testid="add-more-input"
+          type="file"
+          accept=".png,.jpg,.jpeg,.webp,.mp4,.mov"
+          multiple
+          className="sr-only"
+          onChange={(e) => handlePhotos(e, true)}
+        />
+
+        {data.photoFiles.length === 0 ? (
+          <div
+            data-testid="photos-zone"
+            data-dragging={isPhotosDragging ? 'true' : 'false'}
+            onClick={() => photosInputRef.current?.click()}
+            onDragOver={(e) => { e.preventDefault(); e.stopPropagation() }}
+            onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); setIsPhotosDragging(true) }}
+            onDragLeave={(e) => {
+              e.preventDefault()
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) setIsPhotosDragging(false)
+            }}
+            onDrop={handlePhotosDrop}
+            className={`flex h-40 w-full cursor-pointer flex-col items-center justify-center gap-3 border-2 border-dashed transition-colors duration-150 ${
+              isPhotosDragging
+                ? 'border-walnut bg-walnut/5'
+                : 'border-stone hover:border-latte'
+            }`}
+          >
+            <ImagePlus className="w-5 h-5 text-slate" strokeWidth={1.5} />
+            <span className="font-body text-xs text-slate/60">{messages.photosHint}</span>
+          </div>
+        ) : (
+          <div>
+            <div className="grid grid-cols-3 gap-2">
+              {data.photoFiles.map((file, index) => (
+                <div key={`${file.name}-${index}`} className="relative aspect-square overflow-hidden">
+                  {photoPreviewUrls[index] ? (
+                    <img
+                      src={photoPreviewUrls[index]}
+                      alt={file.name}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-stone/30">
+                      <Film className="w-5 h-5 text-slate" strokeWidth={1.5} />
+                      <span className="w-full truncate px-1 text-center font-body text-[10px] text-slate">{file.name}</span>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => removePhoto(index)}
+                    className="absolute right-1 top-1 rounded-full bg-black/50 p-0.5 transition-colors hover:bg-black/70"
+                  >
+                    <X className="h-3 w-3 text-white" strokeWidth={2} />
+                  </button>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                if (addMoreRef.current) { addMoreRef.current.value = ''; addMoreRef.current.click() }
+              }}
+              className="mt-3 font-body text-xs text-slate/70 underline underline-offset-2 hover:text-walnut transition-colors"
+            >
+              + Adicionar mais
+            </button>
+          </div>
+        )}
+
         {errors.photos && <p className="mt-1 font-body text-xs text-walnut/80">{errors.photos}</p>}
       </motion.div>
 
