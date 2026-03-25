@@ -35,6 +35,8 @@ export default async function SobrePage({
 
   return (
     <>
+      <SectionDivider />
+
       {/* Section 1 — Hero split: photo + bio */}
       <section className="grid grid-cols-1 md:grid-cols-2 mt-16">
         {/* Left: Photo */}
