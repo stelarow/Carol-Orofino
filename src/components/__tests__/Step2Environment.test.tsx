@@ -14,6 +14,7 @@ const messages = {
   photos: 'Fotos ou vídeos', photosHint: 'Múltiplos arquivos — máx. 50MB no total',
   fileTooLarge: 'Arquivo muito grande', fileInvalidType: 'Tipo inválido',
   substituir: 'Substituir', remover: 'Remover',
+  adicionarMais: 'Adicionar mais',
 }
 
 const defaultData = {

@@ -37,6 +37,7 @@ type Props = {
     photos: string; photosHint: string
     fileTooLarge: string; fileInvalidType: string
     substituir: string; remover: string
+    adicionarMais: string
   }
   nextLabel: string
   backLabel: string
@@ -154,8 +155,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
     processFloorPlanFile(file)
   }
 
-  function handlePhotos(e: React.ChangeEvent<HTMLInputElement>, append = false) {
-    const newFiles = Array.from(e.target.files ?? [])
+  function processPhotoFiles(newFiles: File[], append: boolean) {
     if (newFiles.length === 0) return
     const invalidType = newFiles.find(f => !PHOTO_TYPES.includes(f.type))
     if (invalidType) {
@@ -170,16 +170,20 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
       return
     }
     setErrors(prev => { const n = { ...prev }; delete n.photos; return n })
-
     const newUrls = newFiles.map(f => f.type.startsWith('image/') ? URL.createObjectURL(f) : '')
     if (append) {
       setPhotoUrls(prev => [...prev, ...newUrls])
     } else {
-      // Revoke old URLs before replacing
-      photoPreviewUrls.forEach(url => { if (url) URL.revokeObjectURL(url) })
+      // Use ref to avoid stale closure when revoking old URLs
+      photoPreviewUrlsRef.current.forEach(url => { if (url) URL.revokeObjectURL(url) })
       setPhotoUrls(() => newUrls)
     }
     onChange({ ...data, photoFiles: merged })
+  }
+
+  function handlePhotos(e: React.ChangeEvent<HTMLInputElement>, append: boolean) {
+    const newFiles = Array.from(e.target.files ?? [])
+    processPhotoFiles(newFiles, append)
   }
 
   function removePhoto(index: number) {
@@ -195,8 +199,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
     setIsPhotosDragging(false)
     const files = Array.from(e.dataTransfer.files ?? [])
     if (files.length === 0) return
-    const fakeEvent = { target: { files } } as unknown as React.ChangeEvent<HTMLInputElement>
-    handlePhotos(fakeEvent, false)
+    processPhotoFiles(files, false)
   }
 
   const inputClass = 'w-full border border-stone bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-walnut transition-colors duration-200'
@@ -400,7 +403,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
               }}
               className="mt-3 font-body text-xs text-slate/70 underline underline-offset-2 hover:text-walnut transition-colors"
             >
-              + Adicionar mais
+              + {messages.adicionarMais}
             </button>
           </div>
         )}

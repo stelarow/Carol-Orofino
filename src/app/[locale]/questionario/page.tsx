@@ -72,6 +72,7 @@ export default async function QuestionnairePage({
       fileInvalidType: t('step2.fileInvalidType'),
       substituir: t('step2.substituir'),
       remover: t('step2.remover'),
+      adicionarMais: t('step2.adicionarMais'),
     },
     step3: {
       title: t('step3.title'),

@@ -117,7 +117,8 @@
       "fileTooLarge": "File exceeds maximum size",
       "fileInvalidType": "File type not allowed",
       "substituir": "Replace",
-      "remover": "Remove"
+      "remover": "Remove",
+      "adicionarMais": "Add more"
     },
     "step3": {
       "title": "Style & References",
