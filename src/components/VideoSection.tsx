@@ -12,10 +12,6 @@ export default function VideoSection() {
     const video = videoRef.current
     if (!video) return
 
-    // Set muted as a DOM attribute so tests using hasAttribute('muted') pass.
-    // React renders the `muted` prop as a property only; jsdom does not reflect it.
-    video.setAttribute('muted', '')
-
     const observer = new IntersectionObserver(
       (entries) => {
         const entry = entries[0]

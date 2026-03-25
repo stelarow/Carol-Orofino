@@ -39,7 +39,7 @@ describe('VideoSection', () => {
     const { container } = render(<VideoSection />)
     const video = container.querySelector('video')
     expect(video).toBeInTheDocument()
-    expect(video).toHaveAttribute('muted')
+    expect(video?.muted).toBe(true)
     expect(video).toHaveAttribute('playsInline')
   })
 
