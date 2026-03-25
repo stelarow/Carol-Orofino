@@ -31,7 +31,7 @@ export function AnimatedHero({ words: customWords }: AnimatedHeroProps) {
         Vamos criar
       </h1>
 
-      <div className="relative h-[4.5em] flex items-center justify-center overflow-hidden w-full">
+      <div className="relative h-20 md:h-[7.5rem] flex items-center justify-center overflow-hidden w-full">
         <AnimatePresence mode="wait">
           <motion.span
             key={words[index]}
