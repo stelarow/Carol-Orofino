@@ -70,6 +70,8 @@ export default async function QuestionnairePage({
       photosHint: t('step2.photosHint'),
       fileTooLarge: t('step2.fileTooLarge'),
       fileInvalidType: t('step2.fileInvalidType'),
+      substituir: t('step2.substituir'),
+      remover: t('step2.remover'),
     },
     step3: {
       title: t('step3.title'),

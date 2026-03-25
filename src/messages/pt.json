@@ -115,7 +115,9 @@
       "photos": "Fotos ou vídeos do ambiente (opcional)",
       "photosHint": "Múltiplos arquivos — máx. 50MB no total",
       "fileTooLarge": "Arquivo excede o tamanho máximo",
-      "fileInvalidType": "Tipo de arquivo não permitido"
+      "fileInvalidType": "Tipo de arquivo não permitido",
+      "substituir": "Substituir",
+      "remover": "Remover"
     },
     "step3": {
       "title": "Estilo e Referências",

@@ -36,6 +36,7 @@ type Props = {
     area: string; areaPlaceholder: string; floorPlan: string; floorPlanHint: string
     photos: string; photosHint: string
     fileTooLarge: string; fileInvalidType: string
+    substituir: string; remover: string
   }
   nextLabel: string
   backLabel: string
@@ -93,24 +94,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
   function handleFloorPlan(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null
     if (!file) return   // cancelled picker — do not touch existing state
-    if (!FLOOR_PLAN_TYPES.includes(file.type)) {
-      setErrors(prev => ({ ...prev, floorPlan: messages.fileInvalidType }))
-      return
-    }
-    if (file.size > FLOOR_PLAN_MAX) {
-      setErrors(prev => ({ ...prev, floorPlan: messages.fileTooLarge }))
-      return
-    }
-    setErrors(prev => { const n = { ...prev }; delete n.floorPlan; return n })
-    // Revoke old URL manually before setting a new one.
-    // Do NOT use a dep-based useEffect cleanup alongside this manual revoke — that causes double-revoke.
-    if (floorPlanPreviewUrlRef.current) URL.revokeObjectURL(floorPlanPreviewUrlRef.current)
-    if (file.type.startsWith('image/')) {
-      setFloorPlanUrl(URL.createObjectURL(file))
-    } else {
-      setFloorPlanUrl(null)
-    }
-    onChange({ ...data, floorPlanFile: file })
+    processFloorPlanFile(file)
   }
 
   function removeFloorPlan() {
@@ -121,14 +105,32 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
     onChange({ ...data, floorPlanFile: null })
   }
 
+  function processFloorPlanFile(file: File) {
+    if (!FLOOR_PLAN_TYPES.includes(file.type)) {
+      setErrors(prev => ({ ...prev, floorPlan: messages.fileInvalidType }))
+      return
+    }
+    if (file.size > FLOOR_PLAN_MAX) {
+      setErrors(prev => ({ ...prev, floorPlan: messages.fileTooLarge }))
+      return
+    }
+    setErrors(prev => { const n = { ...prev }; delete n.floorPlan; return n })
+    if (floorPlanPreviewUrlRef.current) URL.revokeObjectURL(floorPlanPreviewUrlRef.current)
+    if (file.type.startsWith('image/')) {
+      setFloorPlanUrl(URL.createObjectURL(file))
+    } else {
+      setFloorPlanUrl(null)
+    }
+    onChange({ ...data, floorPlanFile: file })
+  }
+
   function handleFloorPlanDrop(e: React.DragEvent<HTMLDivElement>) {
     e.preventDefault()
     e.stopPropagation()
     setDragging(false)
     const file = e.dataTransfer.files?.[0]
     if (!file) return
-    const fakeEvent = { target: { files: [file] } } as unknown as React.ChangeEvent<HTMLInputElement>
-    handleFloorPlan(fakeEvent)
+    processFloorPlanFile(file)
   }
 
   function handlePhotos(e: React.ChangeEvent<HTMLInputElement>) {
@@ -239,14 +241,14 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
                 }}
                 className="border border-linen px-4 py-2 font-body text-xs uppercase tracking-widest text-linen hover:bg-linen/10 transition-colors"
               >
-                Substituir
+                {messages.substituir}
               </button>
               <button
                 type="button"
                 onClick={removeFloorPlan}
                 className="border border-linen px-4 py-2 font-body text-xs uppercase tracking-widest text-linen hover:bg-linen/10 transition-colors"
               >
-                Remover
+                {messages.remover}
               </button>
             </div>
           </div>
@@ -257,7 +259,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
             <button
               type="button"
               onClick={removeFloorPlan}
-              className="shrink-0 rounded-full p-1 hover:bg-walnut/10 transition-colors"
+              className="shrink-0 p-1 hover:bg-walnut/10 transition-colors"
             >
               <X className="w-4 h-4 text-walnut" strokeWidth={1.5} />
             </button>

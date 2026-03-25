@@ -115,7 +115,9 @@
       "photos": "Photos or videos of the space (optional)",
       "photosHint": "Multiple files — max 50MB total",
       "fileTooLarge": "File exceeds maximum size",
-      "fileInvalidType": "File type not allowed"
+      "fileInvalidType": "File type not allowed",
+      "substituir": "Replace",
+      "remover": "Remove"
     },
     "step3": {
       "title": "Style & References",

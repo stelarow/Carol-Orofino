@@ -13,6 +13,7 @@ const messages = {
   floorPlan: 'Planta baixa', floorPlanHint: 'PDF, PNG ou JPG — máx. 10MB',
   photos: 'Fotos ou vídeos', photosHint: 'Múltiplos arquivos — máx. 50MB no total',
   fileTooLarge: 'Arquivo muito grande', fileInvalidType: 'Tipo inválido',
+  substituir: 'Substituir', remover: 'Remover',
 }
 
 const defaultData = {
