@@ -39,7 +39,7 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
     <div className="flex flex-col gap-6">
       {/* Style image gallery */}
       <motion.div custom={0} variants={fieldVariants} initial="hidden" animate="visible">
-        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.styles}</p>
+        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-black">{messages.styles}</p>
         <div
           className="grid grid-cols-1 md:grid-cols-2"
           style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)' }}
@@ -63,7 +63,7 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
                 {selected ? (
                   <div
                     className="absolute inset-0 transition-colors duration-300"
-                    style={{ background: 'rgba(139,111,94,0.50)' }}
+                    style={{ background: 'rgba(0,0,0,0.50)' }}
                   />
                 ) : (
                   <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/50" />
@@ -74,7 +74,7 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
                   </span>
                 </div>
                 {selected && (
-                  <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-walnut text-linen text-sm font-bold">
+                  <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-black text-white text-sm font-bold">
                     ✓
                   </span>
                 )}
@@ -86,15 +86,15 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
 
       {/* Must have textarea */}
       <motion.div custom={1} variants={fieldVariants} initial="hidden" animate="visible">
-        <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.mustHave}</label>
+        <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-black">{messages.mustHave}</label>
         <textarea
           value={data.mustHave}
           onChange={e => onChange({ ...data, mustHave: e.target.value.slice(0, 500) })}
           placeholder={messages.mustHavePlaceholder}
           rows={4}
-          className="w-full border border-stone bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-walnut transition-colors duration-200 resize-none"
+          className="w-full border border-black/30 bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-black transition-colors duration-200 resize-none"
         />
-        <p className="mt-1 font-body text-xs text-slate">{data.mustHave.length}/500 — {messages.mustHaveHint}</p>
+        <p className="mt-1 font-body text-xs text-black/70">{data.mustHave.length}/500 — {messages.mustHaveHint}</p>
       </motion.div>
 
       {/* Navigation */}
@@ -102,14 +102,14 @@ export default function Step3Style({ data, onChange, onNext, onBack, messages, n
         <button
           type="button"
           onClick={onBack}
-          className="font-body text-sm text-slate hover:text-walnut transition-colors"
+          className="font-body text-sm text-black hover:text-black/60 transition-colors"
         >
           ← {backLabel}
         </button>
         <motion.button
           type="button"
           onClick={onNext}
-          className="bg-walnut text-linen px-10 py-4 font-display italic hover:bg-latte transition-colors duration-150"
+          className="bg-slate text-linen px-10 py-4 font-display italic hover:bg-slate/80 transition-colors duration-150"
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.15 }}
         >
