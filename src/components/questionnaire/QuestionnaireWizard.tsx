@@ -73,10 +73,10 @@ export default function QuestionnaireWizard({ messages }: Props) {
       {/* Progress — barra contínua com overlay animado (deliberadamente mais simples que
           os 4 traços do spec para permitir a animação spring do scaleX) */}
       <div className="mb-10">
-        <p className="font-display italic text-sm text-walnut mb-3">{progressLabel}</p>
-        <div className="relative h-px bg-stone">
+        <p className="font-display italic text-sm text-black mb-3">{progressLabel}</p>
+        <div className="relative h-px bg-black/20">
           <motion.div
-            className="absolute inset-y-0 left-0 bg-walnut origin-left"
+            className="absolute inset-y-0 left-0 bg-slate origin-left"
             animate={{ scaleX: step / TOTAL }}
             transition={{ type: 'spring', stiffness: 80, damping: 20 }}
           />
