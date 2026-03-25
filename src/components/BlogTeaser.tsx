@@ -41,7 +41,7 @@ export function BlogTeaser({
 }: BlogTeaserProps) {
   return (
     <section className="py-20">
-      <div className="mx-auto max-w-4xl px-6">
+      <div className="pl-8 md:pl-16 xl:pl-[max(4rem,calc(25vw-14rem))] pr-8 md:pr-16 max-w-3xl">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
