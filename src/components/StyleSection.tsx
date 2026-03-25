@@ -4,11 +4,16 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
+interface Color {
+  hex: string
+  name: string
+}
+
 interface Props {
   img: string
   title: string
   text: string
-  colors: string[]
+  colors: Color[]
   reversed?: boolean
 }
 
@@ -35,12 +40,12 @@ export function StyleSection({ img, title, text, colors, reversed = false }: Pro
           </p>
         </div>
 
-        <div className="relative w-full h-[280px]">
+        <div className="relative w-full aspect-square">
           <Image src={img} alt={title} fill sizes="100vw" className="object-cover object-center" />
         </div>
 
         <div className="flex flex-row w-full h-20 overflow-hidden">
-          {colors.map((hex, i) => (
+          {colors.map(({ hex, name }, i) => (
             <motion.div
               key={i}
               onClick={() => setActive(active === i ? null : i)}
@@ -50,12 +55,12 @@ export function StyleSection({ img, title, text, colors, reversed = false }: Pro
               style={{ backgroundColor: hex, flexShrink: 0 }}
             >
               <motion.span
-                className="absolute bottom-2 left-0 right-0 text-center font-body text-[10px] tracking-widest uppercase"
+                className="absolute bottom-2 left-0 right-0 text-center font-body text-xs tracking-widest uppercase"
                 animate={{ opacity: active === i ? 1 : 0 }}
                 transition={{ duration: 0.2 }}
                 style={{ color: labelColor(hex) }}
               >
-                {hex}
+                {name}
               </motion.span>
             </motion.div>
           ))}
@@ -63,9 +68,12 @@ export function StyleSection({ img, title, text, colors, reversed = false }: Pro
       </section>
 
       {/* ── Desktop ───────────────────────────────────────────────────── */}
-      <section className={`hidden md:flex flex-row w-full h-[380px] overflow-hidden ${reversed ? 'flex-row-reverse' : ''}`}>
+      <section
+        className="hidden md:grid w-full overflow-hidden"
+        style={{ gridTemplateColumns: reversed ? '3fr 5fr 4fr' : '4fr 5fr 3fr' }}
+      >
         {/* Texto */}
-        <div className="flex flex-col justify-center items-center text-center px-16 flex-[4] shrink-0">
+        <div className={`flex flex-col justify-center items-center text-center px-16 ${reversed ? 'order-3' : ''}`}>
           <h2 className="font-display text-4xl text-text-primary tracking-wide leading-tight mb-6">
             {title}
           </h2>
@@ -75,13 +83,13 @@ export function StyleSection({ img, title, text, colors, reversed = false }: Pro
         </div>
 
         {/* Imagem */}
-        <div className="relative h-full flex-[5]">
+        <div className={`relative aspect-square ${reversed ? 'order-2' : ''}`}>
           <Image src={img} alt={title} fill sizes="45vw" className="object-cover object-center" />
         </div>
 
         {/* Strips animadas */}
-        <div className="flex flex-row h-full flex-[3] overflow-hidden">
-          {colors.map((hex, i) => (
+        <div className={`flex flex-row overflow-hidden ${reversed ? 'order-1' : ''}`}>
+          {colors.map(({ hex, name }, i) => (
             <motion.div
               key={i}
               onClick={() => setActive(active === i ? null : i)}
@@ -91,12 +99,12 @@ export function StyleSection({ img, title, text, colors, reversed = false }: Pro
               style={{ backgroundColor: hex, flexShrink: 0 }}
             >
               <motion.span
-                className="absolute bottom-3 left-0 right-0 text-center font-body text-[10px] tracking-widest uppercase"
+                className="absolute inset-0 flex items-center justify-center font-body text-xl tracking-widest uppercase"
                 animate={{ opacity: active === i ? 1 : 0 }}
                 transition={{ duration: 0.2 }}
-                style={{ color: labelColor(hex) }}
+                style={{ color: labelColor(hex), writingMode: 'vertical-lr' }}
               >
-                {hex}
+                {name}
               </motion.span>
             </motion.div>
           ))}
