@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { posts } from '@/data/posts'
 import BlogSidebar from '@/components/BlogSidebar'
 import type { Locale } from '@/lib/i18n'
+import { SectionDivider } from '@/components/SectionDivider'
 
 export async function generateMetadata({
   params,
@@ -18,26 +19,15 @@ export async function generateMetadata({
 
 export default async function BlogPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ locale: string }>
-  searchParams: Promise<{ category?: string }>
 }) {
   const { locale } = await params
-  const { category } = await searchParams
   const t = await getTranslations({ locale, namespace: 'blog' })
   const lang = locale as Locale
-  const categoryLabels = t.raw('categoryLabels') as Record<string, string>
-  const translateCategory = (cat: string) => categoryLabels[cat] ?? cat
 
-  // Deduplicated, sorted categories for the filter row
-  const allCategories = [...new Set(posts.map((p) => p.category))].sort()
-
-  // Sort posts descending by date, then filter by category if active
-  const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date))
-  const filteredPosts = category
-    ? sortedPosts.filter((p) => p.category === category)
-    : sortedPosts
+  // Sort posts descending by date
+  const filteredPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date))
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-32">
@@ -49,32 +39,7 @@ export default async function BlogPage({
         {t('subtitle')}
       </p>
 
-      {/* Category filter */}
-      <div className="flex flex-wrap gap-3 mb-16">
-        <Link
-          href={`/${locale}/blog`}
-          className={`font-body text-xs uppercase tracking-widest px-4 py-1.5 border transition-colors ${
-            !category
-              ? 'border-primary text-primary'
-              : 'border-stone text-dark hover:border-primary hover:text-primary'
-          }`}
-        >
-          {t('allCategories')}
-        </Link>
-        {allCategories.map((cat) => (
-          <Link
-            key={cat}
-            href={`/${locale}/blog?category=${encodeURIComponent(cat)}`}
-            className={`font-body text-xs uppercase tracking-widest px-4 py-1.5 border transition-colors ${
-              category === cat
-                ? 'border-primary text-primary'
-                : 'border-stone text-dark hover:border-primary hover:text-primary'
-            }`}
-          >
-            {translateCategory(cat)}
-          </Link>
-        ))}
-      </div>
+      <SectionDivider />
 
       {/* Two-column grid */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16">
@@ -108,7 +73,7 @@ export default async function BlogPage({
                     {/* Text content */}
                     <div className="border-t border-stone pt-10 pb-10">
                       <p className="font-body text-xs text-mauve uppercase tracking-widest mb-4">
-                        {translateCategory(post.category)}
+                        {post.category}
                         {' · '}
                         {new Date(post.date).toLocaleDateString(
                           lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-ES' : 'en-US',

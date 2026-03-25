@@ -14,7 +14,7 @@
     "collectionsTitle": "Nuestro Trabajo",
     "residencial": "Residencial",
     "comercial": "Comercial",
-    "projetos": "Proyectos",
+    "fachadas": "Fachadas",
     "design-de-interiores": "Diseño de Interiores",
     "reforma": "Reforma",
     "viewAllProjects": "Ver todos los proyectos",
@@ -24,7 +24,11 @@
     "aboutLink": "Conocer más",
     "blogTitle": "Del Blog",
     "blogTeaser": "Reflexiones sobre diseño, referencias y el arte de crear espacios que perduran.",
-    "blogLink": "Leer artículos"
+    "blogLink": "Leer artículos",
+    "questionnaireSectionEyebrow": "Trabajemos juntas",
+    "questionnaireSectionTitle": "Cuéntame sobre tu proyecto",
+    "questionnaireSectionBody": "Completa el cuestionario de briefing y cuéntame sobre tu espacio, estilo y sueños. Con esta información, puedo crear una propuesta verdaderamente personalizada para ti.",
+    "questionnaireSectionCta": "Iniciar cuestionario"
   },
   "projects": {
     "title": "Proyectos Entregados",
@@ -48,7 +52,16 @@
     "title": "Sobre Carol Orofino",
     "bio": "Carol Orofino es diseñadora de interiores con especialización en Diseño Sostenible. A lo largo de más de 10 años de carrera, ha desarrollado proyectos residenciales y comerciales que traducen la personalidad de sus clientes en espacios únicos y funcionales.",
     "philosophy": "Filosofía de Diseño",
-    "philosophyText": "Creo que el diseño de interiores va más allá de la estética. Se trata de crear espacios que transformen la experiencia de quienes los habitan — espacios que inspiran, acogen y perduran."
+    "philosophyText": "Creo que el diseño de interiores va más allá de la estética. Se trata de crear espacios que transformen la experiencia de quienes los habitan — espacios que inspiran, acogen y perduran.",
+    "eyebrow": "Sobre nosotros",
+    "customEyebrow": "Exclusivamente para ti",
+    "customTitle": "Proyectos hechos a medida",
+    "customBody": "Todo proyecto nace de una escucha cuidadosa. Entender tu estilo de vida, tus gustos y la forma en que usas cada espacio es lo que nos permite crear ambientes verdaderamente únicos — funcionales, acogedores y en sintonía con quien eres. Un proyecto personalizado no es solo más hermoso; es aquel que sigue teniendo sentido mucho después de que empiezas a vivir en él.",
+    "servicesTitle": "Servicios",
+    "ctaTitle": "Trabajemos juntas",
+    "ctaSubtitle": "Cuéntame sobre tu proyecto",
+    "ctaButton": "Hablar por WhatsApp",
+    "ctaWhatsappMessage": "Hola Carol, me gustaría saber más sobre sus servicios."
   },
   "services": {
     "title": "Servicios"
@@ -95,7 +108,8 @@
         "outro": "Otro"
       },
       "roomTypeError": "Selecciona el tipo de ambiente",
-      "area": "Medidas aproximadas",
+      "area": "Medidas (si las tienes)",
+      "areaPlaceholder": "Ej: sala 4x5m, dormitorio 3x3m, o simplemente 'apartamento de 60m²'",
       "floorPlan": "Plano o croquis (opcional)",
       "floorPlanHint": "PDF, PNG o JPG — máx. 10MB",
       "photos": "Fotos o videos del ambiente (opcional)",
@@ -111,7 +125,12 @@
         "industrial": "Industrial",
         "escandinavo": "Escandinavo",
         "classico": "Clásico",
-        "moderno": "Moderno"
+        "moderno": "Moderno",
+        "boho": "Boho",
+        "japandi": "Japandi",
+        "rustico": "Rústico",
+        "contemporaneo": "Contemporáneo",
+        "provencal": "Provençal"
       },
       "mustHave": "¿Qué no puede faltar en tu proyecto?",
       "mustHavePlaceholder": "Ej: escritorio grande, iluminación cálida...",

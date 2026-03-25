@@ -1,6 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+
+const fieldVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { delay: i * 0.07, duration: 0.35, ease: [0.25, 0, 0, 1] as const },
+  }),
+}
 
 type Step1Data = { name: string; whatsapp: string; email: string }
 
@@ -41,12 +50,13 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
     if (validate()) onNext()
   }
 
-  const inputClass = 'w-full border border-gray-300 px-4 py-3 font-body text-sm focus:outline-none focus:border-text-primary'
+  const inputClass = 'w-full border border-stone bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-walnut transition-colors duration-200'
 
-  return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.name} *</label>
+  const fields = [
+    {
+      label: messages.name,
+      error: errors.name,
+      input: (
         <input
           type="text"
           value={data.name}
@@ -54,11 +64,12 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
           placeholder={messages.namePlaceholder}
           className={inputClass}
         />
-        {errors.name && <p className="mt-1 font-body text-xs text-red-600">{errors.name}</p>}
-      </div>
-
-      <div>
-        <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.whatsapp} *</label>
+      ),
+    },
+    {
+      label: messages.whatsapp,
+      error: errors.whatsapp,
+      input: (
         <input
           type="text"
           value={data.whatsapp}
@@ -66,11 +77,12 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
           placeholder={messages.whatsappPlaceholder}
           className={inputClass}
         />
-        {errors.whatsapp && <p className="mt-1 font-body text-xs text-red-600">{errors.whatsapp}</p>}
-      </div>
-
-      <div>
-        <label className="mb-1 block font-body text-sm uppercase tracking-widest">{messages.email} *</label>
+      ),
+    },
+    {
+      label: messages.email,
+      error: errors.email,
+      input: (
         <input
           type="email"
           value={data.email}
@@ -78,16 +90,31 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
           placeholder={messages.emailPlaceholder}
           className={inputClass}
         />
-        {errors.email && <p className="mt-1 font-body text-xs text-red-600">{errors.email}</p>}
-      </div>
+      ),
+    },
+  ]
 
-      <button
-        type="button"
-        onClick={handleNext}
-        className="mt-2 border border-text-primary px-10 py-4 font-body text-sm uppercase tracking-widest transition-colors hover:bg-text-primary hover:text-background"
-      >
-        {nextLabel}
-      </button>
+  return (
+    <div className="flex flex-col gap-6">
+      {fields.map((field, i) => (
+        <motion.div key={i} custom={i} variants={fieldVariants} initial="hidden" animate="visible">
+          <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-slate">{field.label} *</label>
+          {field.input}
+          {field.error && <p className="mt-1 font-body text-xs text-walnut/80">{field.error}</p>}
+        </motion.div>
+      ))}
+
+      <motion.div custom={3} variants={fieldVariants} initial="hidden" animate="visible">
+        <motion.button
+          type="button"
+          onClick={handleNext}
+          className="mt-2 bg-walnut text-linen px-10 py-4 font-display italic hover:bg-latte transition-colors duration-150"
+          whileHover={{ scale: 1.01 }}
+          transition={{ duration: 0.15 }}
+        >
+          {nextLabel}
+        </motion.button>
+      </motion.div>
     </div>
   )
 }

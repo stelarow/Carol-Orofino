@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layout Preview — Sobre Carol Orofino</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e0cfb3;
+    font-family: system-ui, sans-serif;
+    color: #1a1a1a;
+  }
+
+  /* ── Navigation mock ── */
+  .mock-nav {
+    background: #e0cfb3;
+    border-bottom: 1px solid #d5d0cc;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .mock-nav .logo {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+  .mock-nav .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #95978a;
+  }
+
+  /* ── Option label ── */
+  .option-label {
+    text-align: center;
+    padding: 32px 20px 8px;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #86725a;
+    font-weight: 600;
+  }
+  .option-label span {
+    background: #86725a;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-right: 8px;
+  }
+
+  .divider-line {
+    width: 60px;
+    height: 1px;
+    background: #d5d0cc;
+    margin: 0 auto 0;
+  }
+
+  /* ═══════════════════════════════════════
+     OPTION A — Split 50/50 slide-in
+  ═══════════════════════════════════════ */
+  .option-a {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .option-a .photo-side {
+    position: relative;
+    min-height: 400px;
+    overflow: hidden;
+  }
+  .option-a .photo-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .option-a .text-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 56px;
+    background: #e0cfb3;
+  }
+  .option-a .text-inner {
+    max-width: 380px;
+  }
+
+  /* ═══════════════════════════════════════
+     OPTION C — Asymmetric parallax
+  ═══════════════════════════════════════ */
+  .option-c {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    min-height: 580px;
+    overflow: hidden;
+  }
+  .option-c .text-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 80px 56px 80px 64px;
+    background: #e0cfb3;
+    border-right: 1px solid #86725a;
+    position: relative;
+  }
+  .option-c .text-inner {
+    max-width: 440px;
+  }
+  .option-c .photo-side {
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .option-c .photo-side img {
+    width: 100%;
+    height: 115%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    margin-top: -7%;
+    /* simula parallax estático */
+  }
+  .option-c .photo-side::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: linear-gradient(to top, rgba(224,207,179,0.25), transparent);
+  }
+
+  /* ── Shared typography ── */
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: Georgia, serif;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: #86725a;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .divider-accent {
+    width: 40px;
+    height: 1px;
+    background: #d5d0cc;
+    margin-bottom: 20px;
+  }
+  .body-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #000;
+    font-weight: 300;
+    margin-bottom: 32px;
+    max-width: 420px;
+  }
+  .cta-link {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #86725a;
+    border-bottom: 1px solid #86725a;
+    padding-bottom: 2px;
+    text-decoration: none;
+  }
+
+  /* ── Section separator ── */
+  .section-sep {
+    height: 64px;
+    background: #e0cfb3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .section-sep-line {
+    width: 1px;
+    height: 40px;
+    background: #d5d0cc;
+  }
+
+  /* ── Mobile note ── */
+  .mobile-note {
+    background: #d5d0cc;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 11px;
+    color: #86725a;
+    letter-spacing: 0.12em;
+  }
+
+  /* ── Selection buttons ── */
+  .choice-bar {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    padding: 32px 20px 48px;
+    background: #edeae1;
+    border-top: 1px solid #d5d0cc;
+  }
+  .choice-btn {
+    padding: 12px 32px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid #86725a;
+    background: transparent;
+    color: #86725a;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .choice-btn:hover, .choice-btn.selected {
+    background: #86725a;
+    color: #fff;
+  }
+  .choice-btn.selected::before {
+    content: '✓ ';
+  }
+  .choice-label {
+    text-align: center;
+    font-size: 11px;
+    color: #95978a;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar mock -->
+<div class="mock-nav">
+  <div class="logo">Carol Orofino</div>
+  <div class="nav-links">
+    <span>Sobre</span>
+    <span>Serviços</span>
+    <span>Projetos</span>
+    <span>Blog</span>
+    <span>Contato</span>
+  </div>
+</div>
+
+<!-- ═══ OPTION A ═══ -->
+<div class="option-label"><span>A</span> Split 50/50 com slide-in — consistente com o site</div>
+
+<div class="option-a">
+  <div class="photo-side">
+    <img src="carol.png" alt="Carol Orofino" />
+  </div>
+  <div class="text-side">
+    <div class="text-inner">
+      <p class="eyebrow">Sobre nós</p>
+      <h2 class="section-title">Carol Orofino</h2>
+      <div class="divider-accent"></div>
+      <p class="body-text">
+        Acredito que cada espaço conta uma história. Com mais de 10 anos de experiência, crio ambientes que unem funcionalidade, beleza e identidade.
+      </p>
+      <a class="cta-link" href="#">Conheça mais →</a>
+    </div>
+  </div>
+</div>
+
+<div class="section-sep"><div class="section-sep-line"></div></div>
+
+<!-- ═══ OPTION C ═══ -->
+<div class="option-label"><span>C</span> Assimétrico 60/40 com linha vertical — editorial</div>
+
+<div class="option-c">
+  <div class="text-side">
+    <div class="text-inner">
+      <p class="eyebrow">Sobre nós</p>
+      <h2 class="section-title">Carol Orofino</h2>
+      <div class="divider-accent"></div>
+      <p class="body-text">
+        Acredito que cada espaço conta uma história. Com mais de 10 anos de experiência, crio ambientes que unem funcionalidade, beleza e identidade.
+      </p>
+      <a class="cta-link" href="#">Conheça mais →</a>
+    </div>
+  </div>
+  <div class="photo-side">
+    <img src="carol.png" alt="Carol Orofino" />
+  </div>
+</div>
+
+<div class="mobile-note">📱 No mobile, ambas ficam em coluna única: foto em cima, texto embaixo</div>
+
+<!-- Botões de escolha -->
+<div class="choice-bar">
+  <div class="choice-label" style="width:100%;margin-bottom:0;align-self:center;">Qual você prefere?</div>
+  <button class="choice-btn" onclick="choose('a', this)">Escolher A</button>
+  <button class="choice-btn" onclick="choose('c', this)">Escolher C</button>
+</div>
+
+<script>
+function choose(opt, btn) {
+  document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (window.__sp_record) window.__sp_record(opt, btn.textContent);
+}
+</script>
+</body>
+</html>

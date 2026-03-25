@@ -6,9 +6,6 @@ import type { Metadata } from 'next'
 import { posts } from '@/data/posts'
 import BlogSidebar from '@/components/BlogSidebar'
 import type { Locale } from '@/lib/i18n'
-import Breadcrumb from '@/components/Breadcrumb'
-import AuthorBlock from '@/components/AuthorBlock'
-import RelatedPosts from '@/components/RelatedPosts'
 
 export async function generateStaticParams() {
   const locales: Locale[] = ['pt', 'en', 'es']
@@ -93,19 +90,16 @@ export default async function BlogPostPage({
         </div>
       </div>
 
-      <AuthorBlock locale={lang} date={post.date} readTime={post.readTime} />
-
       {/* Two-column layout */}
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16 py-16 px-6 max-w-6xl mx-auto items-start">
         {/* Main: article content */}
         <article>
-          <Breadcrumb
-            items={[
-              { label: t('breadcrumbHome'), href: `/${locale}` },
-              { label: 'Blog', href: `/${locale}/blog` },
-              { label: content.title },
-            ]}
-          />
+          <Link
+            href={`/${locale}/blog`}
+            className="font-body text-xs uppercase tracking-widest text-dark hover:text-primary transition-colors mb-12 inline-block"
+          >
+            ← {t('backToBlog')}
+          </Link>
 
           {/* Sections */}
           <div className="flex flex-col gap-12 mt-8">
@@ -201,19 +195,15 @@ export default async function BlogPostPage({
                       </div>
                     )}
                     {section.image && (
-                      <div className="mt-8">
+                      <div className="mt-10">
                         <Image
                           src={section.image}
                           alt={section.heading}
                           width={800}
-                          height={450}
-                          className="w-full object-cover"
+                          height={800}
+                          className="w-full"
+                          style={{ aspectRatio: '1 / 1', objectFit: 'contain' }}
                         />
-                        {section.imageCaption && (
-                          <p className="font-body text-xs text-sage text-center mt-3 italic">
-                            {section.imageCaption}
-                          </p>
-                        )}
                       </div>
                     )}
                   </>
@@ -241,8 +231,6 @@ export default async function BlogPostPage({
               {t('contactCta')}
             </Link>
           </div>
-
-          <RelatedPosts locale={lang} currentSlug={post.slug} />
         </article>
 
         {/* Sidebar */}

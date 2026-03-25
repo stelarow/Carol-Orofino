@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seção Questionário — Mockups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --walnut: #5c3d2e;
+    --sage: #7c8c6e;
+    --stone: #8a7f72;
+    --linen: #f5f0e8;
+    --sand: #d4c4a8;
+    --dark: #1a1208;
+    --text: #2c1f0e;
+  }
+
+  body { font-family: 'Inter', sans-serif; background: #111; }
+
+  /* ─── Section Labels ─── */
+  .section-label {
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+    background: #111;
+    color: #555;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .section-label span {
+    display: inline-block;
+    border: 1px solid #333;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2px;
+  }
+
+  /* ══════════════════════════════
+     OPÇÃO A — CINEMATIC FULL-WIDTH
+  ══════════════════════════════ */
+  .option-a {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .option-a .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1800&q=80');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    transition: transform 0.1s linear;
+    will-change: transform;
+  }
+  .option-a .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(26,18,8,0.55) 0%, rgba(26,18,8,0.82) 100%);
+  }
+  .option-a .content {
+    position: relative;
+    text-align: center;
+    color: var(--linen);
+    max-width: 600px;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .option-a .content.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .option-a .eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 1.5rem;
+  }
+  .option-a h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  .option-a .divider {
+    width: 50px;
+    height: 1px;
+    background: var(--sand);
+    margin: 0 auto 1.5rem;
+  }
+  .option-a p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.8);
+    max-width: 420px;
+    margin: 0 auto 2.5rem;
+  }
+  .option-a .cta {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border: 1px solid var(--sand);
+    color: var(--sand);
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+  .option-a .cta:hover {
+    background: var(--sand);
+    color: var(--dark);
+  }
+
+  /* ══════════════════════════════
+     OPÇÃO B — SPLIT EDITORIAL
+  ══════════════════════════════ */
+  .option-b {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    background: var(--linen);
+    overflow: hidden;
+  }
+  .option-b .text-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 4rem;
+    background: var(--linen);
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .option-b .text-side.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .option-b .text-content { max-width: 460px; }
+  .option-b .eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+  }
+  .option-b h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .option-b .rule {
+    width: 40px;
+    height: 1px;
+    background: var(--stone);
+    margin-bottom: 1.5rem;
+  }
+  .option-b p {
+    font-size: 0.875rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--stone);
+    margin-bottom: 2.5rem;
+  }
+  .option-b .cta {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--walnut);
+    text-decoration: none;
+    border-bottom: 1px solid var(--walnut);
+    padding-bottom: 3px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .option-b .cta:hover { opacity: 0.6; }
+  .option-b .image-side {
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.9s ease 0.2s, transform 0.9s ease 0.2s;
+  }
+  .option-b .image-side.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .option-b .image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+  .option-b .image-side:hover img {
+    transform: scale(1);
+  }
+
+  /* ══════════════════════════════
+     OPÇÃO C — JOURNEY / PROCESSO
+  ══════════════════════════════ */
+  .option-c {
+    background: #faf7f2;
+    padding: 7rem 2rem;
+    overflow: hidden;
+  }
+  .option-c .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .option-c .eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.25rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .option-c .eyebrow.visible { opacity: 1; transform: translateY(0); }
+
+  .option-c h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+  }
+  .option-c h2.visible { opacity: 1; transform: translateY(0); }
+
+  .option-c .sub {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--stone);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+  }
+  .option-c .sub.visible { opacity: 1; transform: translateY(0); }
+
+  .option-c .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+  .option-c .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(12.5% + 20px);
+    right: calc(12.5% + 20px);
+    height: 1px;
+    background: var(--sand);
+  }
+  .option-c .step {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .option-c .step.visible { opacity: 1; transform: translateY(0); }
+  .option-c .step-num {
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--sand);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--walnut);
+    background: #faf7f2;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .option-c .step:hover .step-num {
+    border-color: var(--walnut);
+    background: var(--walnut);
+    color: #fff;
+  }
+  .option-c .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .option-c .step-desc {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--stone);
+    line-height: 1.7;
+  }
+  .option-c .cta-wrap {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
+  }
+  .option-c .cta-wrap.visible { opacity: 1; transform: translateY(0); }
+  .option-c .cta {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border: 1px solid var(--walnut);
+    color: var(--walnut);
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  .option-c .cta:hover { background: var(--walnut); color: #fff; }
+
+  /* ─── Sticky labels ─── */
+  .sticky-label {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(8px);
+    padding: 0.7rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+  }
+  .sticky-label .name {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+  .sticky-label button {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid #444;
+    color: #888;
+    padding: 0.35rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    border-radius: 2px;
+  }
+  .sticky-label button:hover { border-color: #aaa; color: #fff; }
+  .sticky-label button.selected { border-color: #c4a882; color: #c4a882; }
+</style>
+</head>
+<body>
+
+<!-- ─── OPÇÃO A ─── -->
+<div class="sticky-label">
+  <span class="name">A — Cinematic Full-Width</span>
+  <button id="btn-a" onclick="selectOption('a')">Selecionar esta</button>
+</div>
+<section class="option-a" id="section-a">
+  <div class="bg" id="parallax-bg"></div>
+  <div class="overlay"></div>
+  <div class="content" id="content-a">
+    <div class="eyebrow">Vamos trabalhar juntas</div>
+    <h2>Conte-me sobre<br/>o seu projeto</h2>
+    <div class="divider"></div>
+    <p>Um briefing completo me permite criar propostas únicas, alinhadas com o seu estilo e necessidades. Leva apenas alguns minutos.</p>
+    <a class="cta">Preencher questionário</a>
+  </div>
+</section>
+
+<div class="section-label"><span>↓ &nbsp; Role para ver as outras opções &nbsp; ↓</span></div>
+
+<!-- ─── OPÇÃO B ─── -->
+<div class="sticky-label">
+  <span class="name">B — Split Editorial</span>
+  <button id="btn-b" onclick="selectOption('b')">Selecionar esta</button>
+</div>
+<section class="option-b" id="section-b">
+  <div class="text-side" id="text-b">
+    <div class="text-content">
+      <div class="eyebrow">Briefing de projeto</div>
+      <h2>Vamos criar algo<br/>único para você</h2>
+      <div class="rule"></div>
+      <p>Preencha o questionário e me conte sobre o seu espaço, estilo e sonhos. Com essas informações, consigo desenvolver uma proposta verdadeiramente personalizada.</p>
+      <a class="cta">Iniciar questionário →</a>
+    </div>
+  </div>
+  <div class="image-side" id="img-b">
+    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80" alt="Interior design" />
+  </div>
+</section>
+
+<div class="section-label"><span>↓ &nbsp; Role para ver a próxima opção &nbsp; ↓</span></div>
+
+<!-- ─── OPÇÃO C ─── -->
+<div class="sticky-label">
+  <span class="name">C — Journey / Processo</span>
+  <button id="btn-c" onclick="selectOption('c')">Selecionar esta</button>
+</div>
+<section class="option-c" id="section-c">
+  <div class="inner">
+    <div class="eyebrow" id="c-eyebrow">Briefing de projeto</div>
+    <h2 id="c-title">Transforme seu espaço em<br/>algo extraordinário</h2>
+    <p class="sub" id="c-sub">Um questionário rápido, em 4 etapas, que me ajuda a entender profundamente o seu projeto e criar uma proposta sob medida para você.</p>
+
+    <div class="steps">
+      <div class="step" id="c-step-1" style="transition-delay: 0.1s">
+        <div class="step-num">1</div>
+        <div class="step-title">Identificação</div>
+        <div class="step-desc">Seu nome, WhatsApp e e-mail para que eu possa entrar em contato.</div>
+      </div>
+      <div class="step" id="c-step-2" style="transition-delay: 0.25s">
+        <div class="step-num">2</div>
+        <div class="step-title">O Ambiente</div>
+        <div class="step-desc">Tipo de espaço, metragem e fotos ou plantas do local.</div>
+      </div>
+      <div class="step" id="c-step-3" style="transition-delay: 0.4s">
+        <div class="step-num">3</div>
+        <div class="step-title">Estilo & Referências</div>
+        <div class="step-desc">Seu estilo favorito e o que não pode faltar no projeto.</div>
+      </div>
+      <div class="step" id="c-step-4" style="transition-delay: 0.55s">
+        <div class="step-num">4</div>
+        <div class="step-title">Escopo & Investimento</div>
+        <div class="step-desc">Tipo de projeto, urgência e faixa de orçamento.</div>
+      </div>
+    </div>
+
+    <div class="cta-wrap" id="c-cta">
+      <a class="cta">Preencher questionário</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-label" style="padding:3rem 2rem;"><span>Selecione a opção preferida acima</span></div>
+
+<script>
+  // ─── Intersection Observer para reveal animations ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Option A
+  observer.observe(document.getElementById('content-a'));
+
+  // Option B
+  observer.observe(document.getElementById('text-b'));
+  observer.observe(document.getElementById('img-b'));
+
+  // Option C
+  ['c-eyebrow','c-title','c-sub','c-step-1','c-step-2','c-step-3','c-step-4','c-cta'].forEach(id => {
+    observer.observe(document.getElementById(id));
+  });
+
+  // ─── Parallax for Option A ───
+  const parallaxBg = document.getElementById('parallax-bg');
+  const sectionA = document.getElementById('section-a');
+  window.addEventListener('scroll', () => {
+    const rect = sectionA.getBoundingClientRect();
+    const progress = -rect.top / rect.height;
+    if (progress > -0.5 && progress < 1.5) {
+      parallaxBg.style.transform = `scale(1.08) translateY(${progress * 15}%)`;
+    }
+  }, { passive: true });
+
+  // ─── Option selection ───
+  let selected = null;
+  function selectOption(opt) {
+    ['a','b','c'].forEach(o => {
+      document.getElementById('btn-' + o).classList.remove('selected');
+      document.getElementById('btn-' + o).textContent = 'Selecionar esta';
+    });
+    selected = opt;
+    const btn = document.getElementById('btn-' + opt);
+    btn.classList.add('selected');
+    btn.textContent = '✓ Selecionada';
+
+    // Emit event for companion to read
+    if (window.__companion) {
+      window.__companion.emit({ type: 'click', choice: opt, text: 'Option ' + opt.toUpperCase() });
+    }
+  }
+</script>
+</body>
+</html>

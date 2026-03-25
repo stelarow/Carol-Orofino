@@ -5,7 +5,6 @@ export interface TextSection {
   table?: { label: string; value: string }[]
   tip?: string
   image?: string
-  imageCaption?: string
 }
 
 export interface FabricSection {
@@ -65,6 +64,7 @@ export const posts: Post[] = [
           {
             heading: 'Beyond the Golden Surface',
             body: 'For decades, luxury in interior design spoke in a single dialect: gilded frames, marble floors, crystal chandeliers. Opulence as evidence. The room announced its cost so the visitor would not need to ask.\n\nThat language is aging. The new luxury does not announce. It reveals — slowly, to those who know how to look. A single piece of furniture with the kind of craftsmanship that can only come from hands, not machines. A wall finish that changes color as the afternoon passes. A fabric that asks to be touched before it can be understood.',
+            image: '/images/blog/new-language-of-luxury-sala.png',
           },
           {
             heading: 'The Material Knows',
@@ -76,10 +76,12 @@ export const posts: Post[] = [
               { label: 'Linen & wool', value: 'Fabrics that breathe — tactile honesty, beauty that needs no performance' },
             ],
             tip: 'A truly luxury material needs no treatment to look expensive — it already is. When evaluating a piece, run your hand across it: honest materials reveal themselves to the touch before any label does.',
+            image: '/images/blog/new-language-of-luxury-closet.png',
           },
           {
             heading: 'Space as the Ultimate Privilege',
             body: 'In dense cities where square meters are currency, space itself has become the most exclusive material of all. Not space as emptiness — but space as intention. A room with room to breathe. A corridor wide enough to walk slowly. A reading corner that asks nothing of you except your presence.\n\nThe luxury interior of this decade gives space back to its inhabitant. It does not fill every corner. It trusts silence. It designs for stillness as much as for use.',
+            image: '/images/blog/new-language-of-luxury-living.png',
           },
           {
             heading: 'Personalization Over Prestige',
@@ -97,6 +99,7 @@ export const posts: Post[] = [
           {
             heading: 'Além da Superfície Dourada',
             body: 'Durante décadas, o luxo no design de interiores falou em um único dialeto: molduras douradas, pisos de mármore, lustres de cristal. A opulência como evidência. O ambiente anunciava seu custo para que o visitante não precisasse perguntar.\n\nEssa linguagem está envelhecendo. O novo luxo não anuncia. Ele revela — devagar, para quem sabe olhar. Uma única peça de mobiliário com o tipo de artesanato que só pode vir de mãos, não de máquinas. Um acabamento de parede que muda de cor conforme a tarde passa. Um tecido que pede para ser tocado antes de poder ser compreendido.',
+            image: '/images/blog/new-language-of-luxury-sala.png',
           },
           {
             heading: 'O Material Sabe',
@@ -108,10 +111,12 @@ export const posts: Post[] = [
               { label: 'Linho e lã', value: 'Tecidos que respiram — honestidade tátil, beleza que não precisa se anunciar' },
             ],
             tip: 'Um material de luxo real não precisa de tratamento para parecer caro — ele já é. Ao avaliar uma peça, passe a mão: materiais honestos se revelam no toque antes de qualquer rótulo.',
+            image: '/images/blog/new-language-of-luxury-closet.png',
           },
           {
             heading: 'O Espaço como Privilégio Máximo',
             body: 'Em cidades densas onde metros quadrados são moeda, o espaço em si tornou-se o material mais exclusivo de todos. Não o espaço como vazio — mas o espaço como intenção. Um ambiente com espaço para respirar. Um corredor largo o suficiente para se caminhar devagar. Um canto de leitura que não exige nada de você além de sua presença.\n\nO interior de luxo desta década devolve o espaço ao seu habitante. Não preenche cada canto. Confia no silêncio. Projeta para a quietude tanto quanto para o uso.',
+            image: '/images/blog/new-language-of-luxury-living.png',
           },
           {
             heading: 'Personalização Acima do Prestígio',
@@ -129,6 +134,7 @@ export const posts: Post[] = [
           {
             heading: 'Más Allá de la Superficie Dorada',
             body: 'Durante décadas, el lujo en el diseño de interiores habló en un único dialecto: marcos dorados, pisos de mármol, lámparas de cristal. La opulencia como evidencia. La habitación anunciaba su costo para que el visitante no necesitara preguntar.\n\nEse lenguaje está envejeciendo. El nuevo lujo no anuncia. Revela — despacio, para quienes saben mirar. Una única pieza de mobiliario con el tipo de artesanía que solo puede venir de manos, no de máquinas. Un acabado de pared que cambia de color al pasar la tarde. Una tela que pide ser tocada antes de poder ser comprendida.',
+            image: '/images/blog/new-language-of-luxury-sala.png',
           },
           {
             heading: 'El Material Sabe',
@@ -140,10 +146,12 @@ export const posts: Post[] = [
               { label: 'Lino y lana', value: 'Tejidos que respiran — honestidad táctil, belleza que no necesita anunciarse' },
             ],
             tip: 'Un material de lujo real no necesita tratamiento para parecer caro — ya lo es. Al evaluar una pieza, pase la mano: los materiales honestos se revelan al tacto antes que cualquier etiqueta.',
+            image: '/images/blog/new-language-of-luxury-closet.png',
           },
           {
             heading: 'El Espacio como Privilegio Máximo',
             body: 'En ciudades densas donde los metros cuadrados son moneda, el espacio mismo se ha convertido en el material más exclusivo de todos. No el espacio como vacío — sino el espacio como intención. Una habitación con espacio para respirar. Un pasillo lo suficientemente ancho para caminar despacio. Un rincón de lectura que no te exige nada más que tu presencia.\n\nEl interior de lujo de esta década devuelve el espacio a su habitante. No llena cada rincón. Confía en el silencio. Diseña para la quietud tanto como para el uso.',
+            image: '/images/blog/new-language-of-luxury-living.png',
           },
           {
             heading: 'Personalización por Encima del Prestigio',
@@ -170,10 +178,12 @@ export const posts: Post[] = [
           {
             heading: 'What Minimalism Is Not',
             body: 'Minimalism has been misunderstood — reduced to a visual style, a Pinterest aesthetic of white walls and bare shelves. But real minimalism is not about owning fewer things. It is about making every thing deliberate.\n\nA minimalist room can contain warmth. It can contain color, texture, memory, life. What it cannot contain is noise — the visual noise of objects that have no reason to be there, furniture chosen by default, decoration that fills space without earning it.',
+            image: '/images/blog/discipline-of-subtraction-calor.png',
           },
           {
             heading: 'The Edit Is the Design',
             body: 'The most important skill in minimalist design is not what you add. It is what you remove. Every object that leaves a room makes the remaining objects more powerful. The chair that stays becomes the chair — not one of several, but the one, chosen, positioned, seen.\n\nThis is why minimalism is harder to design than maximalism. Addition is easy. Subtraction requires conviction. You have to be certain enough in what remains to let everything else go.',
+            image: '/images/blog/discipline-of-subtraction-edicao.png',
             table: [
               { label: 'Stays', value: 'Pieces with defined function, durable materials, right proportion' },
               { label: 'Goes', value: 'Objects with no reason to be there, duplicates, filler decoration' },
@@ -202,10 +212,12 @@ export const posts: Post[] = [
           {
             heading: 'O Que o Minimalismo Não É',
             body: 'O minimalismo foi mal compreendido — reduzido a um estilo visual, uma estética de paredes brancas e prateleiras nuas. Mas o minimalismo real não é sobre ter menos coisas. É sobre tornar cada coisa deliberada.\n\nUm ambiente minimalista pode conter calor. Pode conter cor, textura, memória, vida. O que ele não pode conter é ruído — o ruído visual de objetos que não têm razão de estar ali, móveis escolhidos por padrão, decoração que preenche o espaço sem merecê-lo.',
+            image: '/images/blog/discipline-of-subtraction-calor.png',
           },
           {
             heading: 'A Edição É o Design',
             body: 'A habilidade mais importante no design minimalista não é o que você adiciona. É o que você remove. Cada objeto que sai de um ambiente torna os objetos restantes mais poderosos. A cadeira que fica torna-se a cadeira — não uma de várias, mas aquela, escolhida, posicionada, vista.\n\nÉ por isso que o minimalismo é mais difícil de projetar do que o maximalismo. Adição é fácil. Subtração exige convicção. Você precisa ter certeza suficiente naquilo que resta para deixar todo o resto ir.',
+            image: '/images/blog/discipline-of-subtraction-edicao.png',
             table: [
               { label: 'Permanece', value: 'Peças com função definida, materiais duráveis, proporção certa' },
               { label: 'Sai', value: 'Objetos sem razão de estar, duplicatas, decoração que preenche vazio' },
@@ -234,10 +246,12 @@ export const posts: Post[] = [
           {
             heading: 'Lo Que el Minimalismo No Es',
             body: 'El minimalismo ha sido malinterpretado — reducido a un estilo visual, una estética de paredes blancas y estantes vacíos. Pero el minimalismo real no se trata de tener menos cosas. Se trata de hacer que cada cosa sea deliberada.\n\nUna habitación minimalista puede contener calidez. Puede contener color, textura, memoria, vida. Lo que no puede contener es ruido — el ruido visual de objetos que no tienen razón de estar ahí, muebles elegidos por defecto, decoración que llena el espacio sin ganárselo.',
+            image: '/images/blog/discipline-of-subtraction-calor.png',
           },
           {
             heading: 'La Edición Es el Diseño',
             body: 'La habilidad más importante en el diseño minimalista no es lo que agregas. Es lo que eliminas. Cada objeto que sale de una habitación hace que los objetos restantes sean más poderosos. La silla que se queda se convierte en la silla — no una de varias, sino la elegida, posicionada, vista.\n\nPor eso el minimalismo es más difícil de diseñar que el maximalismo. La adición es fácil. La sustracción requiere convicción. Tienes que estar suficientemente seguro de lo que permanece para dejar ir todo lo demás.',
+            image: '/images/blog/discipline-of-subtraction-edicao.png',
             table: [
               { label: 'Permanece', value: 'Piezas con función definida, materiales duraderos, proporción correcta' },
               { label: 'Sale', value: 'Objetos sin razón de estar, duplicados, decoración que llena vacíos' },
@@ -287,6 +301,7 @@ export const posts: Post[] = [
               { label: 'Handmade ceramic', value: 'Imperfection as quality — each piece is unique and irreplaceable' },
             ],
             tip: 'In Scandinavian design, textures do not decorate — they narrate. When combining materials, prioritize tactile contrast: smooth with rough, cool with warm, opaque with translucent.',
+            image: '/images/blog/where-silence-has-a-shape-cozinha.png',
           },
           {
             heading: 'The Luxury of Less',
@@ -295,6 +310,7 @@ export const posts: Post[] = [
           {
             heading: 'Light as the Most Expensive Material',
             body: 'No designer can purchase what the North gives freely — that particular quality of Scandinavian light: low, angular, generous. It travels across a room like a slow conversation, touching the texture of a wool throw, the edge of a ceramic vase, the pale grain of an unfinished wall.\n\nLight is never incidental. Sheer linen curtains are chosen not merely to soften a window, but to choreograph how light enters a room across the hours of a day. Furniture is positioned not for convention, but for the way morning light will fall. Natural light, in this philosophy, is not a supplement — it is the design itself.',
+            image: '/images/blog/where-silence-has-a-shape-banheiro.png',
           },
         ],
         conclusion:
@@ -320,6 +336,7 @@ export const posts: Post[] = [
               { label: 'Cerâmica artesanal', value: 'Imperfeição como qualidade — cada peça é única e insubstituível' },
             ],
             tip: 'No design escandinavo, as texturas não decoram — narram. Ao combinar materiais, priorize o contraste tátil: liso com rugoso, frio com quente, opaco com translúcido.',
+            image: '/images/blog/where-silence-has-a-shape-cozinha.png',
           },
           {
             heading: 'O Luxo do Menos',
@@ -328,6 +345,7 @@ export const posts: Post[] = [
           {
             heading: 'A Luz como o Material Mais Caro',
             body: 'Nenhum designer pode comprar o que o Norte oferece livremente — aquela qualidade particular da luz escandinava: baixa, angular, generosa. Ela percorre um ambiente como uma conversa lenta, tocando a textura de uma manta de lã, a borda de um vaso de cerâmica, o fio pálido de uma parede inacabada.\n\nA luz nunca é incidental. Cortinas de linho translúcido são escolhidas não apenas para suavizar uma janela, mas para coreografar como a luz entra em um ambiente ao longo das horas do dia. O mobiliário é posicionado não por convenção, mas pela forma como a luz da manhã vai pousar. A luz natural, nessa filosofia, não é um suplemento — ela é o design.',
+            image: '/images/blog/where-silence-has-a-shape-banheiro.png',
           },
         ],
         conclusion:
@@ -353,6 +371,7 @@ export const posts: Post[] = [
               { label: 'Cerámica artesanal', value: 'La imperfección como calidad — cada pieza es única e irremplazable' },
             ],
             tip: 'En el diseño escandinavo, las texturas no decoran — narran. Al combinar materiales, prioriza el contraste táctil: liso con rugoso, frío con cálido, opaco con translúcido.',
+            image: '/images/blog/where-silence-has-a-shape-cozinha.png',
           },
           {
             heading: 'El Lujo de lo Menos',
@@ -361,6 +380,7 @@ export const posts: Post[] = [
           {
             heading: 'La Luz como el Material Más Caro',
             body: 'Ningún diseñador puede comprar lo que el Norte ofrece libremente — esa calidad particular de la luz escandinava: baja, angular, generosa. Recorre una habitación como una conversación lenta, tocando la textura de una manta de lana, el borde de un jarrón de cerámica, el veteado pálido de una pared sin acabar.\n\nLa luz nunca es incidental. Las cortinas de lino translúcido se eligen no solo para suavizar una ventana, sino para coreografiar cómo la luz entra en una habitación a lo largo de las horas del día. El mobiliario se posiciona no por convención, sino por la forma en que la luz de la mañana caerá. La luz natural, en esta filosofía, no es un suplemento — es el diseño.',
+            image: '/images/blog/where-silence-has-a-shape-banheiro.png',
           },
         ],
         conclusion:

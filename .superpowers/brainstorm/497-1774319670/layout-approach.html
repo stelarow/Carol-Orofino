@@ -1,0 +1,81 @@
+<h2>Qual abordagem de layout + scroll?</h2>
+<p class="subtitle">Para a seção "Sobre" na homepage — mobile first, foto P&B da Carol</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#e0cfb3;padding:20px;font-family:Georgia,serif;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;">
+      <!-- Mockup A: Split horizontal, image left, text right -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:160px;">
+        <div style="background:#1a1a1a;border-radius:2px;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;display:flex;align-items:flex-end;padding:8px;">
+            <div style="width:60%;height:3px;background:#86725a;"></div>
+          </div>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:11px;opacity:0.5;">foto P&B</div>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:8px;padding:8px;">
+          <div style="width:70%;height:2px;background:#86725a;"></div>
+          <div style="width:90%;height:8px;background:#1a1a1a;border-radius:1px;"></div>
+          <div style="width:80%;height:6px;background:#1a1a1a;opacity:0.5;border-radius:1px;"></div>
+          <div style="width:85%;height:6px;background:#1a1a1a;opacity:0.5;border-radius:1px;"></div>
+          <div style="width:40%;height:1px;background:#86725a;margin-top:8px;"></div>
+          <div style="width:30%;height:6px;background:#86725a;opacity:0.4;border-radius:1px;"></div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:#86725a;letter-spacing:0.15em;text-align:center;">← slide in from sides →</div>
+    </div>
+    <div class="card-body">
+      <h3>Split 50/50 com slide-in</h3>
+      <p>Foto à esquerda, texto à direita. Na entrada do scroll, os dois lados deslizam para dentro. Mesmo padrão do QuestionnaireSection — consistente com o site.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#e0cfb3;padding:20px;font-family:Georgia,serif;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;">
+      <!-- Mockup B: Full-width photo background, text overlay -->
+      <div style="position:relative;height:160px;background:#1a1a1a;border-radius:2px;overflow:hidden;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.2) 100%);"></div>
+        <div style="position:absolute;top:50%;left:8%;transform:translateY(-50%);color:#fff;">
+          <div style="width:40px;height:1px;background:#86725a;margin-bottom:8px;"></div>
+          <div style="width:100px;height:8px;background:#fff;opacity:0.9;border-radius:1px;margin-bottom:6px;"></div>
+          <div style="width:80px;height:5px;background:#fff;opacity:0.5;border-radius:1px;margin-bottom:4px;"></div>
+          <div style="width:90px;height:5px;background:#fff;opacity:0.5;border-radius:1px;"></div>
+        </div>
+        <div style="position:absolute;bottom:8px;left:8%;font-size:9px;color:#86725a;letter-spacing:0.15em;">texto revela com fade</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Foto full-width + texto sobreposto</h3>
+      <p>A foto da Carol ocupa largura total com overlay gradiente. Texto à esquerda revela-se com fade ao scrollar. Mais dramático e cinematográfico.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#e0cfb3;padding:20px;font-family:Georgia,serif;min-height:200px;display:flex;flex-direction:column;justify-content:space-between;">
+      <!-- Mockup C: Asymmetric - tall image right bleeds off, text left with decorative line -->
+      <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:0;height:160px;">
+        <div style="display:flex;flex-direction:column;justify-content:center;gap:6px;padding:8px 12px 8px 8px;border-right:1px solid #86725a;">
+          <div style="width:25px;height:1px;background:#86725a;"></div>
+          <div style="width:90%;height:8px;background:#1a1a1a;border-radius:1px;"></div>
+          <div style="width:75%;height:6px;background:#1a1a1a;opacity:0.5;border-radius:1px;"></div>
+          <div style="width:85%;height:6px;background:#1a1a1a;opacity:0.5;border-radius:1px;"></div>
+          <div style="width:80%;height:6px;background:#1a1a1a;opacity:0.4;border-radius:1px;"></div>
+          <div style="margin-top:8px;display:flex;align-items:center;gap:6px;">
+            <div style="width:20px;height:1px;background:#86725a;"></div>
+            <div style="width:50px;height:5px;background:#86725a;opacity:0.5;border-radius:1px;"></div>
+          </div>
+        </div>
+        <div style="background:#1a1a1a;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:10px;opacity:0.4;">foto</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(224,207,179,0.3),transparent);"></div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:#86725a;letter-spacing:0.15em;text-align:center;">foto cresce no scroll (parallax sutil)</div>
+    </div>
+    <div class="card-body">
+      <h3>Assimétrico com parallax sutil</h3>
+      <p>Texto (60%) à esquerda separado por linha vertical walnut. Foto (40%) à direita com efeito parallax suave ao scrollar. Sofisticado e editorial.</p>
+    </div>
+  </div>
+
+</div>

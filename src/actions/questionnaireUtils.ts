@@ -8,7 +8,7 @@ export function buildEmailHtml(data: {
   whatsapp: string
   email: string
   roomType: string[]
-  area: number | null
+  area: string
   floorPlanUrl: string | null
   photoUrls: string[]
   styles: string[]
@@ -37,7 +37,7 @@ export function buildEmailHtml(data: {
 
       <h3>🏠 Ambiente</h3>
       <p><strong>Tipo:</strong> ${data.roomType.join(', ')}<br/>
-      ${data.area ? `<strong>Metragem:</strong> ${data.area} m²<br/>` : ''}
+      ${data.area ? `<strong>Medidas:</strong> ${data.area}<br/>` : ''}
       ${fileLinks ? `<strong>Arquivos:</strong> ${fileLinks}` : ''}</p>
 
       <h3>🎨 Estilo</h3>

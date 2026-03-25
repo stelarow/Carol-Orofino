@@ -5,13 +5,17 @@ import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { posts } from '@/data/posts'
 import type { Locale } from '@/lib/i18n'
+import { SectionDivider } from '@/components/SectionDivider'
+import { QuestionnaireSection } from '@/components/QuestionnaireSection'
+import { AboutTeaser } from '@/components/AboutTeaser'
+import { BlogTeaser } from '@/components/BlogTeaser'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://carolorofino.com.br'
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: Locale }>
 }): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
@@ -27,11 +31,12 @@ export async function generateMetadata({
 export default async function HomePage({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: Locale }>
 }) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'home' })
   const tBlog = await getTranslations({ locale, namespace: 'blog' })
+  const tAbout = await getTranslations({ locale, namespace: 'about' })
 
   return (
     <>
@@ -70,7 +75,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
-              src="/images/categories/residencial-hero.jpg"
+              src="/images/categories/residencial-hero.png"
               alt={t('residencial')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -102,14 +107,14 @@ export default async function HomePage({
               </span>
             </div>
           </Link>
-          {/* Projetos */}
+          {/* Fachadas */}
           <Link
-            href={`/${locale}/projetos`}
+            href={`/${locale}/fachadas`}
             className="group relative overflow-hidden min-h-[56vw] md:min-h-[28vw]"
           >
             <Image
               src="/images/categories/projetos-hero.png"
-              alt={t('projetos')}
+              alt={t('fachadas')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -117,7 +122,7 @@ export default async function HomePage({
             <div className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/50" />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="font-display text-3xl md:text-4xl font-bold tracking-[0.2em] uppercase text-white">
-                {t('projetos')}
+                {t('fachadas')}
               </span>
             </div>
           </Link>
@@ -143,57 +148,38 @@ export default async function HomePage({
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* About Teaser */}
-      <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="font-display text-3xl md:text-4xl text-primary tracking-wide">
-            {t('aboutTitle')}
-          </h2>
-          <p className="mt-6 font-body text-base text-dark leading-relaxed max-w-2xl mx-auto">
-            {t('aboutTeaser')}
-          </p>
-          <Link
-            href={`/${locale}/sobre`}
-            className="mt-8 inline-block font-body text-xs uppercase tracking-widest border-b border-text-primary pb-0.5 text-text-primary transition-colors hover:text-primary hover:border-primary"
-          >
-            {t('aboutLink')}
-          </Link>
-        </div>
-      </section>
+      <AboutTeaser
+        locale={locale}
+        eyebrow={tAbout('eyebrow')}
+        title={t('aboutTitle')}
+        teaser={t('aboutTeaser')}
+        ctaLabel={t('aboutLink')}
+      />
+
+      <SectionDivider />
+
+      <QuestionnaireSection
+        locale={locale}
+        eyebrow={t('questionnaireSectionEyebrow')}
+        title={t('questionnaireSectionTitle')}
+        body={t('questionnaireSectionBody')}
+        cta={t('questionnaireSectionCta')}
+      />
+
+      <SectionDivider />
 
       {/* Blog Teaser */}
-      <section className="border-t border-stone py-20">
-        <div className="mx-auto max-w-4xl px-6">
-          <p className="font-body text-xs uppercase tracking-widest text-dark mb-10">
-            {t('blogTitle')}
-          </p>
-          <div className="flex flex-col divide-y divide-stone">
-            {posts.map((post) => (
-              <div key={post.slug} className="py-8">
-                <Link href={`/${locale}/blog/${post.slug}`} className="group">
-                  <h2 className="font-display text-2xl md:text-3xl text-primary tracking-wide mb-2 group-hover:text-walnut transition-colors">
-                    {post.translations[locale as Locale].title}
-                  </h2>
-                  <p className="font-body text-sm text-dark italic leading-relaxed mb-5">
-                    {post.translations[locale as Locale].subtitle}
-                  </p>
-                  <span className="font-body text-xs uppercase tracking-widest text-primary border-b border-primary pb-0.5 transition-colors group-hover:text-mauve group-hover:border-mauve">
-                    {tBlog('readMore')} →
-                  </span>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10">
-            <Link
-              href={`/${locale}/blog`}
-              className="inline-block font-body text-xs uppercase tracking-widest text-primary border border-primary px-8 py-3 transition-colors hover:bg-mauve hover:text-background"
-            >
-              {t('blogLink')}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <BlogTeaser
+        posts={posts}
+        locale={locale}
+        title={t('blogTitle')}
+        readMore={tBlog('readMore')}
+        blogLink={t('blogLink')}
+        blogLinkHref={`/${locale}/blog`}
+      />
     </>
   )
 }

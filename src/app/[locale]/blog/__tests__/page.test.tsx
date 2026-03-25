@@ -59,6 +59,19 @@ jest.mock('@/data/posts', () => ({
   ],
 }))
 
+// Mock framer-motion
+jest.mock('framer-motion', () => ({
+  motion: {
+    div: ({
+      children,
+      className,
+    }: {
+      children: React.ReactNode
+      className?: string
+    }) => <div className={className}>{children}</div>,
+  },
+}))
+
 const defaultProps = {
   params: Promise.resolve({ locale: 'pt' }),
   searchParams: Promise.resolve({}),

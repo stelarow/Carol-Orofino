@@ -14,7 +14,7 @@
     "collectionsTitle": "Our Work",
     "residencial": "Residential",
     "comercial": "Commercial",
-    "projetos": "Projects",
+    "fachadas": "Facades",
     "design-de-interiores": "Interior Design",
     "reforma": "Renovation",
     "viewAllProjects": "View all projects",
@@ -24,7 +24,11 @@
     "aboutLink": "Learn more",
     "blogTitle": "From the Journal",
     "blogTeaser": "Reflections on design, references, and the art of creating spaces that endure.",
-    "blogLink": "Read articles"
+    "blogLink": "Read articles",
+    "questionnaireSectionEyebrow": "Let's work together",
+    "questionnaireSectionTitle": "Tell me about your project",
+    "questionnaireSectionBody": "Fill out the briefing questionnaire and tell me about your space, style, and dreams. With this information, I can create a truly personalized proposal for you.",
+    "questionnaireSectionCta": "Start questionnaire"
   },
   "projects": {
     "title": "Delivered Projects",
@@ -48,7 +52,16 @@
     "title": "About Carol Orofino",
     "bio": "Carol Orofino is an interior designer with a specialization in Sustainable Design. Over more than 10 years of career, she has developed residential and commercial projects that translate the personality of her clients into unique and functional spaces.",
     "philosophy": "Design Philosophy",
-    "philosophyText": "I believe interior design goes beyond aesthetics. It's about creating spaces that transform the experience of those who live in them — spaces that inspire, welcome, and endure."
+    "philosophyText": "I believe interior design goes beyond aesthetics. It's about creating spaces that transform the experience of those who live in them — spaces that inspire, welcome, and endure.",
+    "eyebrow": "About us",
+    "customEyebrow": "Exclusively for you",
+    "customTitle": "Bespoke projects, made for you",
+    "customBody": "Every project begins with careful listening. Understanding your lifestyle, your tastes, and the way you use each space is what allows us to create truly unique environments — functional, welcoming, and in harmony with who you are. A personalized project isn't just more beautiful; it's one that keeps making sense long after you've settled in.",
+    "servicesTitle": "Services",
+    "ctaTitle": "Let's work together",
+    "ctaSubtitle": "Tell me about your project",
+    "ctaButton": "Chat on WhatsApp",
+    "ctaWhatsappMessage": "Hello Carol, I'd like to know more about your services."
   },
   "services": {
     "title": "Services"
@@ -95,7 +108,8 @@
         "outro": "Other"
       },
       "roomTypeError": "Please select a room type",
-      "area": "Approximate measurements",
+      "area": "Measurements (if you know them)",
+      "areaPlaceholder": "E.g.: living room 4x5m, bedroom 3x3m, or just 'a 60m² apartment'",
       "floorPlan": "Floor plan or sketch (optional)",
       "floorPlanHint": "PDF, PNG or JPG — max 10MB",
       "photos": "Photos or videos of the space (optional)",
@@ -111,7 +125,12 @@
         "industrial": "Industrial",
         "escandinavo": "Scandinavian",
         "classico": "Classic",
-        "moderno": "Modern"
+        "moderno": "Modern",
+        "boho": "Boho",
+        "japandi": "Japandi",
+        "rustico": "Rustic",
+        "contemporaneo": "Contemporary",
+        "provencal": "Provençal"
       },
       "mustHave": "What must be included in your project?",
       "mustHavePlaceholder": "E.g.: large work desk, warm lighting...",

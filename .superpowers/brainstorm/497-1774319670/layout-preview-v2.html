@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Layout Preview — Sobre Carol Orofino</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #e0cfb3;
+    font-family: system-ui, sans-serif;
+    color: #1a1a1a;
+  }
+
+  /* ── Navbar mock ── */
+  .mock-nav {
+    background: #e0cfb3;
+    border-bottom: 1px solid #d5d0cc;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .mock-nav .logo {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .mock-nav .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #95978a;
+  }
+
+  /* ── Option banner ── */
+  .option-banner {
+    text-align: center;
+    padding: 28px 20px 12px;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #86725a;
+  }
+  .option-banner span {
+    background: #86725a;
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-right: 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* ═══ OPTION A — Split 50/50 ═══ */
+  .option-a {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .option-a .photo-side {
+    position: relative;
+    overflow: hidden;
+    min-height: 480px;
+  }
+  .option-a .photo-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .option-a .text-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 56px;
+    background: #e0cfb3;
+  }
+  .option-a .text-inner { max-width: 380px; }
+
+  /* ═══ OPTION C — Asymmetric 60/40 ═══ */
+  .option-c {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    min-height: 580px;
+    overflow: hidden;
+  }
+  .option-c .text-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 80px 60px 80px 64px;
+    background: #e0cfb3;
+    border-right: 1px solid #86725a;
+  }
+  .option-c .text-inner { max-width: 440px; }
+  .option-c .photo-side {
+    position: relative;
+    overflow: hidden;
+  }
+  .option-c .photo-side img {
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    object-position: center top;
+    margin-top: -5%;
+  }
+  .option-c .photo-side::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30%;
+    background: linear-gradient(to top, rgba(224,207,179,0.3), transparent);
+  }
+
+  /* ── Shared text styles ── */
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .section-title {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: #86725a;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .divider-accent {
+    width: 40px;
+    height: 1px;
+    background: #d5d0cc;
+    margin-bottom: 20px;
+  }
+  .body-text {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #000;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+  .cta-link {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #86725a;
+    border-bottom: 1px solid #86725a;
+    padding-bottom: 2px;
+    text-decoration: none;
+  }
+
+  /* ── Separator ── */
+  .sep {
+    height: 60px;
+    background: #e0cfb3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sep-line { width: 1px; height: 36px; background: #d5d0cc; }
+
+  /* ── Scroll note ── */
+  .scroll-note {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #86725a;
+    padding: 10px 20px 20px;
+    opacity: 0.7;
+  }
+
+  /* ── Mobile note ── */
+  .mobile-note {
+    background: #edeae1;
+    border-top: 1px solid #d5d0cc;
+    padding: 14px 24px;
+    text-align: center;
+    font-size: 11px;
+    color: #86725a;
+    letter-spacing: 0.12em;
+  }
+
+  /* ── Choice buttons ── */
+  .choice-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 40px 20px 56px;
+    background: #edeae1;
+    border-top: 1px solid #d5d0cc;
+  }
+  .choice-bar p {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #95978a;
+  }
+  .choice-btns { display: flex; gap: 16px; }
+  .choice-btn {
+    padding: 12px 36px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid #86725a;
+    background: transparent;
+    color: #86725a;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .choice-btn:hover { background: #86725a; color: #fff; }
+  .choice-btn.selected { background: #86725a; color: #fff; }
+  .choice-btn.selected::before { content: '✓  '; }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="mock-nav">
+  <div class="logo">Carol Orofino</div>
+  <div class="nav-links">
+    <span>Sobre</span><span>Serviços</span><span>Projetos</span><span>Blog</span>
+  </div>
+</div>
+
+<!-- ═══ OPTION A ═══ -->
+<div class="option-banner"><span>A</span> Split 50/50 — foto esquerda, texto direita</div>
+<div class="scroll-note">✦ no scroll: foto desliza da esquerda, texto da direita (fade + slide)</div>
+
+<div class="option-a">
+  <div class="photo-side">
+    <img src="/files/carol.png" alt="Carol Orofino" />
+  </div>
+  <div class="text-side">
+    <div class="text-inner">
+      <span class="eyebrow">Sobre nós</span>
+      <h2 class="section-title">Carol Orofino</h2>
+      <div class="divider-accent"></div>
+      <p class="body-text">
+        Acredito que cada espaço conta uma história. Com mais de 10 anos de experiência, crio ambientes que unem funcionalidade, beleza e identidade.
+      </p>
+      <a class="cta-link" href="#">Conheça mais →</a>
+    </div>
+  </div>
+</div>
+
+<div class="sep"><div class="sep-line"></div></div>
+
+<!-- ═══ OPTION C ═══ -->
+<div class="option-banner"><span>C</span> Assimétrico 60/40 — linha vertical walnut, editorial</div>
+<div class="scroll-note">✦ no scroll: texto revela com fade, foto sobe levemente (parallax)</div>
+
+<div class="option-c">
+  <div class="text-side">
+    <div class="text-inner">
+      <span class="eyebrow">Sobre nós</span>
+      <h2 class="section-title">Carol Orofino</h2>
+      <div class="divider-accent"></div>
+      <p class="body-text">
+        Acredito que cada espaço conta uma história. Com mais de 10 anos de experiência, crio ambientes que unem funcionalidade, beleza e identidade.
+      </p>
+      <a class="cta-link" href="#">Conheça mais →</a>
+    </div>
+  </div>
+  <div class="photo-side">
+    <img src="/files/carol.png" alt="Carol Orofino" />
+  </div>
+</div>
+
+<div class="mobile-note">📱 Mobile: ambas ficam empilhadas — foto em cima (altura fixa), texto embaixo</div>
+
+<!-- Botões -->
+<div class="choice-bar">
+  <p>Qual layout você prefere?</p>
+  <div class="choice-btns">
+    <button class="choice-btn" onclick="choose('a', this)">Escolher A</button>
+    <button class="choice-btn" onclick="choose('c', this)">Escolher C</button>
+  </div>
+</div>
+
+<script>
+function choose(opt, btn) {
+  document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if (window.__sp_record) window.__sp_record(opt, btn.textContent.trim());
+}
+</script>
+</body>
+</html>

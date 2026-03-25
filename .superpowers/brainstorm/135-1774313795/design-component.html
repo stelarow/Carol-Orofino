@@ -1,0 +1,194 @@
+<style>
+  :root {
+    --linen: #edeae1;
+    --sand: #e0cfb3;
+    --stone: #d5d0cc;
+    --walnut: #86725a;
+    --text-dark: #1A1A1A;
+    --text-muted: #95978a;
+  }
+
+  body { background: var(--linen); font-family: 'Georgia', serif; }
+  h2 { font-family: 'Georgia', serif; font-size: 1.4rem; font-weight: 400; letter-spacing: 0.05em; color: var(--text-dark); margin-bottom: 0.3rem; }
+  .subtitle { font-family: Arial, sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
+
+  /* Site mockup */
+  .site-mockup {
+    background: var(--linen);
+    border: 1px solid var(--stone);
+    border-radius: 6px;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .mockup-bar {
+    background: var(--stone);
+    padding: 0.5rem 1rem;
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+  }
+  .mockup-bar span {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--walnut); opacity: 0.4;
+  }
+  .mockup-bar .url {
+    font-family: Arial, sans-serif; font-size: 0.65rem; color: var(--text-muted);
+    margin-left: 0.5rem; letter-spacing: 0.05em;
+    background: none; width: auto; height: auto; border-radius: 0; opacity: 1;
+  }
+
+  /* Sections */
+  .site-section {
+    padding: 2.5rem 3rem;
+  }
+
+  .sec-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--walnut);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .sec-title {
+    font-family: 'Georgia', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--text-dark);
+    display: block;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.02em;
+  }
+
+  .sec-body {
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  /* THE DIVIDER — animated */
+  .section-divider {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .divider-line {
+    display: block;
+    height: 1px;
+    width: 176px;
+    background: linear-gradient(to right, transparent, var(--walnut) 25%, var(--walnut) 75%, transparent);
+    transform-origin: center;
+    animation: dividerIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  @keyframes dividerIn {
+    0%   { opacity: 0; transform: scaleX(0.15); }
+    100% { opacity: 1; transform: scaleX(1); }
+  }
+
+  /* replay button */
+  .replay-btn {
+    display: block;
+    margin: 1.5rem auto 0;
+    background: none;
+    border: 1px solid var(--walnut);
+    color: var(--walnut);
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .replay-btn:hover { background: var(--walnut); color: var(--linen); }
+
+  .note {
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 1rem;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+  }
+  .note strong {
+    color: var(--walnut);
+    font-weight: normal;
+  }
+</style>
+
+<h2>Design do componente &lt;SectionDivider /&gt;</h2>
+<p class="subtitle">Preview com animação real — como vai aparecer ao rolar a página</p>
+
+<div class="site-mockup">
+  <div class="mockup-bar">
+    <span></span><span></span><span></span>
+    <span class="url">carol-orofino.vercel.app</span>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="site-section">
+    <span class="sec-label">Projetos</span>
+    <span class="sec-title">Residencial</span>
+    <p class="sec-body">
+      Ambientes que traduzem com precisão a identidade de quem os habita.
+      Cada projeto é uma narrativa singular entre espaço e pessoa.
+    </p>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" id="divider1">
+    <span class="divider-line" id="line1"></span>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="site-section">
+    <span class="sec-label">Sobre</span>
+    <span class="sec-title">Carol Orofino</span>
+    <p class="sec-body">
+      Arquiteta e designer de interiores com mais de uma década de experiência
+      criando espaços que equilibram função, beleza e autenticidade.
+    </p>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="section-divider" id="divider2">
+    <span class="divider-line" style="animation-delay: 0.15s;" id="line2"></span>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="site-section">
+    <span class="sec-label">Blog</span>
+    <span class="sec-title">Tendências 2025</span>
+    <p class="sec-body">
+      O que esperar do design de interiores este ano — materiais, paletas e
+      o retorno do orgânico como linguagem dominante.
+    </p>
+  </div>
+</div>
+
+<button class="replay-btn" onclick="replayAnimation()">↺ Repetir animação</button>
+
+<p class="note">
+  A animação acontece <strong>uma vez</strong> ao rolar — aqui você pode repetir clicando no botão.<br>
+  Linha de <strong>176px</strong> · walnut com fade nas pontas · padding 32px acima e abaixo.
+</p>
+
+<script>
+function replayAnimation() {
+  ['line1', 'line2'].forEach(function(id) {
+    var el = document.getElementById(id);
+    el.style.animation = 'none';
+    el.offsetHeight; // reflow
+    el.style.animation = '';
+  });
+}
+</script>
