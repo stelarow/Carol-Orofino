@@ -125,7 +125,7 @@ export default async function QuestionnairePage({
 
   return (
     <div className="min-h-[calc(100vh-80px)] px-6 pb-16 pt-28">
-      <QuestionnaireWizard messages={messages} />
+      <QuestionnaireWizard messages={messages} locale={locale} />
     </div>
   )
 }
