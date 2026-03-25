@@ -62,7 +62,7 @@ export default function VideoSection() {
           >
             <div className="absolute inset-0 bg-black/30" />
             <p className="relative font-display text-5xl md:text-7xl font-light italic text-white text-center drop-shadow-lg">
-              Ambientes que revelam quem você é.
+              Sua essência, em cada detalhe.
             </p>
           </motion.div>
         )}
