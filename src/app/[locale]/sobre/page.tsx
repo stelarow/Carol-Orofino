@@ -6,6 +6,7 @@ import { routing, type Locale } from '@/lib/i18n'
 import { services } from '@/data/services'
 import { SectionDivider } from '@/components/SectionDivider'
 import WhatsAppButton from '@/components/WhatsAppButton'
+import VideoSection from '@/components/VideoSection'
 
 export async function generateMetadata({
   params,
@@ -99,6 +100,8 @@ export default async function SobrePage({
         </div>
       </section>
 
+      <SectionDivider />
+      <VideoSection />
       <SectionDivider />
 
       {/* Section 2 — Filosofia de Design */}
