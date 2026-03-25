@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useImageUpload } from '@/components/hooks/use-image-upload'
-import { ArrowUp, X } from 'lucide-react'
+import { ArrowUp, FileText, Film, ImagePlus, X } from 'lucide-react'
 
 const fieldVariants = {
   hidden: { opacity: 0, y: 12 },
@@ -48,6 +48,34 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
     onUpload: () => {},
   })
 
+  const [floorPlanPreviewUrl, setFloorPlanPreviewUrl] = useState<string | null>(null)
+  // Ref kept in sync with state so the unmount cleanup reads the latest URL (same pattern as Zone 2)
+  const floorPlanPreviewUrlRef = useRef<string | null>(null)
+  const [isFloorPlanDragging, setIsFloorPlanDragging] = useState(false)
+  // Direct DOM ref for the drop zone — lets us set data-dragging synchronously (avoiding React's
+  // deferred scheduling for ContinuousEventPriority events like dragenter in React 19).
+  const floorPlanZoneRef = useRef<HTMLDivElement | null>(null)
+
+  function setFloorPlanUrl(url: string | null) {
+    setFloorPlanPreviewUrl(url)
+    floorPlanPreviewUrlRef.current = url
+  }
+
+  // Sets dragging state both in React (for className re-render) and directly on the DOM node
+  // (synchronously) so that tests observing data-dragging don't depend on React's async flush.
+  function setDragging(value: boolean) {
+    setIsFloorPlanDragging(value)
+    if (floorPlanZoneRef.current) {
+      floorPlanZoneRef.current.dataset.dragging = value ? 'true' : 'false'
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (floorPlanPreviewUrlRef.current) URL.revokeObjectURL(floorPlanPreviewUrlRef.current)
+    }
+  }, []) // empty deps: runs only on unmount; reads from ref (always fresh)
+
   function toggleRoom(key: string) {
     const next = data.roomType.includes(key)
       ? data.roomType.filter(r => r !== key)
@@ -64,18 +92,43 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
 
   function handleFloorPlan(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null
-    if (file) {
-      if (!FLOOR_PLAN_TYPES.includes(file.type)) {
-        setErrors(prev => ({ ...prev, floorPlan: messages.fileInvalidType }))
-        return
-      }
-      if (file.size > FLOOR_PLAN_MAX) {
-        setErrors(prev => ({ ...prev, floorPlan: messages.fileTooLarge }))
-        return
-      }
-      setErrors(prev => { const n = { ...prev }; delete n.floorPlan; return n })
+    if (!file) return   // cancelled picker — do not touch existing state
+    if (!FLOOR_PLAN_TYPES.includes(file.type)) {
+      setErrors(prev => ({ ...prev, floorPlan: messages.fileInvalidType }))
+      return
+    }
+    if (file.size > FLOOR_PLAN_MAX) {
+      setErrors(prev => ({ ...prev, floorPlan: messages.fileTooLarge }))
+      return
+    }
+    setErrors(prev => { const n = { ...prev }; delete n.floorPlan; return n })
+    // Revoke old URL manually before setting a new one.
+    // Do NOT use a dep-based useEffect cleanup alongside this manual revoke — that causes double-revoke.
+    if (floorPlanPreviewUrlRef.current) URL.revokeObjectURL(floorPlanPreviewUrlRef.current)
+    if (file.type.startsWith('image/')) {
+      setFloorPlanUrl(URL.createObjectURL(file))
+    } else {
+      setFloorPlanUrl(null)
     }
     onChange({ ...data, floorPlanFile: file })
+  }
+
+  function removeFloorPlan() {
+    if (floorPlanPreviewUrlRef.current) URL.revokeObjectURL(floorPlanPreviewUrlRef.current)
+    setFloorPlanUrl(null)
+    if (floorPlanUpload.fileInputRef.current) floorPlanUpload.fileInputRef.current.value = ''
+    setErrors(prev => { const n = { ...prev }; delete n.floorPlan; return n })
+    onChange({ ...data, floorPlanFile: null })
+  }
+
+  function handleFloorPlanDrop(e: React.DragEvent<HTMLDivElement>) {
+    e.preventDefault()
+    e.stopPropagation()
+    setDragging(false)
+    const file = e.dataTransfer.files?.[0]
+    if (!file) return
+    const fakeEvent = { target: { files: [file] } } as unknown as React.ChangeEvent<HTMLInputElement>
+    handleFloorPlan(fakeEvent)
   }
 
   function handlePhotos(e: React.ChangeEvent<HTMLInputElement>) {
@@ -138,45 +191,79 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
       {/* Floor plan upload */}
       <motion.div custom={2} variants={fieldVariants} initial="hidden" animate="visible">
         <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.floorPlan}</p>
+
+        {/* Hidden input — opened via hook's handleThumbnailClick */}
         <input
           ref={floorPlanUpload.fileInputRef}
           type="file"
           accept=".pdf,.png,.jpg,.jpeg"
           className="sr-only"
-          onChange={(e) => {
-            handleFloorPlan(e)
-            floorPlanUpload.handleFileChange(e)
-          }}
+          onChange={handleFloorPlan}
         />
+
         {!data.floorPlanFile ? (
-          <button
-            type="button"
+          <div
+            ref={floorPlanZoneRef}
+            data-testid="floor-plan-zone"
+            data-dragging={isFloorPlanDragging ? 'true' : 'false'}
             onClick={floorPlanUpload.handleThumbnailClick}
-            className="flex items-center gap-4 border border-stone bg-transparent px-4 py-3 w-full text-left transition-colors duration-150 hover:border-latte group"
+            onDragOver={(e) => { e.preventDefault(); e.stopPropagation() }}
+            onDragEnter={(e) => { e.preventDefault(); e.stopPropagation(); setDragging(true) }}
+            onDragLeave={(e) => {
+              e.preventDefault()
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) setDragging(false)
+            }}
+            onDrop={handleFloorPlanDrop}
+            className={`flex h-40 w-full cursor-pointer flex-col items-center justify-center gap-3 border-2 border-dashed transition-colors duration-150 ${
+              isFloorPlanDragging
+                ? 'border-walnut bg-walnut/5'
+                : 'border-stone hover:border-latte'
+            }`}
           >
-            <span className="shrink-0 flex items-center justify-center w-9 h-9 border border-stone group-hover:border-latte transition-colors duration-150">
-              <ArrowUp className="w-4 h-4 text-slate" strokeWidth={1.5} />
-            </span>
-            <span className="font-body text-sm text-slate/60">{messages.floorPlanHint}</span>
-          </button>
+            <ArrowUp className="w-5 h-5 text-slate" strokeWidth={1.5} />
+            <span className="font-body text-xs text-slate/60">{messages.floorPlanHint}</span>
+          </div>
+        ) : floorPlanPreviewUrl ? (
+          <div className="group relative h-40 w-full overflow-hidden border border-walnut">
+            <img
+              src={floorPlanPreviewUrl}
+              alt={data.floorPlanFile.name}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center gap-3 bg-black/40 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+              <button
+                type="button"
+                onClick={() => {
+                  if (floorPlanUpload.fileInputRef.current) floorPlanUpload.fileInputRef.current.value = ''
+                  floorPlanUpload.handleThumbnailClick()
+                }}
+                className="border border-linen px-4 py-2 font-body text-xs uppercase tracking-widest text-linen hover:bg-linen/10 transition-colors"
+              >
+                Substituir
+              </button>
+              <button
+                type="button"
+                onClick={removeFloorPlan}
+                className="border border-linen px-4 py-2 font-body text-xs uppercase tracking-widest text-linen hover:bg-linen/10 transition-colors"
+              >
+                Remover
+              </button>
+            </div>
+          </div>
         ) : (
-          <div className="flex items-center gap-4 border border-walnut bg-walnut/5 px-4 py-3">
-            <span className="shrink-0 flex items-center justify-center w-9 h-9 border border-walnut">
-              <ArrowUp className="w-4 h-4 text-walnut" strokeWidth={1.5} />
-            </span>
+          <div className="flex h-40 w-full items-center gap-4 border border-walnut bg-walnut/5 px-4">
+            <FileText className="w-5 h-5 shrink-0 text-walnut" strokeWidth={1.5} />
             <span className="font-body text-sm text-walnut truncate flex-1">{data.floorPlanFile.name}</span>
             <button
               type="button"
-              onClick={() => {
-                floorPlanUpload.handleRemove()
-                onChange({ ...data, floorPlanFile: null })
-              }}
-              className="shrink-0 p-1 hover:bg-walnut/10 transition-colors rounded-full"
+              onClick={removeFloorPlan}
+              className="shrink-0 rounded-full p-1 hover:bg-walnut/10 transition-colors"
             >
               <X className="w-4 h-4 text-walnut" strokeWidth={1.5} />
             </button>
           </div>
         )}
+
         {errors.floorPlan && <p className="mt-1 font-body text-xs text-walnut/80">{errors.floorPlan}</p>}
       </motion.div>
 
