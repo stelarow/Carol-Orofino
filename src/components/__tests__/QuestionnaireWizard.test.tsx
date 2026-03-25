@@ -19,12 +19,12 @@ jest.mock('../../actions/submitQuestionnaire', () => ({
 
 describe('QuestionnaireWizard', () => {
   it('renders step 1 initially', () => {
-    render(<QuestionnaireWizard messages={messages} />)
+    render(<QuestionnaireWizard messages={messages} locale="pt" />)
     expect(screen.getByText('Identificação')).toBeInTheDocument()
   })
 
   it('shows progress indicator', () => {
-    render(<QuestionnaireWizard messages={messages} />)
+    render(<QuestionnaireWizard messages={messages} locale="pt" />)
     expect(screen.getByText(/Etapa 1 de 4/)).toBeInTheDocument()
   })
 })

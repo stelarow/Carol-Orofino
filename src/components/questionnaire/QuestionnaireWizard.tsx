@@ -27,9 +27,9 @@ type WizardMessages = {
   success: { title: string; message: string }
 }
 
-type Props = { messages: WizardMessages }
+type Props = { messages: WizardMessages; locale: string }
 
-export default function QuestionnaireWizard({ messages }: Props) {
+export default function QuestionnaireWizard({ messages, locale }: Props) {
   const [step, setStep] = useState(1)
   const [direction, setDirection] = useState(1)
   const [submitted, setSubmitted] = useState(false)
@@ -55,7 +55,7 @@ export default function QuestionnaireWizard({ messages }: Props) {
   async function handleSubmit() {
     setIsSubmitting(true)
     setSubmitError(null)
-    const result = await submitQuestionnaire({ ...step1, ...step2, ...step3, ...step4 })
+    const result = await submitQuestionnaire({ ...step1, ...step2, ...step3, ...step4 }, locale)
     setIsSubmitting(false)
     if (result.success) {
       setSubmitted(true)
