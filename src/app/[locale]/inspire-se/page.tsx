@@ -184,7 +184,7 @@ export default async function InspireSeePage({
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative h-[75vh] min-h-[520px] w-full overflow-hidden">
         <Image
-          src="/images/categories/design-interiores-hero.jpg"
+          src="/images/inspire-se/hero.png"
           alt={t('heroTitle')}
           fill
           priority
