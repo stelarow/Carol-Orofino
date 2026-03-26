@@ -26,6 +26,9 @@ type ActionResult = { success: true } | { success: false; error: string }
 export async function submitQuestionnaire(data: QuestionnaireData, locale: string): Promise<ActionResult> {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
+    const toEmail = process.env.RESEND_TO_EMAIL ?? 'carolorofinoo@gmail.com'
+    const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'
+    const fromLabel = `Carol Orofino <${fromEmail}>`
     const normalizedWa = normalizeWhatsApp(data.whatsapp)
 
     // Upload floor plan
@@ -66,31 +69,42 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     })
 
     const { error: carolEmailError } = await resend.emails.send({
-      from: 'Carol Orofino <onboarding@resend.dev>',
-      to: 'carolorofinoo@gmail.com',
+      from: fromLabel,
+      to: toEmail,
       subject: `Novo questionário — ${data.name}`,
       html,
     })
-    if (carolEmailError) throw carolEmailError
+    if (carolEmailError) {
+      console.error('[submitQuestionnaire] erro ao enviar email para Carol:', carolEmailError)
+      throw carolEmailError
+    }
 
-    try {
-      const { subject, html: clientHtml } = buildClientEmailHtml(
-        { name: data.name, roomType: data.roomType, styles: data.styles },
-        locale
-      )
-      await resend.emails.send({
-        from: 'Carol Orofino <onboarding@resend.dev>',
-        to: data.email,
-        replyTo: 'carolorofinoo@gmail.com',
-        subject,
-        html: clientHtml,
-      })
-    } catch {
-      // silent — client confirmation failure does not affect success result
+    // Confirmação para o cliente só funciona com domínio verificado no Resend
+    // Ativar quando tiver RESEND_FROM_EMAIL com domínio próprio configurado
+    if (fromEmail !== 'onboarding@resend.dev') {
+      try {
+        const { subject, html: clientHtml } = buildClientEmailHtml(
+          { name: data.name, roomType: data.roomType, styles: data.styles },
+          locale
+        )
+        const { error: clientEmailError } = await resend.emails.send({
+          from: fromLabel,
+          to: data.email,
+          replyTo: toEmail,
+          subject,
+          html: clientHtml,
+        })
+        if (clientEmailError) {
+          console.error('[submitQuestionnaire] erro ao enviar confirmação para cliente:', clientEmailError)
+        }
+      } catch (clientErr) {
+        console.error('[submitQuestionnaire] exceção ao enviar confirmação para cliente:', clientErr)
+      }
     }
 
     return { success: true }
-  } catch {
+  } catch (err) {
+    console.error('[submitQuestionnaire] erro geral:', err)
     return { success: false, error: 'generic' }
   }
 }

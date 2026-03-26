@@ -217,10 +217,10 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
                 key={key}
                 type="button"
                 onClick={() => toggleRoom(key)}
-                className={`border px-6 py-3 font-body text-sm uppercase tracking-widest transition-colors duration-150 ${
+                className={`border px-6 py-3 font-body text-sm uppercase tracking-widest transition-all duration-150 cursor-pointer shadow-sm ${
                   selected
-                    ? 'border-black bg-black/8 text-black'
-                    : 'border-black/30 bg-transparent text-black hover:border-black/60'
+                    ? 'border-walnut bg-walnut text-linen shadow-md'
+                    : 'border-black/25 bg-linen text-black hover:border-walnut/60 hover:bg-sand/70 hover:shadow'
                 }`}
               >
                 {label}
@@ -423,11 +423,12 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
         <motion.button
           type="button"
           onClick={() => { if (validate()) onNext() }}
-          className="bg-slate text-linen px-10 py-4 font-display italic hover:bg-slate/80 transition-colors duration-150"
-          whileHover={{ scale: 1.01 }}
-          transition={{ duration: 0.15 }}
+          className="group flex items-center justify-center gap-3 w-full sm:w-auto bg-walnut text-linen px-10 py-5 font-display italic text-xl border border-walnut/40 border-b-[4px] border-b-[#5c4a35] hover:bg-[#7a6752] active:translate-y-[3px] active:border-b active:border-b-[#5c4a35] transition-all duration-150 cursor-pointer"
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.1 }}
         >
           {nextLabel}
+          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>
         </motion.button>
       </motion.div>
     </div>

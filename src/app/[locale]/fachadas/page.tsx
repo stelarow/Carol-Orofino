@@ -22,7 +22,7 @@ export default async function FachadasPage({
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="relative h-[75vh] min-h-[520px] w-full overflow-hidden">
         <Image
-          src="/images/categories/projetos-hero.png"
+          src="/images/categories/fachadas-hero.png"
           alt="Fachadas Carol Orofino"
           fill
           priority

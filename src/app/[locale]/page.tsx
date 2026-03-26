@@ -113,7 +113,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[56vw] md:min-h-[28vw]"
           >
             <Image
-              src="/images/categories/projetos-hero.png"
+              src="/images/categories/fachadas-card.png"
               alt={t('fachadas')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

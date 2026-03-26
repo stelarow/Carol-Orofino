@@ -41,10 +41,10 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
   }
 
   const radioClass = (selected: boolean) =>
-    `flex cursor-pointer items-center gap-3 border px-4 py-3 font-body text-sm transition-colors duration-150 ${
+    `flex cursor-pointer items-center gap-3 border px-4 py-3 font-body text-sm transition-all duration-150 shadow-sm ${
       selected
-        ? 'border-black bg-black/8 text-black'
-        : 'border-black/30 bg-transparent text-black hover:border-black/60'
+        ? 'border-walnut bg-walnut text-linen shadow-md'
+        : 'border-black/25 bg-linen text-black hover:border-walnut/60 hover:bg-sand/70 hover:shadow'
     }`
 
   return (
@@ -56,7 +56,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
           {Object.entries(messages.scopeOptions).map(([key, label]) => (
             <label key={key} className={radioClass(data.scopeType === key)}>
               <input type="radio" name="scopeType" value={key} checked={data.scopeType === key} onChange={() => onChange({ ...data, scopeType: key })} className="sr-only" />
-              <span className={`text-xs ${data.scopeType === key ? 'text-black' : 'text-transparent'}`}>●</span>
+              <span className={`text-xs ${data.scopeType === key ? 'text-linen' : 'text-transparent'}`}>●</span>
               {label}
             </label>
           ))}
@@ -71,7 +71,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
           {Object.entries(messages.urgencyOptions).map(([key, label]) => (
             <label key={key} className={radioClass(data.urgency === key)}>
               <input type="radio" name="urgency" value={key} checked={data.urgency === key} onChange={() => onChange({ ...data, urgency: key })} className="sr-only" />
-              <span className={`text-xs ${data.urgency === key ? 'text-black' : 'text-transparent'}`}>●</span>
+              <span className={`text-xs ${data.urgency === key ? 'text-linen' : 'text-transparent'}`}>●</span>
               {label}
             </label>
           ))}
@@ -111,11 +111,12 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
           type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="bg-slate text-linen px-10 py-4 font-display italic hover:bg-slate/80 transition-colors duration-150 disabled:opacity-50"
-          whileHover={isSubmitting ? {} : { scale: 1.01 }}
-          transition={{ duration: 0.15 }}
+          className="group flex items-center justify-center gap-3 w-full sm:w-auto bg-walnut text-linen px-10 py-5 font-display italic text-xl border border-walnut/40 border-b-[4px] border-b-[#5c4a35] hover:bg-[#7a6752] active:translate-y-[3px] active:border-b active:border-b-[#5c4a35] transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:active:translate-y-0 disabled:active:border-b-[4px]"
+          whileTap={isSubmitting ? {} : { scale: 0.97 }}
+          transition={{ duration: 0.1 }}
         >
           {isSubmitting ? submittingLabel : submitLabel}
+          {!isSubmitting && <span className="inline-block transition-transform duration-200 group-hover:translate-x-1.5">→</span>}
         </motion.button>
       </motion.div>
     </div>

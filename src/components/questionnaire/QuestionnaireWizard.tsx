@@ -24,7 +24,7 @@ type WizardMessages = {
   step2: React.ComponentProps<typeof Step2Environment>['messages'] & { title: string }
   step3: React.ComponentProps<typeof Step3Style>['messages'] & { title: string }
   step4: React.ComponentProps<typeof Step4Scope>['messages'] & { title: string }
-  success: { title: string; message: string }
+  success: { title: string; message: string; backToHome: string }
 }
 
 type Props = { messages: WizardMessages; locale: string }
@@ -46,6 +46,7 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
   function goTo(n: number) {
     setDirection(n > step ? 1 : -1)
     setStep(n)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const progressLabel = messages.progress
@@ -70,7 +71,7 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
   }
 
   if (submitted) {
-    return <SuccessScreen title={messages.success.title} message={messages.success.message} />
+    return <SuccessScreen title={messages.success.title} message={messages.success.message} backToHome={messages.success.backToHome} homeHref={`/${locale}`} />
   }
 
   return (

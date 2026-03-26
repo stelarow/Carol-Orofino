@@ -164,7 +164,8 @@
     },
     "success": {
       "title": "Thank you!",
-      "message": "We received your questionnaire and will be in touch soon."
+      "message": "We received your questionnaire and will be in touch soon.",
+      "backToHome": "home"
     }
   },
   "blog": {

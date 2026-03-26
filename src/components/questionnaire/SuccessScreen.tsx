@@ -1,15 +1,15 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-// Transitions extraídas como constantes para evitar erro TypeScript com ease array
-// (arrays inline inferidos como number[], não tuple [n,n,n,n] como Framer Motion exige)
 const titleTransition = { delay: 0.15, duration: 0.35, ease: [0.25, 0, 0, 1] as const }
 const messageTransition = { delay: 0.25, duration: 0.35, ease: [0.25, 0, 0, 1] as const }
+const buttonTransition = { delay: 0.4, duration: 0.35, ease: [0.25, 0, 0, 1] as const }
 
-type Props = { title: string; message: string }
+type Props = { title: string; message: string; backToHome: string; homeHref: string }
 
-export default function SuccessScreen({ title, message }: Props) {
+export default function SuccessScreen({ title, message, backToHome, homeHref }: Props) {
   return (
     <div className="flex flex-col items-center gap-6 py-16 text-center">
       <motion.div
@@ -36,6 +36,20 @@ export default function SuccessScreen({ title, message }: Props) {
       >
         {message}
       </motion.p>
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={buttonTransition}
+        className="mt-4 w-full sm:w-auto"
+      >
+        <Link
+          href={homeHref}
+          className="group inline-flex items-center gap-2 font-display italic text-base text-black/50 hover:text-black/80 transition-colors duration-200"
+        >
+          {backToHome}
+          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+        </Link>
+      </motion.div>
     </div>
   )
 }
