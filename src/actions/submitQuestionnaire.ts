@@ -31,27 +31,38 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     const fromLabel = `Carol Orofino <${fromEmail}>`
     const normalizedWa = normalizeWhatsApp(data.whatsapp)
 
-    // Upload floor plan
+    // Upload floor plan to blob (storage) + read buffer for email attachment
     let floorPlanUrl: string | null = null
+    let floorPlanAttachment: { filename: string; content: Buffer } | null = null
     if (data.floorPlanFile) {
       const timestamp = Date.now()
       const safeName = data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-      const blob = await put(`questionnaire/${timestamp}-${safeName}`, data.floorPlanFile, {
-        access: 'private',
-      })
+      const [blob, buffer] = await Promise.all([
+        put(`questionnaire/${timestamp}-${safeName}`, data.floorPlanFile, { access: 'private' }),
+        data.floorPlanFile.arrayBuffer(),
+      ])
       floorPlanUrl = blob.url
+      floorPlanAttachment = { filename: data.floorPlanFile.name, content: Buffer.from(buffer) }
     }
 
-    // Upload photos/videos
+    // Upload photos/videos to blob + read buffers for email attachments
     const photoUrls: string[] = []
+    const photoAttachments: { filename: string; content: Buffer }[] = []
     for (const file of data.photoFiles) {
       const timestamp = Date.now()
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-      const blob = await put(`questionnaire/${timestamp}-${safeName}`, file, {
-        access: 'private',
-      })
+      const [blob, buffer] = await Promise.all([
+        put(`questionnaire/${timestamp}-${safeName}`, file, { access: 'private' }),
+        file.arrayBuffer(),
+      ])
       photoUrls.push(blob.url)
+      photoAttachments.push({ filename: file.name, content: Buffer.from(buffer) })
     }
+
+    const attachments = [
+      ...(floorPlanAttachment ? [floorPlanAttachment] : []),
+      ...photoAttachments,
+    ]
 
     const html = buildEmailHtml({
       name: data.name,
@@ -73,6 +84,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       to: toEmail,
       subject: `Novo questionário — ${data.name}`,
       html,
+      attachments,
     })
     if (carolEmailError) {
       console.error('[submitQuestionnaire] erro ao enviar email para Carol:', carolEmailError)
