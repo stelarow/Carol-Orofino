@@ -66,7 +66,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     })
 
     const { error: carolEmailError } = await resend.emails.send({
-      from: 'questionario@carolorofino.com.br',
+      from: 'Carol Orofino <onboarding@resend.dev>',
       to: 'carolorofinoo@gmail.com',
       subject: `Novo questionário — ${data.name}`,
       html,
@@ -79,7 +79,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
         locale
       )
       await resend.emails.send({
-        from: 'questionario@carolorofino.com.br',
+        from: 'Carol Orofino <onboarding@resend.dev>',
         to: data.email,
         replyTo: 'carolorofinoo@gmail.com',
         subject,
