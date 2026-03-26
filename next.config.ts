@@ -1,13 +1,12 @@
 // next.config.ts
+import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin('./src/lib/i18n-request.ts')
 
-const nextConfig = {
-  experimental: {
-    serverActions: {
-      bodySizeLimit: '52mb',
-    },
+const nextConfig: NextConfig = {
+  serverActions: {
+    bodySizeLimit: '52mb',
   },
 }
 
