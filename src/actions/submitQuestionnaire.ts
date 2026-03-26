@@ -24,6 +24,8 @@ export type QuestionnaireData = {
 type ActionResult = { success: true } | { success: false; error: string }
 
 export async function submitQuestionnaire(data: QuestionnaireData, locale: string): Promise<ActionResult> {
+  console.log('[submitQuestionnaire] início — cliente:', data.name, '| fotos:', data.photoFiles.length, '| planta:', !!data.floorPlanFile)
+
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const toEmail = process.env.RESEND_TO_EMAIL ?? 'carolorofinoo@gmail.com'
@@ -31,26 +33,39 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     const fromLabel = `Carol Orofino <${fromEmail}>`
     const normalizedWa = normalizeWhatsApp(data.whatsapp)
 
+    console.log('[submitQuestionnaire] env — RESEND_API_KEY:', !!process.env.RESEND_API_KEY, '| BLOB_TOKEN:', !!process.env.BLOB_READ_WRITE_TOKEN)
+
     // Upload floor plan + photos to blob in parallel
     const timestamp = Date.now()
-    const [floorPlanBlob, ...photoBlobs] = await Promise.all([
-      data.floorPlanFile
-        ? put(
-            `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
-            data.floorPlanFile,
+    console.log('[submitQuestionnaire] iniciando uploads para Blob...')
+    let floorPlanBlob: Awaited<ReturnType<typeof put>> | null = null
+    let photoBlobs: Awaited<ReturnType<typeof put>>[] = []
+    try {
+      const results = await Promise.all([
+        data.floorPlanFile
+          ? put(
+              `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
+              data.floorPlanFile,
+              { access: 'private' }
+            )
+          : Promise.resolve(null),
+        ...data.photoFiles.map((file, i) =>
+          put(
+            `questionnaire/${timestamp}-${i}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
+            file,
             { access: 'private' }
           )
-        : Promise.resolve(null),
-      ...data.photoFiles.map((file, i) =>
-        put(
-          `questionnaire/${timestamp}-${i}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
-          file,
-          { access: 'private' }
-        )
-      ),
-    ])
+        ),
+      ])
+      ;[floorPlanBlob, ...photoBlobs] = results as [typeof floorPlanBlob, ...typeof photoBlobs]
+      console.log('[submitQuestionnaire] uploads concluídos — planta:', !!floorPlanBlob, '| fotos:', photoBlobs.length)
+    } catch (blobErr) {
+      console.error('[submitQuestionnaire] falha no upload para Vercel Blob:', blobErr)
+      throw blobErr
+    }
+
     const floorPlanUrl = floorPlanBlob?.url ?? null
-    const photoUrls = photoBlobs.map(b => b!.url)
+    const photoUrls = photoBlobs.map(b => b.url)
 
     const html = buildEmailHtml({
       name: data.name,
@@ -67,6 +82,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       budget: data.budget,
     })
 
+    console.log('[submitQuestionnaire] enviando email para Carol...')
     const { error: carolEmailError } = await resend.emails.send({
       from: fromLabel,
       to: toEmail,
@@ -74,9 +90,10 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       html,
     })
     if (carolEmailError) {
-      console.error('[submitQuestionnaire] erro ao enviar email para Carol:', carolEmailError)
+      console.error('[submitQuestionnaire] Resend rejeitou email para Carol:', JSON.stringify(carolEmailError))
       throw carolEmailError
     }
+    console.log('[submitQuestionnaire] email para Carol enviado com sucesso')
 
     // Confirmação para o cliente só funciona com domínio verificado no Resend
     // Ativar quando tiver RESEND_FROM_EMAIL com domínio próprio configurado
@@ -94,16 +111,18 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
           html: clientHtml,
         })
         if (clientEmailError) {
-          console.error('[submitQuestionnaire] erro ao enviar confirmação para cliente:', clientEmailError)
+          console.error('[submitQuestionnaire] Resend rejeitou confirmação para cliente:', JSON.stringify(clientEmailError))
         }
       } catch (clientErr) {
         console.error('[submitQuestionnaire] exceção ao enviar confirmação para cliente:', clientErr)
       }
     }
 
+    console.log('[submitQuestionnaire] concluído com sucesso')
     return { success: true }
   } catch (err) {
-    console.error('[submitQuestionnaire] erro geral:', err)
+    console.error('[submitQuestionnaire] erro geral — tipo:', err instanceof Error ? err.constructor.name : typeof err)
+    console.error('[submitQuestionnaire] erro geral — detalhe:', err)
     return { success: false, error: 'generic' }
   }
 }
