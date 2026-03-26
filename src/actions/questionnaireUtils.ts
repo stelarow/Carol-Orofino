@@ -20,7 +20,6 @@ export function buildEmailHtml(data: {
   area: string
   floorPlanUrl: string | null
   photoUrls: string[]
-  attachmentCount: number
   styles: string[]
   mustHave: string
   scopeType: string
@@ -28,9 +27,16 @@ export function buildEmailHtml(data: {
   budget: string
 }): string {
   const waUrl = `https://wa.me/${data.whatsapp}`
-  const filesSummary = data.attachmentCount > 0
-    ? `${data.attachmentCount} arquivo(s) anexado(s) a este e-mail`
-    : null
+
+  const floorPlanHtml = data.floorPlanUrl
+    ? `<strong>Planta:</strong> <a href="${data.floorPlanUrl}">Ver arquivo</a><br/>`
+    : ''
+
+  const photosHtml = data.photoUrls.length > 0
+    ? `<strong>Fotos/vídeos:</strong><br/>${data.photoUrls.map((url, i) =>
+        `<a href="${url}" style="display:inline-block;margin:4px 4px 0 0">Arquivo ${i + 1}</a>`
+      ).join(' ')}<br/>`
+    : ''
 
   return `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
@@ -45,7 +51,8 @@ export function buildEmailHtml(data: {
       <h3>🏠 Ambiente</h3>
       <p><strong>Tipo:</strong> ${data.roomType.map(escapeHtml).join(', ')}<br/>
       ${data.area ? `<strong>Medidas:</strong> ${escapeHtml(data.area)}<br/>` : ''}
-      ${filesSummary ? `<strong>Arquivos:</strong> ${filesSummary}` : ''}</p>
+      ${floorPlanHtml}
+      ${photosHtml}</p>
 
       <h3>🎨 Estilo</h3>
       <p><strong>Estilos:</strong> ${data.styles.map(escapeHtml).join(', ') || '—'}<br/>

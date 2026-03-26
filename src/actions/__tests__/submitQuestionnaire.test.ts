@@ -24,7 +24,6 @@ describe('buildEmailHtml', () => {
       area: '35 m²',
       floorPlanUrl: null,
       photoUrls: [],
-      attachmentCount: 0,
       styles: ['minimalista'],
       mustHave: 'Mesa grande',
       scopeType: 'projeto3d',

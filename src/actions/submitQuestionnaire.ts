@@ -31,38 +31,26 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     const fromLabel = `Carol Orofino <${fromEmail}>`
     const normalizedWa = normalizeWhatsApp(data.whatsapp)
 
-    // Upload floor plan to blob (storage) + read buffer for email attachment
-    let floorPlanUrl: string | null = null
-    let floorPlanAttachment: { filename: string; content: Buffer } | null = null
-    if (data.floorPlanFile) {
-      const timestamp = Date.now()
-      const safeName = data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-      const [blob, buffer] = await Promise.all([
-        put(`questionnaire/${timestamp}-${safeName}`, data.floorPlanFile, { access: 'private' }),
-        data.floorPlanFile.arrayBuffer(),
-      ])
-      floorPlanUrl = blob.url
-      floorPlanAttachment = { filename: data.floorPlanFile.name, content: Buffer.from(buffer) }
-    }
-
-    // Upload photos/videos to blob + read buffers for email attachments
-    const photoUrls: string[] = []
-    const photoAttachments: { filename: string; content: Buffer }[] = []
-    for (const file of data.photoFiles) {
-      const timestamp = Date.now()
-      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
-      const [blob, buffer] = await Promise.all([
-        put(`questionnaire/${timestamp}-${safeName}`, file, { access: 'private' }),
-        file.arrayBuffer(),
-      ])
-      photoUrls.push(blob.url)
-      photoAttachments.push({ filename: file.name, content: Buffer.from(buffer) })
-    }
-
-    const attachments = [
-      ...(floorPlanAttachment ? [floorPlanAttachment] : []),
-      ...photoAttachments,
-    ]
+    // Upload floor plan + photos to blob in parallel
+    const timestamp = Date.now()
+    const [floorPlanBlob, ...photoBlobs] = await Promise.all([
+      data.floorPlanFile
+        ? put(
+            `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
+            data.floorPlanFile,
+            { access: 'private' }
+          )
+        : Promise.resolve(null),
+      ...data.photoFiles.map((file, i) =>
+        put(
+          `questionnaire/${timestamp}-${i}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
+          file,
+          { access: 'private' }
+        )
+      ),
+    ])
+    const floorPlanUrl = floorPlanBlob?.url ?? null
+    const photoUrls = photoBlobs.map(b => b!.url)
 
     const html = buildEmailHtml({
       name: data.name,
@@ -72,7 +60,6 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       area: data.area,
       floorPlanUrl,
       photoUrls,
-      attachmentCount: attachments.length,
       styles: data.styles,
       mustHave: data.mustHave,
       scopeType: data.scopeType,
@@ -85,7 +72,6 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       to: toEmail,
       subject: `Novo questionário — ${data.name}`,
       html,
-      attachments,
     })
     if (carolEmailError) {
       console.error('[submitQuestionnaire] erro ao enviar email para Carol:', carolEmailError)

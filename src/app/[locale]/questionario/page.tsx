@@ -2,6 +2,8 @@ import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import QuestionnaireWizard from '@/components/questionnaire/QuestionnaireWizard'
 
+export const maxDuration = 60
+
 export async function generateMetadata({
   params,
 }: {
