@@ -55,12 +55,17 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
   async function handleSubmit() {
     setIsSubmitting(true)
     setSubmitError(null)
-    const result = await submitQuestionnaire({ ...step1, ...step2, ...step3, ...step4 }, locale)
-    setIsSubmitting(false)
-    if (result.success) {
-      setSubmitted(true)
-    } else {
-      setSubmitError(result.error)
+    try {
+      const result = await submitQuestionnaire({ ...step1, ...step2, ...step3, ...step4 }, locale)
+      setIsSubmitting(false)
+      if (result.success) {
+        setSubmitted(true)
+      } else {
+        setSubmitError(result.error)
+      }
+    } catch {
+      setIsSubmitting(false)
+      setSubmitError('generic')
     }
   }
 

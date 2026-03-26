@@ -16,7 +16,7 @@ type Step4Data = { scopeType: string; urgency: string; budget: string }
 type Props = {
   data: Step4Data
   onChange: (data: Step4Data) => void
-  onSubmit: () => void
+  onSubmit: () => void | Promise<void>
   onBack: () => void
   isSubmitting: boolean
   error: string | null
@@ -44,7 +44,7 @@ export default function Step4Scope({ data, onChange, onSubmit, onBack, isSubmitt
     `flex cursor-pointer items-center gap-3 border px-4 py-3 font-body text-sm transition-colors duration-150 ${
       selected
         ? 'border-black bg-black/8 text-black'
-        : 'border-black/30 bg-transparent text-text-primary hover:border-latte'
+        : 'border-black/30 bg-transparent text-black hover:border-black/60'
     }`
 
   return (
