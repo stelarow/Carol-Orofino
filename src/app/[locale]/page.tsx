@@ -132,7 +132,7 @@ export default async function HomePage({
             className="group relative overflow-hidden min-h-[70vw] md:min-h-[40vw] md:max-h-[500px]"
           >
             <Image
-              src="/images/categories/inspire-se-card.png"
+              src="/images/categories/inspire-se-card-v2.png"
               alt={t('inspire-se')}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
