@@ -65,12 +65,13 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       budget: data.budget,
     })
 
-    await resend.emails.send({
+    const { error: carolEmailError } = await resend.emails.send({
       from: 'questionario@carolorofino.com.br',
       to: 'carolorofinoo@gmail.com',
       subject: `Novo questionário — ${data.name}`,
       html,
     })
+    if (carolEmailError) throw carolEmailError
 
     try {
       const { subject, html: clientHtml } = buildClientEmailHtml(
