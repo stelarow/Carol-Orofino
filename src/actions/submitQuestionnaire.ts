@@ -37,7 +37,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       const timestamp = Date.now()
       const safeName = data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')
       const blob = await put(`questionnaire/${timestamp}-${safeName}`, data.floorPlanFile, {
-        access: 'public',
+        access: 'private',
       })
       floorPlanUrl = blob.url
     }
@@ -48,7 +48,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       const timestamp = Date.now()
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
       const blob = await put(`questionnaire/${timestamp}-${safeName}`, file, {
-        access: 'public',
+        access: 'private',
       })
       photoUrls.push(blob.url)
     }
