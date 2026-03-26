@@ -72,6 +72,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       area: data.area,
       floorPlanUrl,
       photoUrls,
+      attachmentCount: attachments.length,
       styles: data.styles,
       mustHave: data.mustHave,
       scopeType: data.scopeType,

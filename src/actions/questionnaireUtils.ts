@@ -20,6 +20,7 @@ export function buildEmailHtml(data: {
   area: string
   floorPlanUrl: string | null
   photoUrls: string[]
+  attachmentCount: number
   styles: string[]
   mustHave: string
   scopeType: string
@@ -27,12 +28,9 @@ export function buildEmailHtml(data: {
   budget: string
 }): string {
   const waUrl = `https://wa.me/${data.whatsapp}`
-  const fileLinks = [
-    data.floorPlanUrl ? `<a href="${data.floorPlanUrl}">Planta baixa</a>` : null,
-    ...data.photoUrls.map((url, i) => `<a href="${url}">Foto ${i + 1}</a>`),
-  ]
-    .filter(Boolean)
-    .join(', ')
+  const filesSummary = data.attachmentCount > 0
+    ? `${data.attachmentCount} arquivo(s) anexado(s) a este e-mail`
+    : null
 
   return `
     <div style="font-family:sans-serif;max-width:600px;margin:0 auto">
@@ -47,7 +45,7 @@ export function buildEmailHtml(data: {
       <h3>🏠 Ambiente</h3>
       <p><strong>Tipo:</strong> ${data.roomType.map(escapeHtml).join(', ')}<br/>
       ${data.area ? `<strong>Medidas:</strong> ${escapeHtml(data.area)}<br/>` : ''}
-      ${fileLinks ? `<strong>Arquivos:</strong> ${fileLinks}` : ''}</p>
+      ${filesSummary ? `<strong>Arquivos:</strong> ${filesSummary}` : ''}</p>
 
       <h3>🎨 Estilo</h3>
       <p><strong>Estilos:</strong> ${data.styles.map(escapeHtml).join(', ') || '—'}<br/>

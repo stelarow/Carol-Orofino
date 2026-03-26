@@ -120,6 +120,7 @@ export default async function QuestionnairePage({
     success: {
       title: t('success.title'),
       message: t('success.message'),
+      backToHome: t('success.backToHome'),
     },
   }
 

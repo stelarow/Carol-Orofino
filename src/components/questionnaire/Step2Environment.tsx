@@ -16,7 +16,7 @@ const fieldVariants = {
 const FLOOR_PLAN_TYPES = ['application/pdf', 'image/png', 'image/jpeg']
 const PHOTO_TYPES = ['image/png', 'image/jpeg', 'image/webp', 'video/mp4', 'video/quicktime']
 const FLOOR_PLAN_MAX = 10 * 1024 * 1024
-const PHOTOS_MAX_TOTAL = 50 * 1024 * 1024
+const PHOTOS_MAX_TOTAL = 25 * 1024 * 1024
 
 type Step2Data = {
   roomType: string[]
