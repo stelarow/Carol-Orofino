@@ -21,7 +21,7 @@ describe('buildEmailHtml', () => {
       whatsapp: '5511999990000',
       email: 'ana@test.com',
       roomType: ['sala'],
-      area: 35,
+      area: '35 m²',
       floorPlanUrl: null,
       photoUrls: [],
       styles: ['minimalista'],

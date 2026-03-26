@@ -202,13 +202,13 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
     processPhotoFiles(files, false)
   }
 
-  const inputClass = 'w-full border border-stone bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-walnut transition-colors duration-200'
+  const inputClass = 'w-full border border-black/30 bg-linen/60 px-4 py-3 font-body text-sm placeholder:text-slate/60 focus:outline-none focus:border-black transition-colors duration-200'
 
   return (
     <div className="flex flex-col gap-6">
       {/* Room type chips */}
       <motion.div custom={0} variants={fieldVariants} initial="hidden" animate="visible">
-        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.roomType} *</p>
+        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-black">{messages.roomType} *</p>
         <div className="flex flex-wrap gap-3">
           {Object.entries(messages.roomOptions).map(([key, label]) => {
             const selected = data.roomType.includes(key)
@@ -219,8 +219,8 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
                 onClick={() => toggleRoom(key)}
                 className={`border px-6 py-3 font-body text-sm uppercase tracking-widest transition-colors duration-150 ${
                   selected
-                    ? 'border-walnut bg-walnut/8 text-walnut'
-                    : 'border-stone bg-transparent text-text-primary hover:border-latte'
+                    ? 'border-black bg-black/8 text-black'
+                    : 'border-black/30 bg-transparent text-black hover:border-black/60'
                 }`}
               >
                 {label}
@@ -228,12 +228,12 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
             )
           })}
         </div>
-        {errors.roomType && <p className="mt-2 font-body text-xs text-walnut/80">{errors.roomType}</p>}
+        {errors.roomType && <p className="mt-2 font-body text-xs text-black/70">{errors.roomType}</p>}
       </motion.div>
 
       {/* Area */}
       <motion.div custom={1} variants={fieldVariants} initial="hidden" animate="visible">
-        <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.area}</label>
+        <label className="mb-1 block font-body text-xs uppercase tracking-[0.2em] text-black">{messages.area}</label>
         <textarea
           value={data.area}
           onChange={e => onChange({ ...data, area: e.target.value })}
@@ -245,7 +245,7 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
 
       {/* Floor plan upload */}
       <motion.div custom={2} variants={fieldVariants} initial="hidden" animate="visible">
-        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.floorPlan}</p>
+        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-black">{messages.floorPlan}</p>
 
         {/* Hidden input — opened via hook's handleThumbnailClick */}
         <input
@@ -271,15 +271,15 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
             onDrop={handleFloorPlanDrop}
             className={`flex h-40 w-full cursor-pointer flex-col items-center justify-center gap-3 border-2 border-dashed transition-colors duration-150 ${
               isFloorPlanDragging
-                ? 'border-walnut bg-walnut/5'
-                : 'border-stone hover:border-latte'
+                ? 'border-black bg-black/5'
+                : 'border-black/30 hover:border-black/60'
             }`}
           >
-            <ArrowUp className="w-5 h-5 text-slate" strokeWidth={1.5} />
-            <span className="font-body text-xs text-slate/60">{messages.floorPlanHint}</span>
+            <ArrowUp className="w-5 h-5 text-black/70" strokeWidth={1.5} />
+            <span className="font-body text-xs text-black/50">{messages.floorPlanHint}</span>
           </div>
         ) : floorPlanPreviewUrl ? (
-          <div className="group relative h-40 w-full overflow-hidden border border-walnut">
+          <div className="group relative h-40 w-full overflow-hidden border border-black">
             <img
               src={floorPlanPreviewUrl}
               alt={data.floorPlanFile.name}
@@ -306,25 +306,25 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
             </div>
           </div>
         ) : (
-          <div className="flex h-40 w-full items-center gap-4 border border-walnut bg-walnut/5 px-4">
-            <FileText className="w-5 h-5 shrink-0 text-walnut" strokeWidth={1.5} />
-            <span className="font-body text-sm text-walnut truncate flex-1">{data.floorPlanFile.name}</span>
+          <div className="flex h-40 w-full items-center gap-4 border border-black bg-black/5 px-4">
+            <FileText className="w-5 h-5 shrink-0 text-black" strokeWidth={1.5} />
+            <span className="font-body text-sm text-black truncate flex-1">{data.floorPlanFile.name}</span>
             <button
               type="button"
               onClick={removeFloorPlan}
-              className="shrink-0 p-1 hover:bg-walnut/10 transition-colors"
+              className="shrink-0 p-1 hover:bg-black/10 transition-colors"
             >
-              <X className="w-4 h-4 text-walnut" strokeWidth={1.5} />
+              <X className="w-4 h-4 text-black" strokeWidth={1.5} />
             </button>
           </div>
         )}
 
-        {errors.floorPlan && <p className="mt-1 font-body text-xs text-walnut/80">{errors.floorPlan}</p>}
+        {errors.floorPlan && <p className="mt-1 font-body text-xs text-black/70">{errors.floorPlan}</p>}
       </motion.div>
 
       {/* Photos upload */}
       <motion.div custom={3} variants={fieldVariants} initial="hidden" animate="visible">
-        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-slate">{messages.photos}</p>
+        <p className="mb-3 font-body text-xs uppercase tracking-[0.2em] text-black">{messages.photos}</p>
 
         {/* Primary hidden input */}
         <input
@@ -362,12 +362,12 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
             onDrop={handlePhotosDrop}
             className={`flex h-40 w-full cursor-pointer flex-col items-center justify-center gap-3 border-2 border-dashed transition-colors duration-150 ${
               isPhotosDragging
-                ? 'border-walnut bg-walnut/5'
-                : 'border-stone hover:border-latte'
+                ? 'border-black bg-black/5'
+                : 'border-black/30 hover:border-black/60'
             }`}
           >
-            <ImagePlus className="w-5 h-5 text-slate" strokeWidth={1.5} />
-            <span className="font-body text-xs text-slate/60">{messages.photosHint}</span>
+            <ImagePlus className="w-5 h-5 text-black/70" strokeWidth={1.5} />
+            <span className="font-body text-xs text-black/50">{messages.photosHint}</span>
           </div>
         ) : (
           <div>
@@ -381,9 +381,9 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
                       className="h-full w-full object-cover"
                     />
                   ) : (
-                    <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-stone/30">
-                      <Film className="w-5 h-5 text-slate" strokeWidth={1.5} />
-                      <span className="w-full truncate px-1 text-center font-body text-[10px] text-slate">{file.name}</span>
+                    <div className="flex h-full w-full flex-col items-center justify-center gap-1 bg-black/10">
+                      <Film className="w-5 h-5 text-black/70" strokeWidth={1.5} />
+                      <span className="w-full truncate px-1 text-center font-body text-[10px] text-black/70">{file.name}</span>
                     </div>
                   )}
                   <button
@@ -401,14 +401,14 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
               onClick={() => {
                 if (addMoreRef.current) { addMoreRef.current.value = ''; addMoreRef.current.click() }
               }}
-              className="mt-3 font-body text-xs text-slate/70 underline underline-offset-2 hover:text-walnut transition-colors"
+              className="mt-3 font-body text-xs text-black/50 underline underline-offset-2 hover:text-black transition-colors"
             >
               + {messages.adicionarMais}
             </button>
           </div>
         )}
 
-        {errors.photos && <p className="mt-1 font-body text-xs text-walnut/80">{errors.photos}</p>}
+        {errors.photos && <p className="mt-1 font-body text-xs text-black/70">{errors.photos}</p>}
       </motion.div>
 
       {/* Navigation */}
@@ -416,14 +416,14 @@ export default function Step2Environment({ data, onChange, onNext, onBack, messa
         <button
           type="button"
           onClick={onBack}
-          className="font-body text-sm text-slate hover:text-walnut transition-colors"
+          className="font-body text-sm text-black hover:text-black/60 transition-colors"
         >
           ← {backLabel}
         </button>
         <motion.button
           type="button"
           onClick={() => { if (validate()) onNext() }}
-          className="bg-walnut text-linen px-10 py-4 font-display italic hover:bg-latte transition-colors duration-150"
+          className="bg-slate text-linen px-10 py-4 font-display italic hover:bg-slate/80 transition-colors duration-150"
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.15 }}
         >
