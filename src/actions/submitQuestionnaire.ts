@@ -35,32 +35,33 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
 
     console.log('[submitQuestionnaire] env — RESEND_API_KEY:', !!process.env.RESEND_API_KEY, '| BLOB_TOKEN:', !!process.env.BLOB_READ_WRITE_TOKEN)
 
-    // Upload floor plan + photos to blob in parallel
+    // Upload floor plan + photos to blob — todos em paralelo
     const timestamp = Date.now()
-    console.log('[submitQuestionnaire] iniciando uploads para Blob...')
+    const totalBytes = (data.floorPlanFile?.size ?? 0) + data.photoFiles.reduce((s, f) => s + f.size, 0)
+    console.log('[submitQuestionnaire] iniciando uploads para Blob — total:', (totalBytes / 1024 / 1024).toFixed(2) + 'MB')
+
     let floorPlanUrl: string | null = null
     let photoUrls: string[] = []
     try {
-      const photoUploads = await Promise.all(
-        data.photoFiles.map((file, i) =>
+      const [floorPlanResult, ...photoResults] = await Promise.all([
+        data.floorPlanFile
+          ? put(
+              `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
+              data.floorPlanFile,
+              { access: 'private' }
+            )
+          : Promise.resolve(null),
+        ...data.photoFiles.map((file, i) =>
           put(
             `questionnaire/${timestamp}-${i}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
             file,
             { access: 'private' }
           )
-        )
-      )
-      photoUrls = photoUploads.map(b => b.url)
+        ),
+      ])
 
-      if (data.floorPlanFile) {
-        const floorPlanBlob = await put(
-          `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
-          data.floorPlanFile,
-          { access: 'private' }
-        )
-        floorPlanUrl = floorPlanBlob.url
-      }
-
+      floorPlanUrl = floorPlanResult?.url ?? null
+      photoUrls = photoResults.map(b => b!.url)
       console.log('[submitQuestionnaire] uploads concluídos — planta:', !!floorPlanUrl, '| fotos:', photoUrls.length)
     } catch (blobErr) {
       console.error('[submitQuestionnaire] falha no upload para Vercel Blob:', blobErr)
