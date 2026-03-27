@@ -1,6 +1,5 @@
 'use server'
 
-import { put } from '@vercel/blob'
 import { Resend } from 'resend'
 import { normalizeWhatsApp, buildEmailHtml, buildClientEmailHtml } from './questionnaireUtils'
 
@@ -12,8 +11,8 @@ export type QuestionnaireData = {
   email: string
   roomType: string[]
   area: string
-  floorPlanFile: File | null
-  photoFiles: File[]
+  floorPlanUrl: string | null
+  photoUrls: string[]
   styles: string[]
   mustHave: string
   scopeType: string
@@ -24,7 +23,7 @@ export type QuestionnaireData = {
 type ActionResult = { success: true } | { success: false; error: string }
 
 export async function submitQuestionnaire(data: QuestionnaireData, locale: string): Promise<ActionResult> {
-  console.log('[submitQuestionnaire] início — cliente:', data.name, '| fotos:', data.photoFiles.length, '| planta:', !!data.floorPlanFile)
+  console.log('[submitQuestionnaire] início — cliente:', data.name, '| fotos:', data.photoUrls.length, '| planta:', !!data.floorPlanUrl)
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
@@ -33,40 +32,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     const fromLabel = `Carol Orofino <${fromEmail}>`
     const normalizedWa = normalizeWhatsApp(data.whatsapp)
 
-    console.log('[submitQuestionnaire] env — RESEND_API_KEY:', !!process.env.RESEND_API_KEY, '| BLOB_TOKEN:', !!process.env.BLOB_READ_WRITE_TOKEN)
-
-    // Upload floor plan + photos to blob — todos em paralelo
-    const timestamp = Date.now()
-    const totalBytes = (data.floorPlanFile?.size ?? 0) + data.photoFiles.reduce((s, f) => s + f.size, 0)
-    console.log('[submitQuestionnaire] iniciando uploads para Blob — total:', (totalBytes / 1024 / 1024).toFixed(2) + 'MB')
-
-    let floorPlanUrl: string | null = null
-    let photoUrls: string[] = []
-    try {
-      const [floorPlanResult, ...photoResults] = await Promise.all([
-        data.floorPlanFile
-          ? put(
-              `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
-              data.floorPlanFile,
-              { access: 'private' }
-            )
-          : Promise.resolve(null),
-        ...data.photoFiles.map((file, i) =>
-          put(
-            `questionnaire/${timestamp}-${i}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
-            file,
-            { access: 'private' }
-          )
-        ),
-      ])
-
-      floorPlanUrl = floorPlanResult?.url ?? null
-      photoUrls = photoResults.map(b => b!.url)
-      console.log('[submitQuestionnaire] uploads concluídos — planta:', !!floorPlanUrl, '| fotos:', photoUrls.length)
-    } catch (blobErr) {
-      console.error('[submitQuestionnaire] falha no upload para Vercel Blob:', blobErr)
-      throw blobErr
-    }
+    console.log('[submitQuestionnaire] env — RESEND_API_KEY:', !!process.env.RESEND_API_KEY)
 
     const html = buildEmailHtml({
       name: data.name,
@@ -74,8 +40,8 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
       email: data.email,
       roomType: data.roomType,
       area: data.area,
-      floorPlanUrl,
-      photoUrls,
+      floorPlanUrl: data.floorPlanUrl,
+      photoUrls: data.photoUrls,
       styles: data.styles,
       mustHave: data.mustHave,
       scopeType: data.scopeType,

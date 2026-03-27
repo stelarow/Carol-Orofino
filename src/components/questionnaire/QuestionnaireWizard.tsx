@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { upload } from '@vercel/blob/client'
 import { submitQuestionnaire } from '@/actions/submitQuestionnaire'
 import Step1Identity from './Step1Identity'
 import Step2Environment from './Step2Environment'
@@ -27,6 +28,9 @@ type WizardMessages = {
   success: { title: string; message: string; backToHome: string }
 }
 
+type UploadStatus = 'idle' | 'uploading' | 'done' | 'failed'
+type UploadEntry = { file: File; url: string | null; status: UploadStatus }
+
 type Props = { messages: WizardMessages; locale: string }
 
 export default function QuestionnaireWizard({ messages, locale }: Props) {
@@ -41,12 +45,69 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
   const [step3, setStep3] = useState({ styles: [] as string[], mustHave: '' })
   const [step4, setStep4] = useState({ scopeType: '', urgency: '', budget: '' })
 
+  // Tracks upload state per file (keyed by index in the uploads array)
+  // Index 0 = floor plan, 1+ = photos
+  const uploadsRef = useRef<UploadEntry[]>([])
+
   const TOTAL = 4
 
   function goTo(n: number) {
     setDirection(n > step ? 1 : -1)
     setStep(n)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  async function uploadFile(file: File, pathname: string): Promise<string | null> {
+    try {
+      const blob = await upload(pathname, file, {
+        access: 'private',
+        handleUploadUrl: '/api/upload',
+      })
+      return blob.url
+    } catch (err) {
+      console.error('[QuestionnaireWizard] falha no upload de', pathname, err)
+      return null
+    }
+  }
+
+  function startUploads() {
+    const timestamp = Date.now()
+    const entries: UploadEntry[] = []
+
+    if (step2.floorPlanFile) {
+      const safeName = step2.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+      entries.push({ file: step2.floorPlanFile, url: null, status: 'uploading' })
+      uploadFile(step2.floorPlanFile, `questionnaire/${timestamp}-${safeName}`).then(url => {
+        entries[0].url = url
+        entries[0].status = url ? 'done' : 'failed'
+      })
+    }
+
+    step2.photoFiles.forEach((file, i) => {
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+      const idx = entries.length
+      entries.push({ file, url: null, status: 'uploading' })
+      uploadFile(file, `questionnaire/${timestamp}-${i}-${safeName}`).then(url => {
+        entries[idx].url = url
+        entries[idx].status = url ? 'done' : 'failed'
+      })
+    })
+
+    uploadsRef.current = entries
+  }
+
+  async function retryFailed(): Promise<void> {
+    const timestamp = Date.now()
+    const retries = uploadsRef.current
+      .filter(e => e.status === 'failed' || e.status === 'idle')
+      .map(async (entry) => {
+        entry.status = 'uploading'
+        const safeName = entry.file.name.replace(/[^a-zA-Z0-9._-]/g, '_')
+        const url = await uploadFile(entry.file, `questionnaire/${timestamp}-retry-${safeName}`)
+        entry.url = url
+        entry.status = url ? 'done' : 'failed'
+      })
+    await Promise.all(retries)
   }
 
   const progressLabel = messages.progress
@@ -57,7 +118,22 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
     setIsSubmitting(true)
     setSubmitError(null)
     try {
-      const result = await submitQuestionnaire({ ...step1, ...step2, ...step3, ...step4 }, locale)
+      // Retry any uploads that didn't finish or failed
+      const hasPending = uploadsRef.current.some(e => e.status !== 'done')
+      if (hasPending) {
+        await retryFailed()
+      }
+
+      const entries = uploadsRef.current
+      const hasFloorPlan = step2.floorPlanFile !== null
+      const floorPlanUrl = hasFloorPlan ? (entries[0]?.url ?? null) : null
+      const photoEntries = hasFloorPlan ? entries.slice(1) : entries
+      const photoUrls = photoEntries.map(e => e.url).filter((u): u is string => u !== null)
+
+      const result = await submitQuestionnaire(
+        { ...step1, roomType: step2.roomType, area: step2.area, floorPlanUrl, photoUrls, ...step3, ...step4 },
+        locale
+      )
       setIsSubmitting(false)
       if (result.success) {
         setSubmitted(true)
@@ -120,7 +196,7 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
             <Step2Environment
               data={step2}
               onChange={setStep2}
-              onNext={() => goTo(3)}
+              onNext={() => { startUploads(); goTo(3) }}
               onBack={() => goTo(1)}
               messages={messages.step2}
               nextLabel={messages.next}
