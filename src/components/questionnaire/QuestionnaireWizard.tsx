@@ -60,7 +60,7 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
   async function uploadFile(file: File, pathname: string): Promise<string | null> {
     try {
       const blob = await upload(pathname, file, {
-        access: 'private',
+        access: 'public',
         handleUploadUrl: '/api/upload',
       })
       return blob.url
