@@ -109,7 +109,7 @@
       },
       "roomTypeError": "Please select a room type",
       "area": "Measurements (if you know them)",
-      "areaPlaceholder": "E.g.: living room 4x5m, bedroom 3x3m, or just 'a 60m² apartment'",
+      "areaPlaceholder": "E.g.: living room 13×16 ft, bedroom 10×10 ft, or just 'a 650 sq ft apartment'",
       "floorPlan": "Floor plan or sketch (optional)",
       "floorPlanHint": "PDF, PNG or JPG — max 10MB",
       "photos": "Photos or videos of the space (optional)",

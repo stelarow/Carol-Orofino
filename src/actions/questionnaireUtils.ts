@@ -7,8 +7,14 @@ function escapeHtml(str: string): string {
     .replace(/'/g, '&#39;')
 }
 
-export function normalizeWhatsApp(raw: string): string {
+export function normalizeWhatsApp(raw: string, locale = 'pt'): string {
   const digits = raw.replace(/\D/g, '')
+  if (locale === 'en') {
+    return digits.startsWith('1') ? digits : `1${digits}`
+  }
+  if (locale === 'es') {
+    return digits.startsWith('54') ? digits : `54${digits}`
+  }
   return digits.startsWith('55') ? digits : `55${digits}`
 }
 

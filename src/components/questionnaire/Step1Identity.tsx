@@ -23,12 +23,32 @@ type Props = {
     nameError: string; whatsappError: string; emailError: string
   }
   nextLabel: string
+  locale?: string
 }
 
-export default function Step1Identity({ data, onChange, onNext, messages, nextLabel }: Props) {
+export default function Step1Identity({ data, onChange, onNext, messages, nextLabel, locale }: Props) {
   const [errors, setErrors] = useState<Partial<Record<keyof Step1Data, string>>>({})
 
   function maskPhone(value: string): string {
+    if (locale === 'en') {
+      let digits = value.replace(/\D/g, '')
+      if (digits.startsWith('1')) digits = digits.slice(1)
+      digits = digits.slice(0, 10)
+      if (digits.length === 0) return ''
+      if (digits.length <= 3) return `+1 (${digits}`
+      if (digits.length <= 6) return `+1 (${digits.slice(0, 3)}) ${digits.slice(3)}`
+      return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
+    }
+    if (locale === 'es') {
+      let digits = value.replace(/\D/g, '')
+      if (digits.startsWith('549')) digits = digits.slice(3)
+      else if (digits.startsWith('54')) digits = digits.slice(2)
+      digits = digits.slice(0, 10)
+      if (digits.length === 0) return ''
+      if (digits.length <= 2) return `+54 9 ${digits}`
+      if (digits.length <= 6) return `+54 9 ${digits.slice(0, 2)} ${digits.slice(2)}`
+      return `+54 9 ${digits.slice(0, 2)} ${digits.slice(2, 6)}-${digits.slice(6)}`
+    }
     const digits = value.replace(/\D/g, '').slice(0, 11)
     if (digits.length <= 2) return digits.length ? `(${digits}` : ''
     if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`

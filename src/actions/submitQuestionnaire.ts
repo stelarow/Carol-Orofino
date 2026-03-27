@@ -30,7 +30,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     const toEmail = process.env.RESEND_TO_EMAIL ?? 'carolorofinoo@gmail.com'
     const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'
     const fromLabel = `Carol Orofino <${fromEmail}>`
-    const normalizedWa = normalizeWhatsApp(data.whatsapp)
+    const normalizedWa = normalizeWhatsApp(data.whatsapp, locale)
 
     console.log('[submitQuestionnaire] env — RESEND_API_KEY:', !!process.env.RESEND_API_KEY)
 

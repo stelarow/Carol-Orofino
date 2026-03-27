@@ -117,6 +117,7 @@ export default function QuestionnaireWizard({ messages, locale }: Props) {
               onNext={() => goTo(2)}
               messages={messages.step1}
               nextLabel={messages.next}
+              locale={locale}
             />
           )}
           {step === 2 && (
