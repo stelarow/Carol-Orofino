@@ -28,7 +28,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const toEmail = process.env.RESEND_TO_EMAIL ?? 'carolorofinoo@gmail.com'
-    const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'onboarding@resend.dev'
+    const fromEmail = process.env.RESEND_FROM_EMAIL ?? 'questionario@carolorofino.com.br'
     const fromLabel = `Carol Orofino <${fromEmail}>`
     const normalizedWa = normalizeWhatsApp(data.whatsapp, locale)
 
@@ -62,9 +62,7 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     }
     console.log('[submitQuestionnaire] email para Carol enviado com sucesso')
 
-    // Confirmação para o cliente só funciona com domínio verificado no Resend
-    // Ativar quando tiver RESEND_FROM_EMAIL com domínio próprio configurado
-    if (fromEmail !== 'onboarding@resend.dev') {
+    if (data.email) {
       try {
         const { subject, html: clientHtml } = buildClientEmailHtml(
           { name: data.name, roomType: data.roomType, styles: data.styles },
