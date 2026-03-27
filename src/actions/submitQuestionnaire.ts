@@ -38,34 +38,34 @@ export async function submitQuestionnaire(data: QuestionnaireData, locale: strin
     // Upload floor plan + photos to blob in parallel
     const timestamp = Date.now()
     console.log('[submitQuestionnaire] iniciando uploads para Blob...')
-    let floorPlanBlob: Awaited<ReturnType<typeof put>> | null = null
-    let photoBlobs: Awaited<ReturnType<typeof put>>[] = []
+    let floorPlanUrl: string | null = null
+    let photoUrls: string[] = []
     try {
-      const results = await Promise.all([
-        data.floorPlanFile
-          ? put(
-              `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
-              data.floorPlanFile,
-              { access: 'private' }
-            )
-          : Promise.resolve(null),
-        ...data.photoFiles.map((file, i) =>
+      const photoUploads = await Promise.all(
+        data.photoFiles.map((file, i) =>
           put(
             `questionnaire/${timestamp}-${i}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
             file,
             { access: 'private' }
           )
-        ),
-      ])
-      ;[floorPlanBlob, ...photoBlobs] = results as [typeof floorPlanBlob, ...typeof photoBlobs]
-      console.log('[submitQuestionnaire] uploads concluídos — planta:', !!floorPlanBlob, '| fotos:', photoBlobs.length)
+        )
+      )
+      photoUrls = photoUploads.map(b => b.url)
+
+      if (data.floorPlanFile) {
+        const floorPlanBlob = await put(
+          `questionnaire/${timestamp}-${data.floorPlanFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`,
+          data.floorPlanFile,
+          { access: 'private' }
+        )
+        floorPlanUrl = floorPlanBlob.url
+      }
+
+      console.log('[submitQuestionnaire] uploads concluídos — planta:', !!floorPlanUrl, '| fotos:', photoUrls.length)
     } catch (blobErr) {
       console.error('[submitQuestionnaire] falha no upload para Vercel Blob:', blobErr)
       throw blobErr
     }
-
-    const floorPlanUrl = floorPlanBlob?.url ?? null
-    const photoUrls = photoBlobs.map(b => b.url)
 
     const html = buildEmailHtml({
       name: data.name,
