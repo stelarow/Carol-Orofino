@@ -5,9 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface AnimatedHeroProps {
   words?: string[]
+  label?: string
+  heading?: string
+  ending?: string
 }
 
-export function AnimatedHero({ words: customWords }: AnimatedHeroProps) {
+export function AnimatedHero({ words: customWords, label, heading, ending }: AnimatedHeroProps) {
   const [index, setIndex] = useState(0)
   const words = useMemo(
     () => customWords ?? ['sonhos', 'espaços', 'desenhos', 'histórias', 'ambientes'],
@@ -24,11 +27,11 @@ export function AnimatedHero({ words: customWords }: AnimatedHeroProps) {
   return (
     <div className="flex flex-col items-center gap-2">
       <p className="font-body text-sm uppercase tracking-[0.35em] text-sage mb-8">
-        Design de Interiores
+        {label ?? 'Design de Interiores'}
       </p>
 
       <h1 className="font-display text-6xl md:text-8xl text-text-primary leading-tight tracking-tight">
-        Vamos criar
+        {heading ?? 'Vamos criar'}
       </h1>
 
       <div className="relative h-20 md:h-[7.5rem] flex items-center justify-center overflow-hidden w-full">
@@ -47,7 +50,7 @@ export function AnimatedHero({ words: customWords }: AnimatedHeroProps) {
       </div>
 
       <h1 className="font-display text-6xl md:text-8xl text-text-primary leading-tight tracking-tight">
-        juntas
+        {ending ?? 'juntas'}
       </h1>
     </div>
   )

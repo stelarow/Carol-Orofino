@@ -25,11 +25,24 @@ export default async function ContactPage({
   const message = t('whatsappMessage')
   const whatsappUrl = `https://wa.me/${number}?text=${encodeURIComponent(message)}`
 
+  const heroWords = [
+    t('heroWord0'),
+    t('heroWord1'),
+    t('heroWord2'),
+    t('heroWord3'),
+    t('heroWord4'),
+  ]
+
   return (
     <div className="flex min-h-[calc(100vh-80px)] items-center justify-center px-6">
       <div className="w-full max-w-2xl text-center">
 
-        <AnimatedHero />
+        <AnimatedHero
+          label={t('heroLabel')}
+          heading={t('heroHeading')}
+          ending={t('heroEnding')}
+          words={heroWords}
+        />
 
         <div className="flex flex-col items-center gap-6 mt-16">
           {/* WhatsApp CTA */}

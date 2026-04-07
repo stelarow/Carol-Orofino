@@ -15,7 +15,7 @@
     "residencial": "Residencial",
     "comercial": "Comercial",
     "fachadas": "Fachadas",
-    "inspire-se": "Inspire-se",
+    "inspire-se": "Inspírate",
     "reforma": "Reforma",
     "viewAllProjects": "Ver todos los proyectos",
     "featuredTitle": "Proyectos Destacados",
@@ -38,7 +38,7 @@
       "residencial": "Residencial",
       "comercial": "Comercial",
       "reforma": "Reforma",
-      "inspire-se": "Inspire-se"
+      "inspire-se": "Inspírate"
     }
   },
   "project": {
@@ -68,6 +68,14 @@
   },
   "contact": {
     "title": "Contacto",
+    "heroLabel": "Diseño de Interiores",
+    "heroHeading": "Vamos a crear",
+    "heroEnding": "juntos",
+    "heroWord0": "sueños",
+    "heroWord1": "espacios",
+    "heroWord2": "diseños",
+    "heroWord3": "historias",
+    "heroWord4": "ambientes",
     "whatsappLabel": "Hablar por WhatsApp",
     "whatsappMessage": "Hola Carol, me gustaría saber más sobre sus servicios.",
     "emailLabel": "Correo electrónico",
@@ -197,16 +205,22 @@
     "hero": "Comercial",
     "back": "Volver",
     "s1": {
-      "label": "01 — Estrategia",
-      "title": "Diseño que\ntrabaja por ti",
-      "p1": "En el espacio comercial, el ambiente habla antes que tú. Transmite seriedad, personalidad o calidez — a veces las tres a la vez.",
-      "p2": "Trabajo para que cada detalle — distribución, mobiliario, luz, paleta — refuerce quién eres y lo que quieres transmitir."
+      "label": "01 — Identidad",
+      "title": "Diseño que revela\nquién eres",
+      "p1": "El espacio comercial es una extensión de tu marca. Antes de cualquier palabra, ya comunica valores, cuidado y personalidad.",
+      "p2": "Cada elección — la madera, la luz, el detalle curatorial — está pensada para traducir tu esencia en ambiente."
     },
     "s2": {
-      "label": "02 — Ejecución",
-      "title": "Ambientes que\nperduran en la memoria",
-      "p1": "Del briefing a la entrega, acompaño cada etapa: proyecto técnico, materiales, proveedores, obra.",
-      "p2": "El objetivo es siempre el mismo — un espacio al que la gente quiera volver, que refuerce la credibilidad de tu marca y funcione impecablemente cada día."
+      "label": "02 — Presencia",
+      "title": "Ambientes que\nconstruyen autoridad",
+      "p1": "La credibilidad también se construye en el espacio. Un ambiente bien diseñado transmite seriedad, inspira confianza y posiciona tu marca antes incluso de la primera reunión.",
+      "p2": "Del mobiliario a la paleta, cada elemento refuerza el mensaje que quieres transmitir."
+    },
+    "s3": {
+      "label": "03 — Equilibrio",
+      "title": "Funcionalidad\ncon ligereza",
+      "p1": "La productividad real exige confort. Los espacios que integran luz natural, proporción y materiales adecuados crean ambientes donde las personas trabajan mejor — y permanecen con placer.",
+      "p2": "Proyecto para que belleza y función vayan juntas, sin concesiones."
     },
     "cta": {
       "title": "¿Diseñamos tu espacio?",
@@ -229,9 +243,60 @@
       "p1": "Del apartamento compacto a la casa amplia, el cuidado es el mismo: materiales que envejecen bien, luz que transforma, cada pieza en el lugar correcto.",
       "p2": "El resultado es un hogar que parece haber sido siempre así — y que no querrás dejar."
     },
+    "s3": {
+      "label": "03 — Dormitorios",
+      "title": "Refugio y\ndescanso",
+      "p1": "El dormitorio es el espacio más íntimo de la casa. Cada detalle — del revestimiento textil a la iluminación indirecta — está pensado para crear un ambiente de acogimiento y tranquilidad.",
+      "p2": "Un lugar que invita al descanso y refleja quién eres."
+    },
+    "s4": {
+      "label": "04 — Convivencia",
+      "title": "Salones que\nreúnen",
+      "p1": "La sala de estar es donde ocurre la vida. Diseñamos cada ambiente para facilitar la convivencia, con circulación fluida, mobiliario a medida y paleta de colores armoniosa.",
+      "p2": "Elegancia que invita a las personas a quedarse."
+    },
+    "s5": {
+      "label": "05 — A la mesa",
+      "title": "Comidas\nmemorables",
+      "p1": "Un comedor bien diseñado transforma cada comida en una ocasión especial. Iluminación, proporción y acabados que crean la atmósfera adecuada para recibir con sofisticación.",
+      "p2": "Del cotidiano a la cena especial, el escenario perfecto ya está listo."
+    },
     "cta": {
       "title": "¿Creamos tu hogar?",
       "body": "Cuéntame cómo es tu espacio y lo que sueñas para él.",
+      "button": "Rellenar cuestionario"
+    }
+  },
+  "fachadas": {
+    "hero": "Fachadas",
+    "back": "Volver",
+    "s1": {
+      "label": "01 — Presencia",
+      "title": "La primera impresión\nempieza desde fuera",
+      "p1": "La fachada es el rostro de un espacio. Antes de cualquier palabra, ya comunica valores, cuidado y personalidad — para quien pasa, para quien llega.",
+      "p2": "Cada proyecto comienza con la lectura del entorno: la luz, el volumen, los materiales que dialogarán con el paisaje sin perder identidad."
+    },
+    "s2": {
+      "label": "02 — Integración",
+      "title": "Interior y exterior\nen conversación",
+      "p1": "Cuando la fachada y los ambientes interiores se comunican, el espacio gana fluidez. El área exterior deja de ser un límite y se convierte en una extensión natural de la vida dentro de casa.",
+      "p2": "Volúmenes, aperturas y mobiliario de área trabajados en conjunto para crear una experiencia continua."
+    },
+    "s3": {
+      "label": "03 — Paisaje",
+      "title": "El proyecto que\nabraza el entorno",
+      "p1": "La piscina, el jardín, la vista — todo esto forma parte del proyecto. Una fachada bien diseñada enmarca el paisaje, crea perspectivas y valoriza lo que la naturaleza ya ofrece.",
+      "p2": "El resultado es un espacio que parece haber estado siempre allí."
+    },
+    "s4": {
+      "label": "04 — Identidad",
+      "title": "Cada lugar tiene\nsu propio lenguaje",
+      "p1": "Una fachada junto al mar pide ligereza, materiales que resistan y una paleta que dialogue con el agua y la arena. No existe fórmula — existe escucha e interpretación de cada contexto.",
+      "p2": "Es esa lectura cuidadosa la que transforma un proyecto en un lugar con alma."
+    },
+    "cta": {
+      "title": "¿Listo para empezar?",
+      "body": "Cuéntame sobre tu espacio y creemos algo increíble juntos.",
       "button": "Rellenar cuestionario"
     }
   },

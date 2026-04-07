@@ -2,20 +2,29 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import { SectionDivider } from '@/components/SectionDivider'
+import type { Locale } from '@/lib/i18n'
 
-export const metadata: Metadata = {
-  title: 'Residencial — Carol Orofino',
-  description:
-    'Projetos residenciais que traduzem a personalidade e o estilo de vida de cada família em espaços únicos e acolhedores.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'residencial' })
+  return {
+    title: `${t('hero')} — Carol Orofino`,
+  }
 }
 
 export default async function ResidencialPage({
   params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: Locale }>
 }) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'residencial' })
 
   return (
     <main className="bg-background">
@@ -23,7 +32,7 @@ export default async function ResidencialPage({
       <section className="relative h-[75vh] min-h-[520px] w-full overflow-hidden">
         <Image
           src="/images/categories/residencial-hero.png"
-          alt="Projetos Residenciais"
+          alt={t('hero')}
           fill
           priority
           className="object-cover object-center"
@@ -36,154 +45,144 @@ export default async function ResidencialPage({
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
-          Voltar
+          {t('back')}
         </Link>
         <div className="absolute bottom-0 left-0 right-0 px-8 pb-12 md:px-16 md:pb-16 text-center">
           <p className="font-body text-xs uppercase tracking-widest text-white/70 mb-3">
             Carol Orofino
           </p>
           <h1 className="font-display text-5xl md:text-7xl text-white tracking-wide leading-none">
-            Residencial
+            {t('hero')}
           </h1>
         </div>
       </section>
 
       <SectionDivider />
 
-{/* ── Seção 1: texto à esquerda, imagem à direita ──────────────────── */}
+      {/* ── Seção 1 ──────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[540px]">
         <div className="flex flex-col items-center justify-center px-8 py-16 md:px-16 md:py-20 text-center">
           <span className="font-body text-xs uppercase tracking-widest text-primary mb-6">
-            01 — Abordagem
+            {t('s1.label')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8">
-            Um lar feito<br />para você
+          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8" style={{ whiteSpace: 'pre-line' }}>
+            {t('s1.title')}
           </h2>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md mb-6">
-            Antes de qualquer traço, eu ouço. Como você acorda, como você recebe, o que
-            te cansa no espaço que tem hoje, o que nunca abre mão.
+            {t('s1.p1')}
           </p>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md">
-            Só com isso em mãos começa o projeto — que une o que é bonito com o que
-            realmente funciona para a sua vida.
+            {t('s1.p2')}
           </p>
         </div>
         <div className="relative aspect-square">
           <Image
             src="/images/categories/residencial-01.png"
-            alt="Projeto residencial Carol Orofino"
+            alt={t('hero')}
             fill
             className="object-cover object-center"
           />
         </div>
       </section>
 
-      {/* ── Seção 2: imagem à esquerda, texto à direita ──────────────────── */}
+      {/* ── Seção 2 ──────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[540px]">
         <div className="relative aspect-square order-2 md:order-1">
           <Image
             src="/images/categories/residencial-02.png"
-            alt="Detalhe de projeto residencial"
+            alt={t('hero')}
             fill
             className="object-cover object-center"
           />
         </div>
         <div className="flex flex-col items-center justify-center px-8 py-16 md:px-16 md:py-20 text-center order-1 md:order-2">
           <span className="font-body text-xs uppercase tracking-widest text-primary mb-6">
-            02 — Resultado
+            {t('s2.label')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8">
-            Espaços que<br />acolhem
+          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8" style={{ whiteSpace: 'pre-line' }}>
+            {t('s2.title')}
           </h2>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md mb-6">
-            Do apartamento compacto à casa ampla, o cuidado é o mesmo: materiais que
-            envelhecem bem, luz que transforma o ambiente, cada peça no lugar certo.
+            {t('s2.p1')}
           </p>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md">
-            O resultado é um lar que parece ter sempre sido assim — e que você não
-            vai querer deixar.
+            {t('s2.p2')}
           </p>
         </div>
       </section>
 
-      {/* ── Seção 3: texto à esquerda, imagem à direita ──────────────────── */}
+      {/* ── Seção 3 ──────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[540px]">
         <div className="flex flex-col items-center justify-center px-8 py-16 md:px-16 md:py-20 text-center">
           <span className="font-body text-xs uppercase tracking-widest text-primary mb-6">
-            03 — Dormitórios
+            {t('s3.label')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8">
-            Refúgio e<br />descanso
+          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8" style={{ whiteSpace: 'pre-line' }}>
+            {t('s3.title')}
           </h2>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md mb-6">
-            O quarto é o espaço mais íntimo da casa. Cada detalhe — do revestimento
-            têxtil à iluminação indireta — é pensado para criar um ambiente de
-            acolhimento e tranquilidade.
+            {t('s3.p1')}
           </p>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md">
-            Um lugar que convida ao descanso e reflete quem você é.
+            {t('s3.p2')}
           </p>
         </div>
         <div className="relative aspect-square">
           <Image
             src="/images/categories/residencial-03.png"
-            alt="Quarto de casal"
+            alt={t('hero')}
             fill
             className="object-cover object-center"
           />
         </div>
       </section>
 
-      {/* ── Seção 4: imagem à esquerda, texto à direita ──────────────────── */}
+      {/* ── Seção 4 ──────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[540px]">
         <div className="relative aspect-square order-2 md:order-1">
           <Image
             src="/images/categories/residencial-04.png"
-            alt="Living escandinavo"
+            alt={t('hero')}
             fill
             className="object-cover object-center"
           />
         </div>
         <div className="flex flex-col items-center justify-center px-8 py-16 md:px-16 md:py-20 text-center order-1 md:order-2">
           <span className="font-body text-xs uppercase tracking-widest text-primary mb-6">
-            04 — Convivência
+            {t('s4.label')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8">
-            Salas que<br />reúnem
+          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8" style={{ whiteSpace: 'pre-line' }}>
+            {t('s4.title')}
           </h2>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md mb-6">
-            A sala de estar é onde a vida acontece. Projetamos cada ambiente para
-            facilitar o convívio, com circulação fluida, mobiliário sob medida e
-            paleta de cores harmoniosa.
+            {t('s4.p1')}
           </p>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md">
-            Elegância que convida as pessoas a ficarem.
+            {t('s4.p2')}
           </p>
         </div>
       </section>
 
-      {/* ── Seção 5: texto à esquerda, imagem à direita ──────────────────── */}
+      {/* ── Seção 5 ──────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 md:grid-cols-2 min-h-[540px]">
         <div className="flex flex-col items-center justify-center px-8 py-16 md:px-16 md:py-20 text-center">
           <span className="font-body text-xs uppercase tracking-widest text-primary mb-6">
-            05 — À mesa
+            {t('s5.label')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8">
-            Refeições<br />memoráveis
+          <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide leading-tight mb-8" style={{ whiteSpace: 'pre-line' }}>
+            {t('s5.title')}
           </h2>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md mb-6">
-            Uma sala de jantar bem projetada transforma cada refeição em ocasião
-            especial. Iluminação, proporção e acabamentos que criam a atmosfera certa
-            para receber com sofisticação.
+            {t('s5.p1')}
           </p>
           <p className="font-body text-sm text-dark leading-relaxed max-w-md">
-            Do cotidiano ao jantar especial, o cenário perfeito já está pronto.
+            {t('s5.p2')}
           </p>
         </div>
         <div className="relative aspect-square">
           <Image
             src="/images/categories/residencial-05.png"
-            alt="Mesa de jantar"
+            alt={t('hero')}
             fill
             className="object-cover object-center"
           />
@@ -195,16 +194,16 @@ export default async function ResidencialPage({
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section className="flex flex-col items-center justify-center px-8 py-20 text-center">
         <h2 className="font-display text-4xl md:text-5xl text-text-primary tracking-wide mb-6">
-          Vamos criar seu lar?
+          {t('cta.title')}
         </h2>
         <p className="font-body text-sm text-dark leading-relaxed max-w-md mb-10">
-          Conta como é o seu espaço e o que você sonha para ele.
+          {t('cta.body')}
         </p>
         <Link
           href={`/${locale}/questionario`}
           className="bg-slate border border-white/60 px-8 py-3 font-display font-light italic text-white transition-opacity hover:opacity-80"
         >
-          Preencher questionário
+          {t('cta.button')}
         </Link>
       </section>
     </main>

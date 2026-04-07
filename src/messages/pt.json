@@ -68,6 +68,14 @@
   },
   "contact": {
     "title": "Contato",
+    "heroLabel": "Design de Interiores",
+    "heroHeading": "Vamos criar",
+    "heroEnding": "juntas",
+    "heroWord0": "sonhos",
+    "heroWord1": "espaços",
+    "heroWord2": "desenhos",
+    "heroWord3": "histórias",
+    "heroWord4": "ambientes",
     "whatsappLabel": "Fale pelo WhatsApp",
     "whatsappMessage": "Olá Carol, gostaria de saber mais sobre seus serviços.",
     "emailLabel": "E-mail",
@@ -197,16 +205,22 @@
     "hero": "Comercial",
     "back": "Voltar",
     "s1": {
-      "label": "01 — Estratégia",
-      "title": "Design que\ntrabalha por você",
-      "p1": "No espaço comercial, o ambiente fala antes de você. Ele comunica seriedade, personalidade ou acolhimento — às vezes os três ao mesmo tempo.",
-      "p2": "Trabalho para que cada detalhe — layout, mobiliário, luz, paleta — reforce quem você é e o que você quer transmitir."
+      "label": "01 — Identidade",
+      "title": "Design que revela\nquem você é",
+      "p1": "O espaço comercial é uma extensão da sua marca. Antes de qualquer palavra, ele já comunica valores, cuidado e personalidade.",
+      "p2": "Cada escolha — a madeira, a luz, o detalhe curatorial — é pensada para traduzir sua essência em ambiente."
     },
     "s2": {
-      "label": "02 — Execução",
-      "title": "Ambientes que\nficam na memória",
-      "p1": "Do briefing à entrega, acompanho cada etapa: projeto técnico, materiais, fornecedores, obra.",
-      "p2": "O objetivo é sempre o mesmo — um espaço que as pessoas queiram voltar, que reforce a credibilidade da sua marca e que funcione impecavelmente todos os dias."
+      "label": "02 — Presença",
+      "title": "Ambientes que\nconstroem autoridade",
+      "p1": "Credibilidade se constrói também no espaço. Um ambiente bem projetado transmite seriedade, inspira confiança e posiciona sua marca antes mesmo da primeira reunião.",
+      "p2": "Do mobiliário à paleta, cada elemento reforça a mensagem que você quer passar."
+    },
+    "s3": {
+      "label": "03 — Equilíbrio",
+      "title": "Funcionalidade\ncom leveza",
+      "p1": "Produtividade real exige conforto. Espaços que integram luz natural, proporção e materiais certos criam ambientes onde as pessoas trabalham melhor — e permanecem com prazer.",
+      "p2": "Projeto para que beleza e função andem juntas, sem concessões."
     },
     "cta": {
       "title": "Vamos projetar seu espaço?",
@@ -229,9 +243,60 @@
       "p1": "Do apartamento compacto à casa ampla, o cuidado é o mesmo: materiais que envelhecem bem, luz que transforma o ambiente, cada peça no lugar certo.",
       "p2": "O resultado é um lar que parece ter sempre sido assim — e que você não vai querer deixar."
     },
+    "s3": {
+      "label": "03 — Dormitórios",
+      "title": "Refúgio e\ndescanso",
+      "p1": "O quarto é o espaço mais íntimo da casa. Cada detalhe — do revestimento têxtil à iluminação indireta — é pensado para criar um ambiente de acolhimento e tranquilidade.",
+      "p2": "Um lugar que convida ao descanso e reflete quem você é."
+    },
+    "s4": {
+      "label": "04 — Convivência",
+      "title": "Salas que\nreúnem",
+      "p1": "A sala de estar é onde a vida acontece. Projetamos cada ambiente para facilitar o convívio, com circulação fluida, mobiliário sob medida e paleta de cores harmoniosa.",
+      "p2": "Elegância que convida as pessoas a ficarem."
+    },
+    "s5": {
+      "label": "05 — À mesa",
+      "title": "Refeições\nmemoráveis",
+      "p1": "Uma sala de jantar bem projetada transforma cada refeição em ocasião especial. Iluminação, proporção e acabamentos que criam a atmosfera certa para receber com sofisticação.",
+      "p2": "Do cotidiano ao jantar especial, o cenário perfeito já está pronto."
+    },
     "cta": {
       "title": "Vamos criar seu lar?",
       "body": "Conta como é o seu espaço e o que você sonha para ele.",
+      "button": "Preencher questionário"
+    }
+  },
+  "fachadas": {
+    "hero": "Fachadas",
+    "back": "Voltar",
+    "s1": {
+      "label": "01 — Presença",
+      "title": "A primeira impressão\ncomeça do lado de fora",
+      "p1": "A fachada é o rosto de um espaço. Antes de qualquer palavra, ela já comunica valores, cuidado e personalidade — para quem passa, para quem chega.",
+      "p2": "Cada projeto começa com a leitura do entorno: a luz, o volume, os materiais que vão dialogar com a paisagem sem perder identidade."
+    },
+    "s2": {
+      "label": "02 — Integração",
+      "title": "Dentro e fora\nem conversa",
+      "p1": "Quando a fachada e os ambientes internos se conversam, o espaço ganha fluidez. A área externa deixa de ser um limite e passa a ser uma extensão natural da vida dentro de casa.",
+      "p2": "Volumes, aberturas e mobiliário de área trabalhados em conjunto para criar uma experiência contínua."
+    },
+    "s3": {
+      "label": "03 — Paisagem",
+      "title": "O projeto que\nabraça o entorno",
+      "p1": "A piscina, o jardim, a vista — tudo isso faz parte do projeto. Uma fachada bem desenhada enquadra a paisagem, cria perspectivas e valoriza o que a natureza já oferece.",
+      "p2": "O resultado é um espaço que parece ter sempre estado ali."
+    },
+    "s4": {
+      "label": "04 — Identidade",
+      "title": "Cada lugar\ntem sua linguagem",
+      "p1": "Uma fachada à beira-mar pede leveza, materiais que resistam e uma paleta que dialogue com a água e a areia. Não existe fórmula — existe escuta e interpretação de cada contexto.",
+      "p2": "É essa leitura cuidadosa que transforma um projeto em um lugar com alma."
+    },
+    "cta": {
+      "title": "Pronto para começar?",
+      "body": "Conta sobre o seu espaço e vamos criar algo incrível juntos.",
       "button": "Preencher questionário"
     }
   },

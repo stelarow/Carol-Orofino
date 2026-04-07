@@ -15,7 +15,7 @@
     "residencial": "Residential",
     "comercial": "Commercial",
     "fachadas": "Facades",
-    "inspire-se": "Inspire-se",
+    "inspire-se": "Get Inspired",
     "reforma": "Renovation",
     "viewAllProjects": "View all projects",
     "featuredTitle": "Featured Projects",
@@ -38,7 +38,7 @@
       "residencial": "Residential",
       "comercial": "Commercial",
       "reforma": "Renovation",
-      "inspire-se": "Inspire-se"
+      "inspire-se": "Get Inspired"
     }
   },
   "project": {
@@ -68,6 +68,14 @@
   },
   "contact": {
     "title": "Contact",
+    "heroLabel": "Interior Design",
+    "heroHeading": "Let's create",
+    "heroEnding": "together",
+    "heroWord0": "dreams",
+    "heroWord1": "spaces",
+    "heroWord2": "designs",
+    "heroWord3": "stories",
+    "heroWord4": "environments",
     "whatsappLabel": "Chat on WhatsApp",
     "whatsappMessage": "Hello Carol, I'd like to know more about your services.",
     "emailLabel": "Email",
@@ -197,16 +205,22 @@
     "hero": "Commercial",
     "back": "Back",
     "s1": {
-      "label": "01 — Strategy",
-      "title": "Design that\nworks for you",
-      "p1": "In a commercial space, the environment speaks before you do. It conveys seriousness, personality, or warmth — sometimes all three at once.",
-      "p2": "I work to ensure every detail — layout, furniture, light, palette — reinforces who you are and what you want to convey."
+      "label": "01 — Identity",
+      "title": "Design that reveals\nwho you are",
+      "p1": "A commercial space is an extension of your brand. Before any word is spoken, it already communicates values, care and personality.",
+      "p2": "Every choice — the wood, the light, the curatorial detail — is designed to translate your essence into the environment."
     },
     "s2": {
-      "label": "02 — Execution",
-      "title": "Spaces that\nstay with you",
-      "p1": "From briefing to delivery, I oversee every step: technical design, materials, suppliers, construction.",
-      "p2": "The goal is always the same — a space people want to return to, that reinforces your brand's credibility and works flawlessly every day."
+      "label": "02 — Presence",
+      "title": "Spaces that\nbuild authority",
+      "p1": "Credibility is also built in the space. A well-designed environment conveys seriousness, inspires trust and positions your brand even before the first meeting.",
+      "p2": "From furniture to palette, every element reinforces the message you want to convey."
+    },
+    "s3": {
+      "label": "03 — Balance",
+      "title": "Functionality\nwith ease",
+      "p1": "Real productivity demands comfort. Spaces that integrate natural light, proportion and the right materials create environments where people work better — and stay with pleasure.",
+      "p2": "Designed so that beauty and function go hand in hand, without compromise."
     },
     "cta": {
       "title": "Let's design your space?",
@@ -229,9 +243,60 @@
       "p1": "From a compact apartment to a spacious house, the care is the same: materials that age beautifully, light that transforms, each piece in the right place.",
       "p2": "The result is a home that feels like it was always that way — and one you won't want to leave."
     },
+    "s3": {
+      "label": "03 — Bedrooms",
+      "title": "Refuge and\nrest",
+      "p1": "The bedroom is the most intimate space in the home. Every detail — from textile finishes to indirect lighting — is designed to create an environment of comfort and tranquility.",
+      "p2": "A place that invites rest and reflects who you are."
+    },
+    "s4": {
+      "label": "04 — Living",
+      "title": "Rooms that\nbring people together",
+      "p1": "The living room is where life happens. We design each space to facilitate togetherness, with fluid circulation, custom furniture and a harmonious color palette.",
+      "p2": "Elegance that invites people to stay."
+    },
+    "s5": {
+      "label": "05 — At the Table",
+      "title": "Memorable\nmeals",
+      "p1": "A well-designed dining room transforms every meal into a special occasion. Lighting, proportion and finishes that create the right atmosphere to entertain with sophistication.",
+      "p2": "From everyday dining to a special dinner, the perfect setting is already ready."
+    },
     "cta": {
       "title": "Let's create your home?",
       "body": "Tell me about your space and what you dream for it.",
+      "button": "Fill out questionnaire"
+    }
+  },
+  "fachadas": {
+    "hero": "Facades",
+    "back": "Back",
+    "s1": {
+      "label": "01 — Presence",
+      "title": "First impressions\nbegin outside",
+      "p1": "The facade is the face of a space. Before any word is spoken, it already communicates values, care and personality — to those passing by, to those arriving.",
+      "p2": "Every project begins with a reading of the surroundings: the light, the volume, the materials that will dialogue with the landscape without losing identity."
+    },
+    "s2": {
+      "label": "02 — Integration",
+      "title": "Inside and outside\nin conversation",
+      "p1": "When the facade and interior spaces talk to each other, the space gains fluidity. The outdoor area ceases to be a boundary and becomes a natural extension of life inside the home.",
+      "p2": "Volumes, openings and outdoor furniture worked together to create a continuous experience."
+    },
+    "s3": {
+      "label": "03 — Landscape",
+      "title": "The design that\nembraces the surroundings",
+      "p1": "The pool, the garden, the view — all of this is part of the project. A well-designed facade frames the landscape, creates perspectives and enhances what nature already offers.",
+      "p2": "The result is a space that feels like it was always there."
+    },
+    "s4": {
+      "label": "04 — Identity",
+      "title": "Every place has\nits own language",
+      "p1": "A seaside facade calls for lightness, materials that endure, and a palette that dialogues with the water and sand. There is no formula — there is listening and interpreting each context.",
+      "p2": "It is this careful reading that transforms a project into a place with soul."
+    },
+    "cta": {
+      "title": "Ready to start?",
+      "body": "Tell me about your space and let's create something incredible together.",
       "button": "Fill out questionnaire"
     }
   },
