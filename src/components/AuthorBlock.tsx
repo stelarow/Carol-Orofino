@@ -12,7 +12,7 @@ export default async function AuthorBlock({ locale, date, readTime }: AuthorBloc
   const t = await getTranslations({ locale, namespace: 'blog' })
 
   const localeCode =
-    locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : 'en-US'
+    locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : locale === 'it' ? 'it-IT' : 'en-US'
 
   const formattedDate = new Date(date).toLocaleDateString(localeCode, {
     year: 'numeric',

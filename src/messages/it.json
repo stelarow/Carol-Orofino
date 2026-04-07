@@ -1,0 +1,353 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Progetti Consegnati",
+    "about": "Chi siamo",
+    "services": "Servizi",
+    "projectsShort": "Progetti",
+    "blog": "Journal",
+    "contact": "Contatti",
+    "questionnaire": "Questionario"
+  },
+  "home": {
+    "tagline": "Interior Design che trasforma gli spazi in esperienze",
+    "collectionsTitle": "Il Nostro Lavoro",
+    "residencial": "Residenziale",
+    "comercial": "Commerciale",
+    "fachadas": "Facciate",
+    "inspire-se": "Inspire-se",
+    "reforma": "Ristrutturazione",
+    "viewAllProjects": "Vedi tutti i progetti",
+    "featuredTitle": "Progetti in Evidenza",
+    "aboutTitle": "Carol Orofino",
+    "aboutTeaser": "Credo che ogni spazio racconti una storia. Con oltre 10 anni di esperienza, creo ambienti che uniscono funzionalità, bellezza e identità.",
+    "aboutLink": "Scopri di più",
+    "blogTitle": "Dal Journal",
+    "blogTeaser": "Riflessioni sul design, riferimenti e l'arte di creare spazi che durano.",
+    "blogLink": "Leggi gli articoli",
+    "questionnaireSectionEyebrow": "Lavoriamo insieme",
+    "questionnaireSectionTitle": "Parlami del tuo progetto",
+    "questionnaireSectionBody": "Compila il questionario di briefing e parlami del tuo spazio, del tuo stile e dei tuoi sogni. Con queste informazioni, creo una proposta davvero personalizzata per te.",
+    "questionnaireSectionCta": "Inizia il questionario"
+  },
+  "projects": {
+    "title": "Progetti Consegnati",
+    "noResults": "Nessun progetto trovato.",
+    "filter": {
+      "all": "Tutti",
+      "residencial": "Residenziale",
+      "comercial": "Commerciale",
+      "reforma": "Ristrutturazione",
+      "inspire-se": "Inspire-se"
+    }
+  },
+  "project": {
+    "location": "Posizione",
+    "year": "Anno",
+    "category": "Categoria",
+    "whatsappCta": "Voglio un progetto come questo",
+    "whatsappMessage": "Ciao Carol, sono interessato/a al progetto {title} e vorrei saperne di più."
+  },
+  "about": {
+    "title": "Chi è Carol Orofino",
+    "bio": "Carol Orofino è un'interior designer specializzata in Design Sostenibile. In oltre 10 anni di carriera, ha sviluppato progetti residenziali e commerciali che traducono la personalità dei propri clienti in spazi unici e funzionali.",
+    "philosophy": "Filosofia del Design",
+    "philosophyText": "Credo che il design d'interni vada oltre l'estetica. Si tratta di creare spazi che trasformano l'esperienza di chi vi abita — spazi che ispirano, accolgono e durano.",
+    "eyebrow": "Chi siamo",
+    "customEyebrow": "Esclusivamente per te",
+    "customTitle": "Progetti su misura, fatti per te",
+    "customBody": "Ogni progetto inizia con un ascolto attento. Capire il tuo stile di vita, i tuoi gusti e il modo in cui usi ogni spazio è ciò che ci permette di creare ambienti davvero unici — funzionali, accoglienti e in armonia con chi sei. Un progetto personalizzato non è solo più bello; è uno che continua ad avere senso molto tempo dopo che ti sei sistemato.",
+    "servicesTitle": "Servizi",
+    "ctaTitle": "Lavoriamo insieme",
+    "ctaSubtitle": "Parlami del tuo progetto",
+    "ctaButton": "Chatta su WhatsApp",
+    "ctaWhatsappMessage": "Ciao Carol, vorrei saperne di più sui tuoi servizi."
+  },
+  "services": {
+    "title": "Servizi"
+  },
+  "contact": {
+    "title": "Contatti",
+    "whatsappLabel": "Chatta su WhatsApp",
+    "whatsappMessage": "Ciao Carol, vorrei saperne di più sui tuoi servizi.",
+    "emailLabel": "Email",
+    "instagramLabel": "Instagram",
+    "followOn": "Segui su Instagram",
+    "questionnaireLink": "Compila il questionario di briefing"
+  },
+  "questionnaire": {
+    "title": "Questionario di Briefing",
+    "progress": "Passo {current} di {total}",
+    "next": "Avanti",
+    "back": "Indietro",
+    "submit": "Invia",
+    "submitting": "Invio in corso...",
+    "errorGeneric": "Qualcosa è andato storto. Riprova.",
+    "step1": {
+      "title": "Identificazione e Contatti",
+      "name": "Nome completo",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "namePlaceholder": "Il tuo nome completo",
+      "whatsappPlaceholder": "+39 XXX XXX XXXX",
+      "emailPlaceholder": "tua@email.com",
+      "nameError": "Il nome è obbligatorio",
+      "whatsappError": "Numero WhatsApp non valido",
+      "emailError": "Email non valida"
+    },
+    "step2": {
+      "title": "Lo Spazio",
+      "roomType": "Quale spazio vuoi trasformare?",
+      "roomTypePlaceholder": "Seleziona...",
+      "roomOptions": {
+        "sala": "Soggiorno",
+        "quarto": "Camera da letto",
+        "cozinha": "Cucina",
+        "escritorio": "Ufficio",
+        "consultorio": "Studio medico",
+        "outro": "Altro"
+      },
+      "roomTypeError": "Seleziona un tipo di ambiente",
+      "area": "Misure (se le conosci)",
+      "areaPlaceholder": "Es.: soggiorno 4×5 m, camera 3×3 m, o semplicemente 'un appartamento di 60 mq'",
+      "floorPlan": "Planimetria o schizzo (opzionale)",
+      "floorPlanHint": "PDF, PNG o JPG — max 10MB",
+      "photos": "Foto o video dello spazio (opzionale)",
+      "photosHint": "Più file — max 50MB totali",
+      "fileTooLarge": "Il file supera la dimensione massima",
+      "fileInvalidType": "Tipo di file non consentito",
+      "substituir": "Sostituisci",
+      "remover": "Rimuovi",
+      "adicionarMais": "Aggiungi altri"
+    },
+    "step3": {
+      "title": "Stile e Riferimenti",
+      "styles": "Quale stile ti rappresenta?",
+      "styleOptions": {
+        "minimalista": "Minimalista",
+        "industrial": "Industriale",
+        "escandinavo": "Scandinavo",
+        "classico": "Classico",
+        "moderno": "Moderno",
+        "boho": "Boho",
+        "japandi": "Japandi",
+        "rustico": "Rustico",
+        "contemporaneo": "Contemporaneo",
+        "provencal": "Provenzale"
+      },
+      "mustHave": "Cosa deve essere incluso nel tuo progetto?",
+      "mustHavePlaceholder": "Es.: grande scrivania da lavoro, illuminazione calda...",
+      "mustHaveHint": "Max 500 caratteri"
+    },
+    "step4": {
+      "title": "Ambito e Investimento",
+      "scopeType": "Cosa stai cercando?",
+      "scopeOptions": {
+        "consultoria": "Consulenza colori e arredamento",
+        "projeto3d": "Progetto 3D dettagliato",
+        "reforma": "Ristrutturazione completa con supervisione"
+      },
+      "scopeTypeError": "Seleziona un tipo di progetto",
+      "urgency": "Qual è la tua tempistica?",
+      "urgencyOptions": {
+        "imediata": "Immediata",
+        "3meses": "Entro 3 mesi",
+        "sondando": "Solo esplorando"
+      },
+      "budget": "Fascia di investimento per l'esecuzione",
+      "budgetOptions": {
+        "ate10k": "Fino a R$ 10.000",
+        "10a30k": "R$ 10.000 – R$ 30.000",
+        "30a80k": "R$ 30.000 – R$ 80.000",
+        "acima80k": "Oltre R$ 80.000"
+      }
+    },
+    "success": {
+      "title": "Grazie!",
+      "message": "Abbiamo ricevuto il tuo questionario e ti contatteremo presto.",
+      "backToHome": "home"
+    }
+  },
+  "blog": {
+    "title": "Journal",
+    "subtitle": "Design, riferimenti e ispirazione",
+    "minRead": "min di lettura",
+    "readMore": "Leggi l'articolo",
+    "backToBlog": "Torna al journal",
+    "authorRole": "Specialista in Interior Design",
+    "relatedPostsTitle": "Continua a Leggere",
+    "breadcrumbHome": "Home",
+    "contactCta": "Inizia una conversazione",
+    "sidebarHighlights": "In evidenza",
+    "sidebarCategories": "Categorie",
+    "allCategories": "Tutte",
+    "noPosts": "Nessun articolo in questa categoria.",
+    "expertTip": "Consiglio dell'esperto",
+    "sidebarInThisArticle": "In questo articolo",
+    "sidebarCtaTitle": "Pronto a trasformare il tuo spazio?",
+    "sidebarCtaBody": "Carol Orofino segue progetti residenziali e commerciali.",
+    "sidebarCtaButton": "Parla con Carol",
+    "categoryLabels": {
+      "Luxo": "Lusso",
+      "Minimalismo": "Minimalismo",
+      "Design Escandinavo": "Design Scandinavo"
+    }
+  },
+  "comercial": {
+    "hero": "Commerciale",
+    "back": "Indietro",
+    "s1": {
+      "label": "01 — Strategia",
+      "title": "Design che\nlavora per te",
+      "p1": "In uno spazio commerciale, l'ambiente parla prima di te. Trasmette serietà, personalità o calore — a volte tutti e tre insieme.",
+      "p2": "Lavoro per assicurarmi che ogni dettaglio — layout, arredi, luce, palette — rinforzi chi sei e cosa vuoi comunicare."
+    },
+    "s2": {
+      "label": "02 — Esecuzione",
+      "title": "Spazi che\nrimangono con te",
+      "p1": "Dal briefing alla consegna, supervisiono ogni fase: progetto tecnico, materiali, fornitori, costruzione.",
+      "p2": "L'obiettivo è sempre lo stesso — uno spazio in cui le persone vogliono tornare, che rafforza la credibilità del tuo brand e funziona perfettamente ogni giorno."
+    },
+    "cta": {
+      "title": "Progettiamo il tuo spazio?",
+      "body": "Parlami della tua attività e di cosa hai bisogno dallo spazio.",
+      "button": "Compila il questionario"
+    }
+  },
+  "residencial": {
+    "hero": "Residenziale",
+    "back": "Indietro",
+    "s1": {
+      "label": "01 — Approccio",
+      "title": "Una casa fatta\napposta per te",
+      "p1": "Prima di tracciare qualsiasi linea, ascolto. Come ti svegli, come intrattieni gli ospiti, cosa ti stanca del tuo spazio attuale, cosa non puoi fare a meno di avere.",
+      "p2": "Solo allora inizia il progetto — uno che unisce ciò che è bello con ciò che funziona davvero nella tua vita."
+    },
+    "s2": {
+      "label": "02 — Risultato",
+      "title": "Spazi che\naccolgono",
+      "p1": "Da un appartamento compatto a una casa spaziosa, la cura è la stessa: materiali che invecchiano bene, una luce che trasforma, ogni pezzo al posto giusto.",
+      "p2": "Il risultato è una casa che sembra sempre essere stata così — e da cui non vorrai andartene."
+    },
+    "cta": {
+      "title": "Creiamo la tua casa?",
+      "body": "Parlami del tuo spazio e di cosa sogni per esso.",
+      "button": "Compila il questionario"
+    }
+  },
+  "designDeInteriores": {
+    "hero": "Interior\nDesign",
+    "back": "Indietro",
+    "s1": {
+      "label": "01 — Processo",
+      "title": "Dal concetto\nalla consegna",
+      "p1": "Comincio ascoltando. La routine, i gusti, cosa ti disturba dello spazio attuale, cosa manca. Solo allora arriva il progetto — concept, moodboard, 3D e supervisione in cantiere fino al giorno della consegna.",
+      "p2": "Il risultato è uno spazio che sembra sempre essere stato così: come se non potesse essere altrimenti."
+    },
+    "s2": {
+      "label": "02 — Filosofia",
+      "title": "Spazi che\ntrasformano",
+      "p1": "Il design d'interni non è decorazione. È la differenza tra uno spazio che abiti e uno spazio che ti appartiene.",
+      "p2": "Ogni materiale, ogni proporzione, ogni fonte di luce è scelta con intenzione — così che l'intero ambiente parli la stessa lingua."
+    },
+    "cta": {
+      "title": "Creiamo insieme?",
+      "body": "Parlami del tuo spazio e di cosa sogni per esso.",
+      "button": "Compila il questionario"
+    }
+  },
+  "projetos": {
+    "hero": "Progetti",
+    "back": "Indietro",
+    "s1": {
+      "label": "01 — Cucina",
+      "title": "Praticità\ne bellezza",
+      "p1": "La cucina è il cuore della casa. Mobili su misura, piani di lavoro ben proporzionati e illuminazione attenta fanno tutta la differenza nella vita quotidiana.",
+      "p2": "Ogni centimetro progettato intorno al tuo stile di vita."
+    },
+    "s2": {
+      "label": "02 — Studio",
+      "title": "Spazio per\nla concentrazione e la creatività",
+      "p1": "Uno spazio di lavoro ben progettato va oltre una scrivania e una sedia. Organizzazione, luce e il giusto flusso creano l'ambiente ideale per un lavoro di qualità.",
+      "p2": "Perché il posto in cui lavori merita la stessa cura."
+    },
+    "s3": {
+      "label": "03 — Camera",
+      "title": "Un posto per\nriposare davvero",
+      "p1": "La camera da letto deve essere un santuario. Materiali avvolgenti, una palette calmante e arredi che si adattano al ritmo di chi ci vive.",
+      "p2": "Ogni decisione presa affinché tu senta di essere davvero arrivato a casa."
+    },
+    "s4": {
+      "label": "04 — Bagno",
+      "title": "Uno spazio\nper il benessere",
+      "p1": "Il bagno non è più solo utilità. Con i materiali giusti e una composizione equilibrata, diventa un luogo di riposo e rinnovamento.",
+      "p2": "Eleganza nei dettagli che tocchi e vedi ogni giorno."
+    },
+    "cta": {
+      "title": "Pronto per iniziare?",
+      "body": "Parlami del tuo spazio e creiamo insieme qualcosa di straordinario.",
+      "button": "Compila il questionario"
+    }
+  },
+  "inspireSe": {
+    "metaTitle": "Ispirati — Carol Orofino",
+    "metaDescription": "Stili di interior design che traducono la personalità in spazi unici.",
+    "heroLabel": "Interior Design",
+    "heroTitle": "Ispirati",
+    "back": "Indietro",
+    "cta": {
+      "title": "Creiamo insieme?",
+      "body": "Parlami del tuo spazio e di cosa sogni per esso.",
+      "button": "Compila il questionario"
+    },
+    "classicos": {
+      "title": "Classici",
+      "text": "Lo stile classico valorizza l'eleganza senza tempo, la sofisticatezza e l'armonia. Si basa su pezzi strutturati, tagli impeccabili e design equilibrato — indipendente dalle tendenze passeggere. Uno stile che trasmette fiducia, autorità e raffinatezza, privilegiando qualità, durabilità e versatilità."
+    },
+    "contemporaneo": {
+      "title": "Contemporaneo",
+      "text": "Lo stile contemporaneo è il design del momento presente, caratterizzato da continua evoluzione e adattamento alle nuove tendenze. Valorizza funzionalità, comfort e sofisticatezza, creando ambienti equilibrati e moderni. I tratti principali includono linee pulite, spazi integrati e un'estetica semplice priva di eccessi."
+    },
+    "minimalista": {
+      "title": "Minimalista",
+      "text": "Lo stile minimalista si fonda sul concetto 'il meno è il più', privilegiando semplicità, funzionalità ed eliminazione dell'eccesso. Valorizza spazi organizzati, linee rette, pochi elementi e materiali di alta qualità — creando ambienti eleganti, luminosi e senza tempo."
+    },
+    "escandinavo": {
+      "title": "Scandinavo",
+      "text": "Lo stile scandinavo è un'estetica che fonde minimalismo, funzionalità e accoglienza, ispirata ai paesi nordici. Valorizza ambienti luminosi, organizzati e ben illuminati con mobili semplici e design pulito. La forte presenza di materiali naturali come il legno chiaro e i tessuti morbidi porta equilibrio e comfort allo spazio."
+    },
+    "industrial": {
+      "title": "Industriale",
+      "text": "Lo stile industriale trae ispirazione dalle vecchie fabbriche e dai magazzini urbani, celebrando un'estetica grezza, funzionale e ricca di personalità. Mette in risalto materiali grezzi, strutture a vista e spazi aperti — moderni e sobri. Il concetto è mostrare le ossa dello spazio, trasformando elementi come tubi e travi in parte del design."
+    },
+    "japandi": {
+      "title": "Japandi",
+      "text": "Lo stile Japandi è la fusione del design scandinavo e dell'estetica giapponese, unendo funzionalità, semplicità e calore. Mescola il minimalismo zen con il comfort nordico, creando ambienti equilibrati, eleganti e accoglienti. Onora l'essenziale, la natura e la bellezza dell'imperfezione (wabi-sabi)."
+    },
+    "boho": {
+      "title": "Boho",
+      "text": "Lo stile Boho è un'estetica libera, creativa e ricca di personalità che mescola influenze hippie, etniche e vintage. Valorizza comfort, natura e artigianato, creando spazi rilassati, accoglienti e unici. La decorazione sovrappone texture, mobili naturali, piante e pezzi con storia — senza regole rigide."
+    },
+    "moderno": {
+      "title": "Moderno",
+      "text": "Lo stile moderno è definito da funzionalità, semplicità e forme geometriche, seguendo il principio che la forma segue la funzione. Valorizza spazi integrati, ben illuminati e organizzati con un design pulito privo di eccessi. L'estetica è razionale ed elegante, focalizzata sulla praticità e sul collegamento tra interno ed esterno."
+    },
+    "rustico": {
+      "title": "Rustico",
+      "text": "Lo stile rustico valorizza la naturalità, la semplicità e la connessione con la natura, portando l'atmosfera accogliente della campagna in ogni spazio. Utilizza materiali grezzi come legno, pietra e ferro, mettendo in risalto texture, imperfezioni e finiture naturali. Gli spazi sono caldi, confortevoli e pieni di carattere."
+    },
+    "provencal": {
+      "title": "Provenzale",
+      "text": "Lo stile provenzale si ispira alle case di campagna del sud della Francia, fondendo fascino rustico con eleganza classica. Crea ambienti romantici, luminosi e accoglienti con mobili in legno invecchiato, dettagli curvi ed elementi artigianali. La decorazione celebra texture delicate, stampe floreali e materiali naturali come lino, ferro e ceramica."
+    }
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati.",
+    "tagline": "Design d'Interni"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che stai cercando non esiste.",
+    "back": "Torna alla home"
+  }
+}

@@ -9,6 +9,7 @@ const LOCALES: { code: Locale; label: string }[] = [
   { code: 'pt', label: 'PT' },
   { code: 'en', label: 'EN' },
   { code: 'es', label: 'ES' },
+  { code: 'it', label: 'IT' },
 ]
 
 export default function Footer() {
@@ -26,7 +27,7 @@ export default function Footer() {
               Carol Orofino
             </p>
             <p className="mt-2 font-body text-xs uppercase tracking-widest text-white/50">
-              Design de Interiores
+              {t('footer.tagline')}
             </p>
           </div>
 
@@ -60,7 +61,9 @@ export default function Footer() {
                   <Link
                     href={`/${loc.code}`}
                     className={`font-body text-xs uppercase tracking-widest transition-colors hover:text-white ${
-                      locale === loc.code ? 'text-white' : 'text-white/50'
+                      locale === loc.code
+                        ? 'text-white underline underline-offset-4'
+                        : 'text-white/50'
                     }`}
                   >
                     {loc.label}

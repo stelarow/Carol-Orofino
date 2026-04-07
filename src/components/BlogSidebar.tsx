@@ -31,7 +31,7 @@ export default async function BlogSidebar({ locale, currentSlug, sections }: Blo
   const categories = [...new Set(posts.map((p) => p.category))].sort()
 
   const localeCode =
-    locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : 'en-US'
+    locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : locale === 'it' ? 'it-IT' : 'en-US'
 
   return (
     <aside className="sticky top-8 self-start flex flex-col gap-10">

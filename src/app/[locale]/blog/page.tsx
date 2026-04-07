@@ -76,7 +76,7 @@ export default async function BlogPage({
                         {post.category}
                         {' · '}
                         {new Date(post.date).toLocaleDateString(
-                          lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-ES' : 'en-US',
+                          lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-ES' : lang === 'it' ? 'it-IT' : 'en-US',
                           { year: 'numeric', month: 'long', day: 'numeric' }
                         )}
                         {' · '}

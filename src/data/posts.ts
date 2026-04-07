@@ -46,6 +46,13 @@ export interface Post {
       conclusion: string
       cta: string
     }
+    it: {
+      title: string
+      subtitle: string
+      sections: PostSection[]
+      conclusion: string
+      cta: string
+    }
   }
 }
 
@@ -162,6 +169,41 @@ export const posts: Post[] = [
           'El lujo, bien entendido, no es un estilo. Es un estándar de atención — aplicado a los materiales, al espacio, al ser humano que va a vivir en él. Cuando una habitación se diseña con ese nivel de cuidado, no necesita declararse. La persona que entra simplemente lo sabe.',
         cta: 'Carol Orofino Design aporta este estándar de atención a cada proyecto. Si estás listo para invertir en un espacio construido alrededor de quien realmente eres, te invitamos a comenzar.',
       },
+      it: {
+        title: 'Il Nuovo Linguaggio del Lusso',
+        subtitle: 'Il vero lusso non è mai stato rumoroso. È sempre stato preciso.',
+        sections: [
+          {
+            heading: 'Oltre la Superficie Dorata',
+            body: 'Per decenni, il lusso nel design d\'interni ha parlato in un unico dialetto: cornici dorate, pavimenti in marmo, lampadari di cristallo. L\'opulenza come evidenza. L\'ambiente annunciava il proprio costo affinché il visitatore non dovesse chiederlo.\n\nQuesto linguaggio sta invecchiando. Il nuovo lusso non annuncia. Rivela — lentamente, a chi sa guardare. Un unico pezzo di mobilio con il tipo di artigianato che può venire solo dalle mani, non dalle macchine. Una finitura a parete che cambia colore mentre il pomeriggio avanza. Un tessuto che chiede di essere toccato prima di poter essere compreso.',
+            image: '/images/blog/new-language-of-luxury-sala.png',
+          },
+          {
+            heading: 'Il Materiale Sa',
+            body: 'Il vero lusso vive nella qualità dei materiali — non nei loro prezzi, ma nella loro onestà. Pietra che è stata estratta, non colata. Legno che è cresciuto, non ingegnerizzato. Pelle che si ammorbidirà negli anni, non si screpolerà.\n\nQuesti materiali condividono una qualità comune: migliorano con il tempo. Portano la memoria dell\'uso. In un mondo di oggetti usa e getta, un materiale che diventa più bello con l\'età è, di per sé, un atto di radicalismo. Questo è il lusso.',
+            table: [
+              { label: 'Pietra', value: 'Estratta, non colata — ogni venatura è unica e racconta il tempo' },
+              { label: 'Legno', value: 'Cresciuto, non ingegnerizzato — acquista colore e carattere negli anni' },
+              { label: 'Pelle naturale', value: 'Si ammorbidisce e costruisce memoria con l\'uso — migliora nel tempo' },
+              { label: 'Lino e lana', value: 'Tessuti che respirano — onestà tattile, bellezza che non ha bisogno di esibirsi' },
+            ],
+            tip: 'Un materiale davvero di lusso non ha bisogno di trattamenti per sembrare costoso — lo è già. Quando valuti un pezzo, passaci sopra la mano: i materiali onesti si rivelano al tatto prima di qualsiasi etichetta.',
+            image: '/images/blog/new-language-of-luxury-closet.png',
+          },
+          {
+            heading: 'Lo Spazio come Privilegio Massimo',
+            body: 'In città dense dove i metri quadrati sono valuta, lo spazio stesso è diventato il materiale più esclusivo di tutti. Non lo spazio come vuoto — ma lo spazio come intenzione. Un ambiente con spazio per respirare. Un corridoio abbastanza largo da percorrere lentamente. Un angolo lettura che non chiede nulla se non la tua presenza.\n\nL\'interno di lusso di questo decennio restituisce lo spazio al suo abitante. Non riempie ogni angolo. Si fida del silenzio. Progetta per la quiete tanto quanto per l\'uso.',
+            image: '/images/blog/new-language-of-luxury-living.png',
+          },
+          {
+            heading: 'Personalizzazione al di sopra del Prestigio',
+            body: 'Il cambiamento che definisce il lusso contemporaneo con maggiore chiarezza è questo: si è spostato dallo status all\'identità. La domanda non è più "cosa dice questo ambiente della mia ricchezza?" ma "cosa dice questo ambiente di chi sono?"\n\nQuesto è più difficile da progettare. Richiede ascolto. Richiede di capire come una persona si muove nella propria casa alle sette del mattino, cosa ha bisogno da un ambiente dopo una lunga giornata, quali oggetti hanno significato per lei. L\'ambiente più lussuoso non è il più costoso. È quello che veste il suo proprietario come un abito su misura.',
+          },
+        ],
+        conclusion:
+          'Il lusso, ben inteso, non è uno stile. È uno standard di attenzione — applicato ai materiali, allo spazio, all\'essere umano che ci vivrà. Quando un ambiente è progettato con quel livello di cura, non ha bisogno di proclamarsi. Chi entra semplicemente lo sa.',
+        cta: 'Carol Orofino Design porta questo standard di attenzione a ogni progetto. Se sei pronto a investire in uno spazio costruito intorno a chi sei davvero, ti invitiamo a cominciare.',
+      },
     },
   },
   {
@@ -272,6 +314,40 @@ export const posts: Post[] = [
         conclusion:
           'Un hogar minimalista no es una declaración de contención. Es una declaración de claridad — sobre lo que valoras, cómo quieres vivir, qué quieres sentir cuando cruzas tu propia puerta. Esa claridad vale la pena diseñarla.',
         cta: 'Carol Orofino Design crea interiores minimalistas que son cálidos, cuidadosos y profundamente personales. Si la simplicidad es tu forma de lujo, diseñémosla juntos.',
+      },
+      it: {
+        title: 'La Disciplina della Sottrazione',
+        subtitle: 'Il minimalismo non è vuoto. È il coraggio di tenere solo ciò che conta.',
+        sections: [
+          {
+            heading: 'Cosa Non È il Minimalismo',
+            body: 'Il minimalismo è stato frainteso — ridotto a uno stile visivo, un\'estetica di pareti bianche e scaffali spogli. Ma il vero minimalismo non riguarda il possedere meno cose. Riguarda il rendere ogni cosa deliberata.\n\nUn ambiente minimalista può contenere calore. Può contenere colore, texture, memoria, vita. Quello che non può contenere è il rumore — il rumore visivo di oggetti che non hanno ragione di essere lì, mobili scelti per default, decorazione che riempie lo spazio senza guadagnarselo.',
+            image: '/images/blog/discipline-of-subtraction-calor.png',
+          },
+          {
+            heading: 'La Selezione È il Design',
+            body: 'L\'abilità più importante nel design minimalista non è ciò che aggiungi. È ciò che rimuovi. Ogni oggetto che lascia un ambiente rende gli oggetti restanti più potenti. La sedia che rimane diventa la sedia — non una delle tante, ma quella, scelta, posizionata, vista.\n\nÈ per questo che il minimalismo è più difficile da progettare del massimalismo. L\'aggiunta è facile. La sottrazione richiede convinzione. Devi essere abbastanza sicuro di ciò che resta da lasciar andare tutto il resto.',
+            image: '/images/blog/discipline-of-subtraction-edicao.png',
+            table: [
+              { label: 'Rimane', value: 'Pezzi con funzione definita, materiali durevoli, proporzione giusta' },
+              { label: 'Va via', value: 'Oggetti senza ragione di essere, duplicati, decorazione riempitiva' },
+              { label: 'Criterio', value: 'Ogni oggetto deve guadagnarsi il proprio posto — non limitarsi a occuparlo' },
+              { label: 'Risultato', value: 'Ogni pezzo restante diventa più potente grazie all\'assenza degli altri' },
+            ],
+            tip: 'Prima di modificare uno spazio, togli tutto. Reintroduci solo ciò che manca. Ciò che non è stato cercato probabilmente non apparteneva a quel luogo.',
+          },
+          {
+            heading: 'Il Peso Emotivo degli Oggetti',
+            body: 'Gli oggetti portano peso — non fisico, ma emotivo. Un ambiente disordinato è stancante non perché sia brutto, ma perché ti chiede qualcosa costantemente. Il tuo sguardo si sposta. La mente prende piccole decisioni. Registri cose, le registri a metà, le eviti.\n\nUn ambiente minimalista ti riposa. Conserva solo ciò che merita la tua attenzione. Il risultato non è freddezza — è chiarezza. La libertà psicologica di uno spazio che non esige.',
+          },
+          {
+            heading: 'Il Minimalismo come Impegno',
+            body: 'La difficoltà del minimalismo è che non finisce nella fase di progetto. Richiede manutenzione — un rapporto diverso con gli oggetti, con gli acquisti, con l\'accumulo. Un interno minimalista progettato senza questa comprensione non resterà minimalista.\n\nMa quando la filosofia è genuinamente abbracciata, qualcosa cambia. Inizi a scegliere diversamente. Compri meno, ma meglio. Noti di più. La casa diventa il riflesso di ciò che conta davvero — non di ciò che ha riempito uno spazio, ma di ciò che è stato scelto per starci.',
+          },
+        ],
+        conclusion:
+          'Una casa minimalista non è una dichiarazione di contenimento. È una dichiarazione di chiarezza — su ciò che valorizzi, su come vuoi vivere, su cosa vuoi sentire quando varchi la tua porta. Quella chiarezza vale la pena di essere progettata.',
+        cta: 'Carol Orofino Design crea interni minimalisti che sono caldi, attenti e profondamente personali. Se la semplicità è la tua forma di lusso, lascia che lo progettiamo insieme.',
       },
     },
   },
@@ -386,6 +462,41 @@ export const posts: Post[] = [
         conclusion:
           'Vivir en un espacio concebido en este lenguaje es comprender que la simplicidad, cuando se persigue con rigor absoluto, se convierte en su propia forma de extravagancia. Si has sentido que algo falta en tu interior — y no puedes nombrarlo con exactitud — quizás lo que falta es precisamente eso: menos.',
         cta: 'Carol Orofino Design traduce esta filosofía en espacios que viven y respiran contigo. Para clientes que buscan interiores donde la calma es un lujo deliberado, te invitamos a iniciar una conversación.',
+      },
+      it: {
+        title: 'Dove il Silenzio Ha una Forma',
+        subtitle: 'Sul lusso di dire meno — e significare tutto.',
+        sections: [
+          {
+            heading: 'L\'Architettura del Silenzio',
+            body: 'Il design scandinavo comprende ciò che la maggior parte degli interni dimentica — che l\'elemento più potente di un ambiente è lo spazio tra gli oggetti. Una poltrona in rovere chiaro, posizionata di fronte a un\'inondazione di luce naturale. Un\'unica tenda di lino, traslucida come un mattino a Bergen, che filtra il calore senza interromperlo. Queste non sono scelte decorative. Sono dichiarazioni.\n\nIl lusso, in questo contesto, non si misura in quantità. Si misura in intenzione. Ogni pezzo guadagna il proprio posto. Ogni texture — la venatura del legno chiaro, il tessuto del lino grezzo, la quieta certezza della pietra spazzolata — racconta una storia che non ha bisogno di essere ripetuta.',
+          },
+          {
+            heading: 'La Texture come Biografia',
+            body: 'Passa la mano sulle superfici di un interno scandinavo ben progettato e capirai cose che le parole non possono trasportare. Il calore del rovere naturale: legno che è cresciuto lentamente, che ha acquisito colore e carattere attraverso decenni di luce nordica. La lieve resistenza del lino, tessuto con una scioltezza che respira. La freschezza assoluta e quieta del calcare chiaro sotto i piedi.\n\nQueste texture non sono accenti. Sono la narrazione. In una palette estratta dalla terra stessa — avorio, sabbia calda, il grigio delle acque ferme, il marrone della corteccia invecchiata — ogni materiale diventa una parola in una frase che dice: questa casa è stata costruita con pazienza.',
+            table: [
+              { label: 'Rovere chiaro', value: 'Base calda — invecchia con grazia e si approfondisce nel tono con l\'uso' },
+              { label: 'Lino grezzo', value: 'Leggero e traspirante — ideale per tende, tappezzerie, biancheria da letto' },
+              { label: 'Calcare chiaro', value: 'Freschezza e solidità — l\'ancora visiva degli spazi scandinavi' },
+              { label: 'Lana naturale', value: 'Calore tattile senza peso visivo — coperte, cuscini, tappeti' },
+              { label: 'Ceramica artigianale', value: 'L\'imperfezione come qualità — ogni pezzo è unico e insostituibile' },
+            ],
+            tip: 'Nel design scandinavo, le texture non decorano — narrano. Quando combini i materiali, dai priorità al contrasto tattile: liscio con ruvido, freddo con caldo, opaco con traslucido.',
+            image: '/images/blog/where-silence-has-a-shape-cozinha.png',
+          },
+          {
+            heading: 'Il Lusso del Meno',
+            body: 'C\'è un malinteso sul minimalismo: che trattenga. In realtà, gli interni minimalisti più raffinati ti danno tutto — rifiutandosi di toglierti nulla di ciò che conta.\n\nLe linee pulite non significano freddo. Un ambiente di bianchi e beige caldo, con un unico accento in pelle caramello o bronzo spazzolato, può contenere più ricchezza sensoriale di dieci ambienti pieni di ornamenti. Gli occhi riposano. La mente si quieta. Il corpo capisce di essere arrivato in un posto in cui vale la pena stare.\n\nQuesto è il paradosso al cuore del lusso minimalista: meno l\'ambiente parla, più ascolti.',
+          },
+          {
+            heading: 'La Luce come il Materiale più Prezioso',
+            body: 'Nessun designer può acquistare ciò che il Nord offre liberamente — quella particolare qualità della luce scandinava: bassa, angolata, generosa. Percorre un ambiente come una conversazione lenta, toccando la texture di una coperta di lana, il bordo di un vaso di ceramica, la venatura pallida di una parete non rifinita.\n\nLa luce non è mai incidentale. Le tende di lino traslucido vengono scelte non solo per ammorbidire una finestra, ma per coreografare come la luce entra in un ambiente nell\'arco delle ore del giorno. I mobili vengono posizionati non per convenzione, ma per il modo in cui cadrà la luce del mattino. La luce naturale, in questa filosofia, non è un supplemento — è il design stesso.',
+            image: '/images/blog/where-silence-has-a-shape-banheiro.png',
+          },
+        ],
+        conclusion:
+          'Abitare uno spazio concepito in questo linguaggio significa capire che la semplicità, perseguita con rigore assoluto, diventa la propria forma di stravaganza. Se hai sentito che qualcosa manca nel tuo interno — e non riesci a nominarlo con precisione — forse ciò che manca è esattamente questo: meno.',
+        cta: 'Carol Orofino Design traduce questa filosofia in spazi che vivono e respirano con te. Per i clienti che cercano interni dove la calma è un lusso deliberato, ti invitiamo a iniziare una conversazione.',
       },
     },
   },

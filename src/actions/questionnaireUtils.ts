@@ -12,6 +12,9 @@ export function normalizeWhatsApp(raw: string, locale = 'pt'): string {
   if (locale === 'en') {
     return digits.startsWith('1') ? digits : `1${digits}`
   }
+  if (locale === 'it') {
+    return digits.startsWith('39') ? digits : `39${digits}`
+  }
   if (locale === 'es') {
     return digits.startsWith('54') ? digits : `54${digits}`
   }
@@ -103,6 +106,15 @@ const CLIENT_EMAIL_STRINGS: Record<string, {
     roomLabel: 'Room(s)',
     stylesLabel: 'Style(s)',
     nextSteps: 'Carol Orofino will review your answers and reach out via WhatsApp or email.',
+  },
+  it: {
+    subject: 'Abbiamo ricevuto il tuo questionario — Carol Orofino',
+    greeting: (name) => `Ciao, ${name}!`,
+    confirmation: 'Abbiamo ricevuto il tuo questionario e ti contatteremo a breve.',
+    summaryTitle: 'Riepilogo del tuo invio',
+    roomLabel: 'Ambiente/i',
+    stylesLabel: 'Stile/i',
+    nextSteps: 'Carol Orofino esaminerà le tue risposte e ti contatterà via WhatsApp o email.',
   },
   es: {
     subject: 'Recibimos tu cuestionario — Carol Orofino',

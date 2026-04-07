@@ -342,7 +342,8 @@
     }
   },
   "footer": {
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "tagline": "Interior Design"
   },
   "notFound": {
     "title": "Page not found",

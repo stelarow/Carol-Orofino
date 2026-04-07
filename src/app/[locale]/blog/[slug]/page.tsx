@@ -8,7 +8,7 @@ import BlogSidebar from '@/components/BlogSidebar'
 import type { Locale } from '@/lib/i18n'
 
 export async function generateStaticParams() {
-  const locales: Locale[] = ['pt', 'en', 'es']
+  const locales: Locale[] = ['pt', 'en', 'es', 'it']
   return locales.flatMap((locale) =>
     posts.map((post) => ({ locale, slug: post.slug }))
   )
@@ -49,7 +49,7 @@ export default async function BlogPostPage({
   const t = await getTranslations({ locale, namespace: 'blog' })
 
   const localeCode =
-    lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-ES' : 'en-US'
+    lang === 'pt' ? 'pt-BR' : lang === 'es' ? 'es-ES' : lang === 'it' ? 'it-IT' : 'en-US'
 
   const sectionHeadings = content.sections.map((s) => ({ heading: s.heading }))
 

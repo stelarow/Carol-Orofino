@@ -18,7 +18,9 @@ export async function generateMetadata({
         ? 'Fill out our questionnaire so we can understand your project and prepare a personalized proposal.'
         : locale === 'es'
           ? 'Completa nuestro cuestionario para entender mejor tu proyecto y preparar una propuesta personalizada.'
-          : 'Preencha nosso questionário para que possamos entender melhor o seu projeto e preparar uma proposta personalizada.',
+          : locale === 'it'
+            ? 'Compila il nostro questionario per aiutarci a capire il tuo progetto e preparare una proposta personalizzata.'
+            : 'Preencha nosso questionário para que possamos entender melhor o seu projeto e preparar uma proposta personalizada.',
     robots: { index: false },
   }
 }

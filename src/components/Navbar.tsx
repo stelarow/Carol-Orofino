@@ -11,6 +11,7 @@ const LOCALES: { code: Locale; label: string }[] = [
   { code: 'pt', label: 'PT' },
   { code: 'en', label: 'EN' },
   { code: 'es', label: 'ES' },
+  { code: 'it', label: 'IT' },
 ]
 
 interface NavbarProps {
@@ -119,8 +120,8 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                     className={`font-body text-xs uppercase tracking-widest transition-colors hover:text-primary ${
                       locale === loc.code
                         ? isTransparentMode
-                          ? 'text-white font-semibold'
-                          : 'text-text-primary font-semibold'
+                          ? 'text-white font-semibold underline underline-offset-4'
+                          : 'text-text-primary font-semibold underline underline-offset-4'
                         : isTransparentMode
                         ? 'text-white/70'
                         : 'text-dark'
@@ -249,7 +250,7 @@ export default function Navbar({ transparent = false }: NavbarProps) {
                   onClick={() => switchLocale(loc.code)}
                   className={`font-body text-xs uppercase tracking-widest ${
                     locale === loc.code
-                      ? 'font-semibold text-text-primary'
+                      ? 'font-semibold text-text-primary underline underline-offset-4'
                       : 'text-dark'
                   }`}
                 >

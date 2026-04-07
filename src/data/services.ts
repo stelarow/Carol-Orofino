@@ -7,6 +7,7 @@ export interface Service {
     pt: { title: string; description: string }
     en: { title: string; description: string }
     es: { title: string; description: string }
+    it: { title: string; description: string }
   }
 }
 
@@ -29,6 +30,11 @@ export const services: Service[] = [
         description:
           'Creación de ambientes residenciales personalizados, del concepto al acabado final.',
       },
+      it: {
+        title: 'Progetto Residenziale',
+        description:
+          'Creazione di ambienti residenziali personalizzati, dal concept alla finitura finale.',
+      },
     },
   },
   {
@@ -48,6 +54,11 @@ export const services: Service[] = [
         title: 'Proyecto Comercial',
         description:
           'Diseño de interiores para oficinas, tiendas y espacios corporativos que reflejan la identidad de su marca.',
+      },
+      it: {
+        title: 'Progetto Commerciale',
+        description:
+          'Design d\'interni per uffici, negozi e spazi aziendali che riflettono l\'identità del tuo brand.',
       },
     },
   },
@@ -69,6 +80,11 @@ export const services: Service[] = [
         description:
           'Transformación de espacios existentes con planificación estratégica y ejecución cuidadosa.',
       },
+      it: {
+        title: 'Ristrutturazione e Rinnovo',
+        description:
+          'Trasformazione di spazi esistenti con pianificazione strategica ed esecuzione attenta.',
+      },
     },
   },
   {
@@ -88,6 +104,11 @@ export const services: Service[] = [
         title: 'Diseño de Interiores',
         description:
           'Orientación especializada para la elección de materiales, muebles, colores y decoración.',
+      },
+      it: {
+        title: 'Design d\'Interni',
+        description:
+          'Guida specializzata per la scelta di materiali, mobili, colori e decorazioni.',
       },
     },
   },

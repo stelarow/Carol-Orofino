@@ -39,6 +39,15 @@ export default function Step1Identity({ data, onChange, onNext, messages, nextLa
       if (digits.length <= 6) return `+1 (${digits.slice(0, 3)}) ${digits.slice(3)}`
       return `+1 (${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
     }
+    if (locale === 'it') {
+      let digits = value.replace(/\D/g, '')
+      if (digits.startsWith('39')) digits = digits.slice(2)
+      digits = digits.slice(0, 10)
+      if (digits.length === 0) return ''
+      if (digits.length <= 3) return `+39 ${digits}`
+      if (digits.length <= 6) return `+39 ${digits.slice(0, 3)} ${digits.slice(3)}`
+      return `+39 ${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
+    }
     if (locale === 'es') {
       let digits = value.replace(/\D/g, '')
       if (digits.startsWith('549')) digits = digits.slice(3)
